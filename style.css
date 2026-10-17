@@ -648,6 +648,16 @@ nav a[aria-current="page"] {
   color: var(--muted);
 }
 
+/* ===== FOUTPAGINA (404) ===== */
+.foutpagina {
+  padding-bottom: 40px;
+}
+
+.foutpagina-knop {
+  text-align: left;
+  margin-top: 24px;
+}
+
 /* ===== MOBIELE TELEFOONS ===== */
 @media (max-width: 800px) {
   .page { padding-top: 0; }
