@@ -104,3 +104,72 @@ if (menuknop && hoofdmenu) {
     }
   });
 }
+
+
+/* ============================================================
+   WISSELKOERS IN DE VOETTEKST
+   Haalt de officiële referentiekoers van de Europese Centrale
+   Bank (ECB) op via de gratis dienst Frankfurter. De ECB werkt
+   deze koers elke werkdag rond 16.00 uur bij.
+   Lukt het ophalen niet, dan verschijnt het blokje gewoon niet.
+   ============================================================ */
+(function () {
+  const kolommen = document.querySelector(".voettekst-kolommen");
+  if (!kolommen) { return; }
+
+  const adressen = [
+    "https://api.frankfurter.dev/v1/latest?from=EUR&to=SEK",
+    "https://api.frankfurter.app/latest?from=EUR&to=SEK"
+  ];
+
+  function haalKoers(i) {
+    if (i >= adressen.length) { return Promise.reject(new Error("geen koers")); }
+    return fetch(adressen[i])
+      .then(function (r) { if (!r.ok) { throw new Error("fout"); } return r.json(); })
+      .catch(function () { return haalKoers(i + 1); });
+  }
+
+  // Getallen in Nederlandse notatie (komma als decimaalteken)
+  function getal(waarde, decimalen) {
+    return waarde.toLocaleString("nl-NL", { minimumFractionDigits: decimalen, maximumFractionDigits: decimalen });
+  }
+  function leesGetal(tekst) {
+    return parseFloat(String(tekst).replace(/\s/g, "").replace(/\./g, "").replace(",", "."));
+  }
+
+  haalKoers(0).then(function (data) {
+    const koers = data && data.rates && data.rates.SEK;
+    if (!koers) { return; }
+
+    const d = data.date.split("-").map(Number);
+    const datum = new Date(d[0], d[1] - 1, d[2])
+      .toLocaleDateString("nl-NL", { day: "numeric", month: "long", year: "numeric" });
+
+    const blok = document.createElement("div");
+    blok.className = "voettekst-koers";
+    blok.innerHTML =
+      '<h2>Wisselkoers</h2>' +
+      '<p class="koers-regel">1 euro = <strong>' + getal(koers, 2) + '</strong> kronor</p>' +
+      '<p class="koers-regel">1 krona = <strong>' + getal(1 / koers, 3) + '</strong> euro</p>' +
+      '<div class="koers-reken">' +
+        '<label><span>EUR</span><input type="text" inputmode="decimal" id="koers-eur" value="10" aria-label="Bedrag in euro"></label>' +
+        '<span class="koers-pijl" aria-hidden="true">⇄</span>' +
+        '<label><span>SEK</span><input type="text" inputmode="decimal" id="koers-sek" aria-label="Bedrag in Zweedse kronor"></label>' +
+      '</div>' +
+      '<p class="koers-bron">ECB-referentiekoers van ' + datum + '</p>';
+    kolommen.appendChild(blok);
+
+    const eur = document.getElementById("koers-eur");
+    const sek = document.getElementById("koers-sek");
+    sek.value = getal(10 * koers, 2);
+
+    eur.addEventListener("input", function () {
+      const w = leesGetal(eur.value);
+      sek.value = isNaN(w) ? "" : getal(w * koers, 2);
+    });
+    sek.addEventListener("input", function () {
+      const w = leesGetal(sek.value);
+      eur.value = isNaN(w) ? "" : getal(w / koers, 2);
+    });
+  }).catch(function () { /* geen koers: blokje blijft weg */ });
+})();
