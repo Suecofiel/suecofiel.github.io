@@ -495,7 +495,7 @@ nav a[aria-current="page"] {
   }
   .brand { flex-basis: 100%; }
   /* Slogan iets kleiner, zodat er ruimte blijft tussen slogan en logo */
-  .brand-tagline { font-size: 0.27em; }
+  .brand-tagline { font-size: 0.285em; }
   .search { flex: 1; }
   .search input { width: 100%; }
   .zoekresultaten { width: 100%; max-width: none; }
