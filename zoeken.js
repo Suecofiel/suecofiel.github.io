@@ -53,7 +53,7 @@ function zoek() {
     treffers.slice(0, 10).forEach(function (item) {
       const li = document.createElement("li");
       const a = document.createElement("a");
-      a.href = item.url;
+      a.href = /^(\/|#|https?:)/.test(item.url) ? item.url : "/" + item.url;
       const label = document.createElement("span");
       label.className = "rubriek-label";
       label.textContent = item.rubriek;

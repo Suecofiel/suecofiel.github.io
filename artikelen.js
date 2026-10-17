@@ -83,17 +83,23 @@ const artikelenOpDatum = artikelen.slice().sort(function (a, b) {
   return b.datum.localeCompare(a.datum);
 });
 
+// Adres altijd vanaf de hoofdmap van de site laten beginnen
+// ("cultuur.html" wordt "/cultuur.html"), zodat links overal werken
+function siteAdres(url) {
+  return /^(\/|#|https?:)/.test(url) ? url : "/" + url;
+}
+
 // Eén artikelkaart maken (afbeelding, datum, titel, inleiding)
 function maakKaart(a) {
   const kaart = document.createElement("a");
   kaart.className = "artikel";
-  kaart.href = a.url;
+  kaart.href = siteAdres(a.url);
 
   const beeld = document.createElement("div");
   beeld.className = "afbeelding";
   if (a.afbeelding) {
     const img = document.createElement("img");
-    img.src = a.afbeelding;
+    img.src = siteAdres(a.afbeelding);
     img.alt = "";
     beeld.appendChild(img);
   } else {
@@ -152,7 +158,7 @@ if (leesOok && artikelpagina) {
   const rubriek = artikelpagina.getAttribute("data-rubriek");
   const ditBestand = window.location.pathname.split("/").pop();
   const lijst = artikelenOpDatum.filter(function (a) {
-    return a.rubriek === rubriek && a.url !== ditBestand;
+    return a.rubriek === rubriek && a.url.replace(/^\//, "") !== ditBestand;
   }).slice(0, 3);
 
   if (lijst.length === 0) {
