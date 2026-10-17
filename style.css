@@ -6,7 +6,7 @@
    Wil je een andere blauwtint? Verander dan alleen de waarde achter --blue. */
 :root {
   --blue: #005293;       /* achtergrond en accenten (Zweeds blauw) */
-  --blue-dark: #003a6b;  /* hover-kleur van links */
+  --blue-dark: #003366;  /* donkerblauw: knoppen en slogan */
   --ink: #1d262b;        /* tekstkleur */
   --muted: #5f6b72;      /* grijze tekst */
   --line: #1d262b;       /* scheidingslijnen */
@@ -101,7 +101,7 @@ header.panel {
 .brand-tagline {
   display: block;
   margin-top: 0.12em;
-  color: var(--blue);
+  color: var(--blue-dark);
   font-size: 0.3em;
   font-weight: normal;
   letter-spacing: 0;
@@ -326,7 +326,8 @@ main.panel {
 
 .meer a {
   display: inline-block;
-  background: var(--soft);
+  background: var(--blue-dark);
+  color: var(--white);
   padding: 9px 16px;
   text-decoration: none;
   font-size: 1.05rem;
