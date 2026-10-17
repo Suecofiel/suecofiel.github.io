@@ -721,6 +721,29 @@ footer li {
   margin-top: 24px;
 }
 
+/* ===== RUBRIEKPAGINA ===== */
+.rubriekpagina-kop {
+  max-width: 760px;
+  padding: 18px 4px 6px;
+}
+
+.rubriekpagina-kop h1 {
+  margin: 0 0 8px;
+  font-size: clamp(1.8rem, 4vw, 2.4rem);
+  line-height: 1.2;
+}
+
+.rubriekpagina-kop .inleiding {
+  margin: 0 0 22px;
+  color: var(--muted);
+  font-size: 1.1rem;
+}
+
+.alle-artikelen {
+  row-gap: 36px;
+  padding-bottom: 20px;
+}
+
 /* ===== MOBIELE TELEFOONS ===== */
 @media (max-width: 800px) {
   .page { padding-top: 0; }
@@ -728,7 +751,8 @@ footer li {
   .grid { grid-template-columns: 1fr; gap: 24px; }
   /* Per rubriek alleen het eerste artikel tonen */
   .grid .artikel:nth-child(n+2) { display: none; }
-  .lees-ook .grid .artikel:nth-child(n+2) { display: block; }
+  .lees-ook .grid .artikel:nth-child(n+2),
+  .alle-artikelen .artikel:nth-child(n+2) { display: block; }
   .klank { grid-template-columns: 1fr; }
   .klank .voorbeeld { grid-column: 1; }
   .opmerking .klinkerlijst { padding-left: 0; }

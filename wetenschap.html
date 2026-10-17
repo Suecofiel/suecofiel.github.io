@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Wetenschap — alle artikelen van De Suecofiel in deze rubriek.">
+  <title>Wetenschap — De Suecofiel</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+</head>
+<body>
+  <div class="page">
+
+    <header class="panel">
+      <div class="header-top">
+        <a class="brand" href="index.html" aria-label="De Suecofiel, naar de homepage">
+          <span class="brand-woord">De</span>
+          <span class="brand-ruimte">
+            <img src="Logo.jpg" alt="">
+          </span>
+          <span class="brand-woord">Suecofiel
+            <span class="brand-tagline">Zweden van dichtbij bekeken</span>
+          </span>
+        </a>
+
+        <!-- Zoekveld: zoekt in de artikelen van De Suecofiel zelf -->
+        <div class="search" role="search">
+          <input type="search" id="zoekveld" placeholder="Zoeken…" aria-label="Zoeken op De Suecofiel" autocomplete="off" aria-controls="zoekresultaten">
+          <ul id="zoekresultaten" class="zoekresultaten" hidden></ul>
+        </div>
+        <button class="menuknop" type="button" aria-expanded="false" aria-controls="hoofdmenu">
+          <svg width="20" height="16" viewBox="0 0 20 16" aria-hidden="true"><rect y="0" width="20" height="2.4" rx="1"/><rect y="6.8" width="20" height="2.4" rx="1"/><rect y="13.6" width="20" height="2.4" rx="1"/></svg>
+          Menu
+        </button>
+      </div>
+
+      <nav id="hoofdmenu" aria-label="Hoofdnavigatie">
+        <ul>
+          <li><a href="actualiteiten.html">Actualiteiten</a></li>
+          <li><a href="cultuur.html">Cultuur</a></li>
+          <li><a href="wetenschap.html" aria-current="page">Wetenschap</a></li>
+          <li><a href="geschiedenis.html">Geschiedenis</a></li>
+          <li><a href="agenda.html">Agenda</a></li>
+        </ul>
+        <ul class="sitelinks">
+          <li><a href="uitspraakhulp.html">Uitspraakhulp</a></li>
+          <li><a href="over.html">Over De Suecofiel</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="panel">
+      <div class="rubriekpagina-kop">
+        <h1>Wetenschap</h1>
+        <!-- AANPASSEN: korte omschrijving van de rubriek -->
+        <p class="inleiding">Onderzoek, uitvindingen en wetenschappelijke ontwikkelingen in en over Zweden.</p>
+      </div>
+
+      <!-- Alle artikelen uit deze rubriek, nieuwste eerst (automatisch uit artikelen.js) -->
+      <div class="grid alle-artikelen" data-rubriek-alle="Wetenschap"></div>
+    </main>
+
+    <footer>
+      <div class="voettekst-kolommen">
+        <div class="voettekst-merk">
+          <p class="voettekst-naam">De Suecofiel</p>
+          <p class="voettekst-slogan">Zweden van dichtbij bekeken</p>
+          <p>
+            Een Nederlandstalig platform met achtergrondverhalen en duiding
+            over de geschiedenis, cultuur, politiek en samenleving van Zweden.
+          </p>
+        </div>
+
+        <nav aria-label="Rubrieken">
+          <h2>Rubrieken</h2>
+          <ul>
+            <li><a href="actualiteiten.html">Actualiteiten</a></li>
+            <li><a href="cultuur.html">Cultuur</a></li>
+            <li><a href="wetenschap.html">Wetenschap</a></li>
+            <li><a href="geschiedenis.html">Geschiedenis</a></li>
+          </ul>
+        </nav>
+
+        <nav aria-label="Meer op De Suecofiel">
+          <h2>Meer op De Suecofiel</h2>
+          <ul>
+            <li><a href="agenda.html">Agenda</a></li>
+            <li><a href="uitspraakhulp.html">Uitspraakhulp</a></li>
+            <li><a href="over.html">Over De Suecofiel</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <div class="voettekst-onder">
+        <p>© 2026 De Suecofiel</p>
+        <p><a href="#">Terug naar boven ↑</a></p>
+      </div>
+    </footer>
+
+  </div>
+
+  <script src="artikelen.js"></script>
+  <script src="zoeken.js"></script>
+</body>
+</html>

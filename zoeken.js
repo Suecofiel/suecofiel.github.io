@@ -9,7 +9,11 @@
 const extraPaginas = [
   { titel: "Over De Suecofiel", rubriek: "Over", tekst: "suecofiel betekenis woordenboek platform over Zweden", url: "over.html" },
   { titel: "Zo spreek je het Zweeds uit", rubriek: "Uitspraakhulp", tekst: "uitspraak klinkers medeklinkers å ä ö y g k sj tj klanken", url: "uitspraakhulp.html" },
-  { titel: "Agenda", rubriek: "Agenda", tekst: "feestdagen tradities evenementen midsommar lucia nationaldag kerst valborg kalender", url: "agenda.html" }
+  { titel: "Agenda", rubriek: "Agenda", tekst: "feestdagen tradities evenementen midsommar lucia nationaldag kerst valborg kalender", url: "agenda.html" },
+  { titel: "Actualiteiten", rubriek: "Rubriek", tekst: "alle artikelen actualiteiten Wat speelt er nu in Zweden? Nieuws en ontwikkelingen uit de Zweedse politiek en samenleving, met achtergrond en duiding.", url: "actualiteiten.html" },
+  { titel: "Cultuur", rubriek: "Rubriek", tekst: "alle artikelen cultuur Taal, tradities, literatuur, muziek en de vele manieren waarop Zweden zichzelf ziet.", url: "cultuur.html" },
+  { titel: "Wetenschap", rubriek: "Rubriek", tekst: "alle artikelen wetenschap Onderzoek, uitvindingen en wetenschappelijke ontwikkelingen in en over Zweden.", url: "wetenschap.html" },
+  { titel: "Geschiedenis", rubriek: "Rubriek", tekst: "alle artikelen geschiedenis Van de Vikingtijd en het Zweedse rijk tot de wortels van het moderne Zweden.", url: "geschiedenis.html" }
 ];
 
 // Artikelen uit artikelen.js (nieuwste eerst)

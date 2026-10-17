@@ -67,7 +67,8 @@ const artikelen = [
 
 /* ============================================================
    HIERONDER NIETS AANPASSEN
-   Deze code zet de artikelen op de homepage en onder artikelen.
+   Deze code zet de artikelen op de homepage, de rubriekpagina's
+   en onder artikelen.
    ============================================================ */
 
 // "2026-10-17" omzetten naar "17 oktober 2026"
@@ -118,6 +119,21 @@ function maakKaart(a) {
 document.querySelectorAll(".grid[data-rubriek]").forEach(function (grid) {
   const rubriek = grid.getAttribute("data-rubriek");
   const lijst = artikelenOpDatum.filter(function (a) { return a.rubriek === rubriek; }).slice(0, 3);
+
+  if (lijst.length === 0) {
+    const leeg = document.createElement("p");
+    leeg.className = "leeg";
+    leeg.textContent = "Binnenkort verschijnen hier de eerste artikelen.";
+    grid.appendChild(leeg);
+    return;
+  }
+  lijst.forEach(function (a) { grid.appendChild(maakKaart(a)); });
+});
+
+// Rubriekpagina: alle artikelen uit de rubriek, nieuwste eerst
+document.querySelectorAll("[data-rubriek-alle]").forEach(function (grid) {
+  const rubriek = grid.getAttribute("data-rubriek-alle");
+  const lijst = artikelenOpDatum.filter(function (a) { return a.rubriek === rubriek; });
 
   if (lijst.length === 0) {
     const leeg = document.createElement("p");
