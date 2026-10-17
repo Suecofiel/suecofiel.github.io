@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Agenda van De Suecofiel: Zweedse feestdagen, tradities en evenementen.">
+  <title>Agenda — De Suecofiel</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="page">
+
+    <header class="panel">
+      <div class="header-top">
+        <a class="brand" href="index.html" aria-label="De Suecofiel, naar de homepage">
+          <span class="brand-woord">De</span>
+          <span class="brand-ruimte">
+            <img src="Logo.jpg" alt="">
+          </span>
+          <span class="brand-woord">Suecofiel
+            <span class="brand-tagline">Zweden van dichtbij bekeken</span>
+          </span>
+        </a>
+
+        <!-- Zoekveld: zoekt in de artikelen van De Suecofiel zelf -->
+        <div class="search" role="search">
+          <input type="search" id="zoekveld" placeholder="Zoeken…" aria-label="Zoeken op De Suecofiel" autocomplete="off" aria-controls="zoekresultaten">
+          <ul id="zoekresultaten" class="zoekresultaten" hidden></ul>
+        </div>
+        <button class="menuknop" type="button" aria-expanded="false" aria-controls="hoofdmenu">
+          <svg width="20" height="16" viewBox="0 0 20 16" aria-hidden="true"><rect y="0" width="20" height="2.4" rx="1"/><rect y="6.8" width="20" height="2.4" rx="1"/><rect y="13.6" width="20" height="2.4" rx="1"/></svg>
+          Menu
+        </button>
+      </div>
+
+      <nav id="hoofdmenu" aria-label="Hoofdnavigatie">
+        <ul>
+          <li><a href="index.html#actualiteiten">Actualiteiten</a></li>
+          <li><a href="index.html#cultuur">Cultuur</a></li>
+          <li><a href="index.html#wetenschap">Wetenschap</a></li>
+          <li><a href="index.html#geschiedenis">Geschiedenis</a></li>
+          <li><a href="agenda.html" aria-current="page">Agenda</a></li>
+        </ul>
+        <ul class="sitelinks">
+          <li><a href="uitspraakhulp.html">Uitspraakhulp</a></li>
+          <li><a href="over.html">Over De Suecofiel</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="panel">
+      <article class="tekstpagina agendapagina">
+        <h1>Agenda</h1>
+        <p class="inleiding">
+          Zweedse feestdagen, tradities en evenementen die eraan komen.
+        </p>
+
+        <!-- De agenda wordt automatisch gevuld vanuit agenda.js -->
+        <div id="agenda-lijst"></div>
+      </article>
+    </main>
+
+    <footer>
+      <p class="klein">© 2026 De Suecofiel</p>
+    </footer>
+
+  </div>
+
+  <script src="artikelen.js"></script>
+  <script src="agenda.js"></script>
+  <script src="zoeken.js"></script>
+</body>
+</html>
