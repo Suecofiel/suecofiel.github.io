@@ -1,0 +1,16 @@
+---
+layout: standaard
+---
+<!-- ============================================================
+     LAYOUT VOOR RUBRIEKPAGINA'S
+     Gebruikt door actualiteiten.html, cultuur.html, wetenschap.html
+     en geschiedenis.html. De titel en de inleiding komen uit het
+     blokje bovenaan die pagina's.
+     ============================================================ -->
+      <div class="rubriekpagina-kop">
+        <h1>{{ page.titel }}</h1>
+        <p class="inleiding">{{ page.inleiding }}</p>
+      </div>
+
+      <!-- Alle artikelen uit deze rubriek, nieuwste eerst (automatisch uit artikelen.js) -->
+      <div class="grid alle-artikelen" data-rubriek-alle="{{ page.titel }}"></div>
