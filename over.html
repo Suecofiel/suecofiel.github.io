@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Over De Suecofiel: wat het woord betekent en waar het platform voor staat.">
+  <title>Over De Suecofiel</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Woordenboeklettertype, alleen voor de woordenboekregel op deze pagina -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,700;1,400&display=swap">
+</head>
+<body>
+  <div class="page">
+
+    <header class="panel">
+      <div class="header-top">
+        <a class="brand" href="index.html" aria-label="De Suecofiel, naar de homepage">
+          <span class="brand-woord">De</span>
+          <span class="brand-ruimte">
+            <img src="Logo.jpg" alt="">
+          </span>
+          <span class="brand-woord">Suecofiel
+            <span class="brand-tagline">Zweden van dichtbij bekeken</span>
+          </span>
+        </a>
+
+        <!-- Zoekveld: zoekt in de artikelen van De Suecofiel zelf -->
+        <div class="search" role="search">
+          <input type="search" id="zoekveld" placeholder="Zoeken…" aria-label="Zoeken op De Suecofiel" autocomplete="off" aria-controls="zoekresultaten">
+          <ul id="zoekresultaten" class="zoekresultaten" hidden></ul>
+        </div>
+      </div>
+
+      <nav aria-label="Hoofdnavigatie">
+        <ul>
+          <li><a href="index.html#actualiteiten">Actualiteiten</a></li>
+          <li><a href="index.html#cultuur">Cultuur</a></li>
+          <li><a href="index.html#wetenschap">Wetenschap</a></li>
+          <li><a href="index.html#geschiedenis">Geschiedenis</a></li>
+          <li><a href="#">Agenda</a></li>
+        </ul>
+        <ul>
+          <li><a href="uitspraakhulp.html">Uitspraakhulp</a></li>
+          <li><a href="over.html" aria-current="page">Over De Suecofiel</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="panel">
+      <article class="tekstpagina">
+        <h1>Over De Suecofiel</h1>
+
+        <div class="woordenboek">
+          <p class="lemma">
+            <span class="trefwoord">su·e·co·fiel</span>
+            <span class="grammatica">(de; m, v; meervoud: suecofielen)</span>
+            iemand die een bijzondere voorliefde of bewondering heeft voor Zweden,
+            met name voor de Zweedse taal, cultuur, geschiedenis en samenleving.
+          </p>
+          <p class="voorbeeldzin">
+            Als echte suecofiel brengt zij elke zomer door in een rood houten huisje in Småland.
+          </p>
+        </div>
+
+        <p>
+          De Suecofiel is een platform voor iedereen die Zweden beter wil leren kennen.
+          Met toegankelijke achtergrondverhalen en duiding over de geschiedenis,
+          cultuur, politiek en samenleving van Zweden.
+        </p>
+      </article>
+    </main>
+
+    <footer>
+      <p class="klein">© 2026 De Suecofiel</p>
+    </footer>
+
+  </div>
+
+  <script src="zoeken.js"></script>
+</body>
+</html>

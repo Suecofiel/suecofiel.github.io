@@ -300,18 +300,7 @@ footer {
   font-size: .95rem;
 }
 
-footer .over {
-  max-width: 640px;
-}
-
-footer h2 {
-  color: var(--white);
-  font-size: 1.2rem;
-  font-weight: normal;
-  margin: 0 0 6px;
-}
-
-footer p { margin: 0 0 10px; }
+footer p { margin: 0; }
 
 footer .klein {
   font-family: Arial, sans-serif;
@@ -407,6 +396,40 @@ nav a[aria-current="page"] {
    (breedte van de lettercolom + tussenruimte - rand en binnenruimte kader) */
 .opmerking .klinkerlijst {
   padding-left: calc(7.5em - 2px);
+}
+
+/* ===== WOORDENBOEKREGEL (pagina Over De Suecofiel) ===== */
+.woordenboek {
+  margin: 8px 0 30px;
+  padding: 18px 0 16px;
+  border-top: 2px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  font-family: "Crimson Pro", Georgia, "Times New Roman", serif;
+  font-size: 1.3rem;
+  line-height: 1.5;
+}
+
+.woordenboek p {
+  margin: 0;
+}
+
+.woordenboek .trefwoord {
+  font-weight: bold;
+  font-size: 1.15em;
+  color: var(--blue);
+  letter-spacing: .01em;
+}
+
+.woordenboek .grammatica {
+  font-style: italic;
+  color: var(--muted);
+}
+
+.woordenboek .voorbeeldzin {
+  margin-top: 8px;
+  padding-left: 1.4em;
+  font-style: italic;
+  color: var(--muted);
 }
 
 /* ===== MOBIELE TELEFOONS ===== */

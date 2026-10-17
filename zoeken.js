@@ -7,7 +7,7 @@
    lijst, plak hem eronder en pas de tekst aan.
    ============================================================ */
 const extraPaginas = [
-  { titel: "Over De Suecofiel", rubriek: "Over", tekst: "Nederlandstalig platform over Zweden", url: "index.html#over" },
+  { titel: "Over De Suecofiel", rubriek: "Over", tekst: "suecofiel betekenis woordenboek platform over Zweden", url: "over.html" },
   { titel: "Zo spreek je het Zweeds uit", rubriek: "Uitspraakhulp", tekst: "uitspraak klinkers medeklinkers å ä ö y g k sj tj klanken", url: "uitspraakhulp.html" }
   // Voorbeeld voor later:
   // , { titel: "Gustav Vasa en het ontstaan van Zweden", rubriek: "Geschiedenis", tekst: "Hoe Zweden in 1523 een eigen koninkrijk werd", url: "artikelen/gustav-vasa.html" }
