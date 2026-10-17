@@ -2,6 +2,11 @@
    Dit bestand bepaalt hoe elke pagina eruitziet. Een wijziging
    hier geldt dus direct voor de hele website. */
 
+/* Lettertype Gelasio: ontworpen als vervanger van Georgia, met
+   dezelfde vorm en maten. Wordt geladen via Google Fonts, zodat
+   de site er op elk apparaat (ook Android) hetzelfde uitziet. */
+@import url("https://fonts.googleapis.com/css2?family=Gelasio:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+
 /* ===== KLEUREN =====
    Wil je een andere blauwtint? Verander dan alleen de waarde achter --blue. */
 :root {
@@ -21,7 +26,7 @@ body {
   margin: 0;
   background: var(--blue);
   color: var(--ink);
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: Gelasio, Georgia, "Times New Roman", serif;
   line-height: 1.65;
 }
 
@@ -65,7 +70,7 @@ header.panel {
   position: relative;
   display: inline-flex;
   align-items: flex-start;
-  font-size: clamp(2.3rem, 11vw, 3.6rem);
+  font-size: clamp(2rem, 9vw, 2.4rem);   /* grootte van titel én logo */
   line-height: 1;
   padding-bottom: 0.9em;   /* ruimte voor het logo onder de tekst */
   text-decoration: none;
@@ -661,9 +666,10 @@ nav a[aria-current="page"] {
     gap: 10px;
     padding-bottom: 12px;
   }
-  .brand { flex-basis: 100%; }
-  /* Slogan iets kleiner, zodat er ruimte blijft tussen slogan en logo */
-  .brand-tagline { font-size: 0.285em; }
+  .brand {
+    flex-basis: 100%;
+    font-size: clamp(2rem, 10.5vw, 2.6rem);  /* op mobiel iets groter, zodat de slogan leesbaar blijft */
+  }
   .search { flex: 1; }
   .search input { width: 100%; }
   .zoekresultaten { width: 100%; max-width: none; }
