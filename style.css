@@ -479,6 +479,7 @@ nav a[aria-current="page"] {
 /* ===== ARTIKELPAGINA ===== */
 .artikelpagina {
   max-width: 720px;
+  margin: 0 auto;        /* artikel in het midden van de pagina */
   padding: 22px 14px 10px;
 }
 
