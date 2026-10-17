@@ -86,3 +86,26 @@ zoekveld.addEventListener("keydown", function (e) {
 document.addEventListener("click", function (e) {
   if (!e.target.closest(".search")) { resultaten.hidden = true; }
 });
+
+
+/* ============================================================
+   MENUKNOP OP MOBIELE TELEFOONS
+   Opent en sluit het menu als je op "Menu" tikt.
+   ============================================================ */
+const menuknop = document.querySelector(".menuknop");
+const hoofdmenu = document.getElementById("hoofdmenu");
+
+if (menuknop && hoofdmenu) {
+  menuknop.addEventListener("click", function () {
+    const open = hoofdmenu.classList.toggle("open");
+    menuknop.setAttribute("aria-expanded", open ? "true" : "false");
+  });
+
+  // Menu weer sluiten nadat je op een knop in het menu hebt getikt
+  hoofdmenu.addEventListener("click", function (e) {
+    if (e.target.closest("a")) {
+      hoofdmenu.classList.remove("open");
+      menuknop.setAttribute("aria-expanded", "false");
+    }
+  });
+}

@@ -167,6 +167,35 @@ header.panel {
   color: var(--muted);
 }
 
+/* Menuknop: alleen zichtbaar op mobiele telefoons */
+.menuknop {
+  display: none;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 12px;
+  background: var(--white);
+  border: 1px solid var(--ink);
+  border-radius: 4px;
+  color: var(--ink);
+  font-family: Arial, sans-serif;
+  font-size: .9rem;
+  font-weight: bold;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.menuknop svg {
+  fill: currentColor;
+  display: block;
+}
+
+.menuknop[aria-expanded="true"] {
+  background: var(--blue);
+  border-color: var(--blue);
+  color: var(--white);
+}
+
 /* ===== MENU ===== */
 nav {
   display: flex;
@@ -435,14 +464,49 @@ nav a[aria-current="page"] {
 /* ===== MOBIELE TELEFOONS ===== */
 @media (max-width: 800px) {
   .page { padding-top: 0; }
-  .header-top { flex-direction: column; }
-  .search, .search input { width: 100%; }
-  .zoekresultaten { width: 100%; max-width: none; }
-  nav { justify-content: flex-start; }
-  nav li + li::before { margin: 0 9px; }
-  .grid { grid-template-columns: 1fr; gap: 24px; }
   main.panel { margin-top: 12px; }
+  .grid { grid-template-columns: 1fr; gap: 24px; }
   .klank { grid-template-columns: 1fr; }
   .klank .voorbeeld { grid-column: 1; }
   .opmerking .klinkerlijst { padding-left: 0; }
+
+  /* Kop: titel bovenaan, daaronder zoekveld en menuknop naast elkaar */
+  .header-top {
+    flex-wrap: wrap;
+    gap: 10px;
+    padding-bottom: 12px;
+  }
+  .brand { flex-basis: 100%; }
+  .search { flex: 1; }
+  .search input { width: 100%; }
+  .zoekresultaten { width: 100%; max-width: none; }
+  .menuknop { display: flex; }
+
+  /* Menu is dicht tot je op de menuknop tikt */
+  nav { display: none; }
+  nav.open {
+    display: block;
+    padding: 0 0 8px;
+  }
+
+  nav ul { flex-direction: column; }
+  nav li + li::before { content: none; }
+
+  nav a {
+    display: block;
+    padding: 11px 6px;
+    border-bottom: 1px solid #dddddd;
+  }
+
+  /* Uitspraakhulp en Over: na een lijn, kleiner en grijs */
+  nav .sitelinks {
+    margin-top: 10px;
+    border-top: 2px solid var(--line);
+  }
+  nav .sitelinks a {
+    padding: 8px 6px;
+    color: var(--muted);
+    font-size: .8rem;
+  }
+  nav .sitelinks li:last-child a { border-bottom: none; }
 }
