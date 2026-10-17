@@ -374,6 +374,19 @@ nav a[aria-current="page"] {
   margin: 0;
 }
 
+/* Regel met voorbeeldwoorden onder de uitleg */
+.klank .voorbeeld {
+  grid-column: 2;
+  color: var(--muted);
+  font-size: .9rem;
+}
+
+.klank .voorbeeld span {
+  color: var(--ink);
+  font-style: italic;
+  font-weight: bold;
+}
+
 /* ===== MOBIELE TELEFOONS ===== */
 @media (max-width: 800px) {
   .page { padding-top: 0; }
@@ -385,4 +398,5 @@ nav a[aria-current="page"] {
   .grid { grid-template-columns: 1fr; gap: 24px; }
   main.panel { margin-top: 12px; }
   .klank { grid-template-columns: 1fr; }
+  .klank .voorbeeld { grid-column: 1; }
 }
