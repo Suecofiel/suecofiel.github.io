@@ -102,7 +102,7 @@ header.panel {
   display: block;
   margin-top: 0.12em;
   color: var(--blue);
-  font-size: 0.27em;
+  font-size: 0.3em;
   font-weight: normal;
   letter-spacing: 0;
   text-align: right;
@@ -429,13 +429,13 @@ nav a[aria-current="page"] {
 
 /* ===== WOORDENBOEKREGEL (pagina Over De Suecofiel) ===== */
 .woordenboek {
-  margin: 8px 0 30px;
-  padding: 18px 0 16px;
+  margin: 8px 0 24px;
+  padding: 12px 0 12px;
   border-top: 2px solid var(--line);
   border-bottom: 1px solid var(--line);
   font-family: "Crimson Pro", Georgia, "Times New Roman", serif;
-  font-size: 1.3rem;
-  line-height: 1.5;
+  font-size: 1.1rem;
+  line-height: 1.45;
 }
 
 .woordenboek p {
@@ -444,7 +444,7 @@ nav a[aria-current="page"] {
 
 .woordenboek .trefwoord {
   font-weight: bold;
-  font-size: 1.15em;
+  font-size: 1.05em;
   color: var(--blue);
   letter-spacing: .01em;
 }
@@ -455,7 +455,7 @@ nav a[aria-current="page"] {
 }
 
 .woordenboek .voorbeeldzin {
-  margin-top: 8px;
+  margin-top: 4px;
   padding-left: 1.4em;
   font-style: italic;
   color: var(--muted);
