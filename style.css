@@ -362,7 +362,7 @@ footer a:hover {
 
 .voettekst-kolommen {
   display: grid;
-  grid-template-columns: 1.6fr 1fr 1fr 1.2fr;
+  grid-template-columns: 1fr 1fr 1fr 1.2fr;
   gap: 30px 40px;
   padding-bottom: 26px;
 }
