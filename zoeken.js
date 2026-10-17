@@ -1,32 +1,22 @@
 /* ============================================================
    ZOEKFUNCTIE VAN DE SUECOFIEL (geldt voor alle pagina's)
    De zoekfunctie doorzoekt twee dingen:
-   1. alle artikelen die op de huidige pagina staan (automatisch);
-   2. de lijst hieronder, met losse pagina's en artikelen.
-   Nieuwe pagina of nieuw artikel? Kopieer dan één regel uit de
-   lijst, plak hem eronder en pas de tekst aan.
+   1. alle artikelen uit artikelen.js (automatisch);
+   2. de lijst hieronder, met losse pagina's zoals Uitspraakhulp.
+   Nieuwe losse pagina? Kopieer dan één regel uit de lijst,
+   plak hem eronder en pas de tekst aan.
    ============================================================ */
 const extraPaginas = [
   { titel: "Over De Suecofiel", rubriek: "Over", tekst: "suecofiel betekenis woordenboek platform over Zweden", url: "over.html" },
   { titel: "Zo spreek je het Zweeds uit", rubriek: "Uitspraakhulp", tekst: "uitspraak klinkers medeklinkers å ä ö y g k sj tj klanken", url: "uitspraakhulp.html" }
-  // Voorbeeld voor later:
-  // , { titel: "Gustav Vasa en het ontstaan van Zweden", rubriek: "Geschiedenis", tekst: "Hoe Zweden in 1523 een eigen koninkrijk werd", url: "artikelen/gustav-vasa.html" }
 ];
 
-// Artikelen op de huidige pagina automatisch verzamelen
-const homepageArtikelen = Array.from(document.querySelectorAll(".rubriek")).flatMap(function (sectie) {
-  const rubriek = sectie.querySelector("h2").textContent.trim();
-  return Array.from(sectie.querySelectorAll(".artikel")).map(function (a) {
-    return {
-      titel: a.querySelector("h3").textContent.trim(),
-      rubriek: rubriek,
-      tekst: a.querySelector("p") ? a.querySelector("p").textContent.trim() : "",
-      url: a.getAttribute("href")
-    };
-  });
+// Artikelen uit artikelen.js (nieuwste eerst)
+const artikelenVoorZoeken = (typeof artikelenOpDatum !== "undefined" ? artikelenOpDatum : []).map(function (a) {
+  return { titel: a.titel, rubriek: a.rubriek, tekst: a.inleiding, url: a.url };
 });
 
-const zoekindex = homepageArtikelen.concat(extraPaginas);
+const zoekindex = artikelenVoorZoeken.concat(extraPaginas);
 const zoekveld = document.getElementById("zoekveld");
 const resultaten = document.getElementById("zoekresultaten");
 

@@ -287,8 +287,16 @@ main.panel {
   display: block;
 }
 
+.artikel .datum {
+  display: block;
+  margin-top: 10px;
+  color: var(--muted);
+  font-family: Arial, sans-serif;
+  font-size: .8rem;
+}
+
 .artikel h3 {
-  margin: 10px 0 4px;
+  margin: 2px 0 4px;
   font-size: 1.2rem;
   line-height: 1.3;
 }
@@ -302,6 +310,13 @@ main.panel {
 .artikel:hover h3 {
   color: var(--blue);
   text-decoration: underline;
+}
+
+.leeg {
+  grid-column: 1 / -1;
+  margin: 0;
+  padding: 20px 4px;
+  color: var(--muted);
 }
 
 .meer {
@@ -466,6 +481,8 @@ nav a[aria-current="page"] {
   .page { padding-top: 0; }
   main.panel { margin-top: 12px; }
   .grid { grid-template-columns: 1fr; gap: 24px; }
+  /* Per rubriek alleen het eerste artikel tonen */
+  .grid .artikel:nth-child(n+2) { display: none; }
   .klank { grid-template-columns: 1fr; }
   .klank .voorbeeld { grid-column: 1; }
   .opmerking .klinkerlijst { padding-left: 0; }
