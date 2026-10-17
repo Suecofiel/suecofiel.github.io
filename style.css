@@ -202,7 +202,7 @@ header.panel {
 }
 
 /* ===== MENU ===== */
-nav {
+#hoofdmenu {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
@@ -215,7 +215,7 @@ nav {
   text-transform: uppercase;
 }
 
-nav ul {
+#hoofdmenu ul {
   display: flex;
   flex-wrap: wrap;
   margin: 0;
@@ -223,18 +223,18 @@ nav ul {
   list-style: none;
 }
 
-nav li + li::before {
+#hoofdmenu li + li::before {
   content: "|";
   margin: 0 14px;
   font-weight: bold;
 }
 
-nav a {
+#hoofdmenu a {
   text-decoration: none;
   font-weight: bold;
 }
 
-nav a:hover {
+#hoofdmenu a:hover {
   color: var(--blue);
   text-decoration: underline;
 }
@@ -345,21 +345,84 @@ main.panel {
 
 /* ===== VOETTEKST ===== */
 footer {
-  color: #e6eef6;
-  padding: 30px 20px 40px;
+  padding: 36px 20px 24px;
+  color: #dce7f2;
   font-size: .95rem;
 }
 
-footer p { margin: 0; }
+footer a {
+  text-decoration: none;
+}
 
-footer .klein {
+footer a:hover {
+  color: var(--white);
+  text-decoration: underline;
+}
+
+.voettekst-kolommen {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 30px 50px;
+  padding-bottom: 26px;
+}
+
+.voettekst-merk p {
+  margin: 0 0 10px;
+  max-width: 420px;
+  line-height: 1.6;
+}
+
+.voettekst-merk .voettekst-naam {
+  margin: 0;
+  color: var(--white);
+  font-size: 1.6rem;
+  font-weight: bold;
+  line-height: 1.2;
+}
+
+.voettekst-merk .voettekst-slogan {
+  margin: 0 0 12px;
+  color: var(--white);
+  opacity: .85;
+}
+
+footer h2 {
+  margin: 4px 0 10px;
+  color: var(--white);
+  font-family: Arial, sans-serif;
+  font-size: .85rem;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+}
+
+footer ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+footer li {
+  margin-bottom: 6px;
+}
+
+/* Onderste regel: copyright en terug naar boven */
+.voettekst-onder {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, .35);
   font-family: Arial, sans-serif;
   font-size: .8rem;
-  opacity: .8;
+}
+
+.voettekst-onder p {
+  margin: 0;
 }
 
 /* Huidige pagina in het menu onderstrepen */
-nav a[aria-current="page"] {
+#hoofdmenu a[aria-current="page"] {
   text-decoration: underline;
   text-underline-offset: 4px;
 }
@@ -686,31 +749,34 @@ nav a[aria-current="page"] {
   .zoekresultaten { width: 100%; max-width: none; }
   .menuknop { display: flex; }
 
+  /* Voettekst: kolommen onder elkaar */
+  .voettekst-kolommen { grid-template-columns: 1fr; gap: 24px; }
+
   /* Menu is dicht tot je op de menuknop tikt */
-  nav { display: none; }
-  nav.open {
+  #hoofdmenu { display: none; }
+  #hoofdmenu.open {
     display: block;
     padding: 0 0 8px;
   }
 
-  nav ul { flex-direction: column; }
-  nav li + li::before { content: none; }
+  #hoofdmenu ul { flex-direction: column; }
+  #hoofdmenu li + li::before { content: none; }
 
-  nav a {
+  #hoofdmenu a {
     display: block;
     padding: 11px 6px;
     border-bottom: 1px solid #dddddd;
   }
 
   /* Uitspraakhulp en Over: na een lijn, kleiner en grijs */
-  nav .sitelinks {
+  #hoofdmenu .sitelinks {
     margin-top: 10px;
     border-top: 2px solid var(--line);
   }
-  nav .sitelinks a {
+  #hoofdmenu .sitelinks a {
     padding: 8px 6px;
     color: var(--muted);
     font-size: .8rem;
   }
-  nav .sitelinks li:last-child a { border-bottom: none; }
+  #hoofdmenu .sitelinks li:last-child a { border-bottom: none; }
 }
