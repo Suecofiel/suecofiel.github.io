@@ -270,7 +270,7 @@ main.panel {
 
 /* Grijs vak = plek voor een afbeelding. Later vervangen door een foto. */
 .afbeelding {
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 16 / 9;   /* verhouding breedte / hoogte van de afbeeldingen */
   background: var(--placeholder);
   display: flex;
   align-items: center;
@@ -494,6 +494,8 @@ nav a[aria-current="page"] {
     padding-bottom: 12px;
   }
   .brand { flex-basis: 100%; }
+  /* Slogan iets kleiner, zodat er ruimte blijft tussen slogan en logo */
+  .brand-tagline { font-size: 0.27em; }
   .search { flex: 1; }
   .search input { width: 100%; }
   .zoekresultaten { width: 100%; max-width: none; }
