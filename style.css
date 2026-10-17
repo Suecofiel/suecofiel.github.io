@@ -476,6 +476,108 @@ nav a[aria-current="page"] {
   color: var(--muted);
 }
 
+/* ===== ARTIKELPAGINA ===== */
+.artikelpagina {
+  max-width: 720px;
+  padding: 22px 14px 10px;
+}
+
+.artikel-rubriek {
+  color: var(--blue);
+  font-family: Arial, sans-serif;
+  font-size: .85rem;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.artikel-rubriek:hover { text-decoration: underline; }
+
+.artikelpagina h1 {
+  margin: 6px 0 14px;
+  font-size: clamp(1.9rem, 4.5vw, 2.7rem);
+  line-height: 1.15;
+}
+
+.artikel-inleiding {
+  margin: 0 0 14px;
+  font-size: 1.22rem;
+  line-height: 1.55;
+}
+
+.artikel-meta {
+  margin: 0 0 22px;
+  color: var(--muted);
+  font-family: Arial, sans-serif;
+  font-size: .85rem;
+}
+
+.artikel-foto {
+  margin: 0 0 28px;
+}
+
+.artikel-foto img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.artikel-foto figcaption {
+  margin-top: 6px;
+  color: var(--muted);
+  font-family: Arial, sans-serif;
+  font-size: .8rem;
+  line-height: 1.45;
+}
+
+.artikel-tekst {
+  font-size: 1.1rem;
+  line-height: 1.75;
+}
+
+.artikel-tekst p {
+  margin: 0 0 1.1em;
+}
+
+.artikel-tekst h2 {
+  margin: 1.6em 0 .4em;
+  font-size: 1.35rem;
+  line-height: 1.3;
+}
+
+.artikel-tekst blockquote {
+  margin: 1.6em 0;
+  padding: 2px 0 2px 20px;
+  border-left: 4px solid var(--blue);
+}
+
+.artikel-tekst blockquote p {
+  margin: 0 0 6px;
+  font-size: 1.3rem;
+  font-style: italic;
+  line-height: 1.45;
+}
+
+.artikel-tekst cite {
+  color: var(--muted);
+  font-family: Arial, sans-serif;
+  font-size: .85rem;
+  font-style: normal;
+}
+
+.artikel-tekst cite::before { content: "— "; }
+
+/* Meer uit deze rubriek */
+.lees-ook {
+  margin-top: 20px;
+  padding-top: 6px;
+  border-top: 2px solid var(--line);
+}
+
+.lees-ook h2 {
+  margin: 6px 4px 10px;
+  font-size: 1.35rem;
+}
+
 /* ===== MOBIELE TELEFOONS ===== */
 @media (max-width: 800px) {
   .page { padding-top: 0; }
@@ -483,6 +585,7 @@ nav a[aria-current="page"] {
   .grid { grid-template-columns: 1fr; gap: 24px; }
   /* Per rubriek alleen het eerste artikel tonen */
   .grid .artikel:nth-child(n+2) { display: none; }
+  .lees-ook .grid .artikel:nth-child(n+2) { display: block; }
   .klank { grid-template-columns: 1fr; }
   .klank .voorbeeld { grid-column: 1; }
   .opmerking .klinkerlijst { padding-left: 0; }

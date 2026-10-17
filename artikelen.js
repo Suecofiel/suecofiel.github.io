@@ -24,7 +24,7 @@ const artikelen = [
   // ----- Voorbeeldartikelen: later vervangen door echte artikelen -----
   { titel: "Voorbeeldartikel 3", rubriek: "Actualiteiten", datum: "2026-10-17",
     inleiding: "Een korte inleiding van één of twee zinnen over het artikel.",
-    afbeelding: "", url: "#" },
+    afbeelding: "", url: "artikel-sjabloon.html" },
   { titel: "Voorbeeldartikel 2", rubriek: "Actualiteiten", datum: "2026-10-10",
     inleiding: "Een korte inleiding van één of twee zinnen over het artikel.",
     afbeelding: "", url: "#" },
@@ -67,7 +67,7 @@ const artikelen = [
 
 /* ============================================================
    HIERONDER NIETS AANPASSEN
-   Deze code zet de artikelen op de homepage.
+   Deze code zet de artikelen op de homepage en onder artikelen.
    ============================================================ */
 
 // "2026-10-17" omzetten naar "17 oktober 2026"
@@ -82,6 +82,39 @@ const artikelenOpDatum = artikelen.slice().sort(function (a, b) {
   return b.datum.localeCompare(a.datum);
 });
 
+// Eén artikelkaart maken (afbeelding, datum, titel, inleiding)
+function maakKaart(a) {
+  const kaart = document.createElement("a");
+  kaart.className = "artikel";
+  kaart.href = a.url;
+
+  const beeld = document.createElement("div");
+  beeld.className = "afbeelding";
+  if (a.afbeelding) {
+    const img = document.createElement("img");
+    img.src = a.afbeelding;
+    img.alt = "";
+    beeld.appendChild(img);
+  } else {
+    beeld.textContent = "Afbeelding";
+  }
+
+  const datum = document.createElement("time");
+  datum.className = "datum";
+  datum.dateTime = a.datum;
+  datum.textContent = leesbareDatum(a.datum);
+
+  const kop = document.createElement("h3");
+  kop.textContent = a.titel;
+
+  const tekst = document.createElement("p");
+  tekst.textContent = a.inleiding;
+
+  kaart.append(beeld, datum, kop, tekst);
+  return kaart;
+}
+
+// Homepage: per rubriek de drie nieuwste artikelen
 document.querySelectorAll(".grid[data-rubriek]").forEach(function (grid) {
   const rubriek = grid.getAttribute("data-rubriek");
   const lijst = artikelenOpDatum.filter(function (a) { return a.rubriek === rubriek; }).slice(0, 3);
@@ -93,35 +126,22 @@ document.querySelectorAll(".grid[data-rubriek]").forEach(function (grid) {
     grid.appendChild(leeg);
     return;
   }
-
-  lijst.forEach(function (a) {
-    const kaart = document.createElement("a");
-    kaart.className = "artikel";
-    kaart.href = a.url;
-
-    const beeld = document.createElement("div");
-    beeld.className = "afbeelding";
-    if (a.afbeelding) {
-      const img = document.createElement("img");
-      img.src = a.afbeelding;
-      img.alt = "";
-      beeld.appendChild(img);
-    } else {
-      beeld.textContent = "Afbeelding";
-    }
-
-    const datum = document.createElement("time");
-    datum.className = "datum";
-    datum.dateTime = a.datum;
-    datum.textContent = leesbareDatum(a.datum);
-
-    const kop = document.createElement("h3");
-    kop.textContent = a.titel;
-
-    const tekst = document.createElement("p");
-    tekst.textContent = a.inleiding;
-
-    kaart.append(beeld, datum, kop, tekst);
-    grid.appendChild(kaart);
-  });
+  lijst.forEach(function (a) { grid.appendChild(maakKaart(a)); });
 });
+
+// Artikelpagina: drie andere artikelen uit dezelfde rubriek
+const leesOok = document.querySelector("[data-lees-ook]");
+const artikelpagina = document.querySelector(".artikelpagina[data-rubriek]");
+if (leesOok && artikelpagina) {
+  const rubriek = artikelpagina.getAttribute("data-rubriek");
+  const ditBestand = window.location.pathname.split("/").pop();
+  const lijst = artikelenOpDatum.filter(function (a) {
+    return a.rubriek === rubriek && a.url !== ditBestand;
+  }).slice(0, 3);
+
+  if (lijst.length === 0) {
+    leesOok.closest(".lees-ook").hidden = true;
+  } else {
+    lijst.forEach(function (a) { leesOok.appendChild(maakKaart(a)); });
+  }
+}

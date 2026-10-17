@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- AANPASSEN: korte omschrijving van het artikel (voor Google) -->
+  <meta name="description" content="Korte omschrijving van het artikel in één zin.">
+  <!-- AANPASSEN: titel van het artikel (verschijnt in het tabblad) -->
+  <title>Titel van het artikel — De Suecofiel</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="page">
+
+    <header class="panel">
+      <div class="header-top">
+        <a class="brand" href="index.html" aria-label="De Suecofiel, naar de homepage">
+          <span class="brand-woord">De</span>
+          <span class="brand-ruimte">
+            <img src="Logo.jpg" alt="">
+          </span>
+          <span class="brand-woord">Suecofiel
+            <span class="brand-tagline">Zweden van dichtbij bekeken</span>
+          </span>
+        </a>
+
+        <!-- Zoekveld: zoekt in de artikelen van De Suecofiel zelf -->
+        <div class="search" role="search">
+          <input type="search" id="zoekveld" placeholder="Zoeken…" aria-label="Zoeken op De Suecofiel" autocomplete="off" aria-controls="zoekresultaten">
+          <ul id="zoekresultaten" class="zoekresultaten" hidden></ul>
+        </div>
+        <button class="menuknop" type="button" aria-expanded="false" aria-controls="hoofdmenu">
+          <svg width="20" height="16" viewBox="0 0 20 16" aria-hidden="true"><rect y="0" width="20" height="2.4" rx="1"/><rect y="6.8" width="20" height="2.4" rx="1"/><rect y="13.6" width="20" height="2.4" rx="1"/></svg>
+          Menu
+        </button>
+      </div>
+
+      <nav id="hoofdmenu" aria-label="Hoofdnavigatie">
+        <ul>
+          <li><a href="index.html#actualiteiten">Actualiteiten</a></li>
+          <li><a href="index.html#cultuur">Cultuur</a></li>
+          <li><a href="index.html#wetenschap">Wetenschap</a></li>
+          <li><a href="index.html#geschiedenis">Geschiedenis</a></li>
+          <li><a href="#">Agenda</a></li>
+        </ul>
+        <ul class="sitelinks">
+          <li><a href="uitspraakhulp.html">Uitspraakhulp</a></li>
+          <li><a href="over.html">Over De Suecofiel</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="panel">
+
+      <!-- ============================================================
+           ARTIKELSJABLOON
+           Nieuw artikel maken:
+           1. Maak een kopie van dit bestand met een nieuwe naam,
+              bijvoorbeeld "gustav-vasa.html" (kleine letters, geen spaties).
+           2. Pas alles aan wat met AANPASSEN is gemarkeerd.
+           3. Zet het artikel in artikelen.js, met dezelfde titel,
+              rubriek en datum en als url de nieuwe bestandsnaam.
+           ============================================================ -->
+
+      <!-- AANPASSEN: data-rubriek = Actualiteiten, Cultuur, Wetenschap of Geschiedenis -->
+      <article class="artikelpagina" data-rubriek="Actualiteiten">
+
+        <!-- AANPASSEN: rubriek (twee keer: in de link en als tekst) -->
+        <a class="artikel-rubriek" href="index.html#actualiteiten">Actualiteiten</a>
+
+        <!-- AANPASSEN: titel van het artikel -->
+        <h1>Titel van het artikel</h1>
+
+        <!-- AANPASSEN: inleiding van één tot drie zinnen -->
+        <p class="artikel-inleiding">
+          Hier komt de inleiding: één tot drie zinnen die de lezer vertellen
+          waar het artikel over gaat en waarom het de moeite waard is om verder te lezen.
+        </p>
+
+        <!-- AANPASSEN: naam van de auteur en de datum (datetime = jaar-maand-dag) -->
+        <p class="artikel-meta">
+          Door Voornaam Achternaam · <time datetime="2026-10-17">17 oktober 2026</time>
+        </p>
+
+        <!-- AANPASSEN: hoofdfoto met bijschrift.
+             Heb je een foto? Upload die naar GitHub en vervang de regel
+             <div class="afbeelding">Afbeelding</div> door bijvoorbeeld:
+             <img src="foto-stockholm.jpg" alt="Korte beschrijving van de foto"> -->
+        <figure class="artikel-foto">
+          <div class="afbeelding">Afbeelding</div>
+          <figcaption>Bijschrift bij de foto. Foto: naam van de fotograaf of bron</figcaption>
+        </figure>
+
+        <!-- AANPASSEN: de tekst van het artikel.
+             Elke alinea staat tussen <p> en </p>.
+             Een tussenkopje staat tussen <h2> en </h2>.
+             Een citaat staat tussen <blockquote> en </blockquote>. -->
+        <div class="artikel-tekst">
+          <p>
+            Dit is de eerste alinea van het artikel. Hier begint het eigenlijke verhaal.
+            Schrijf in korte, heldere alinea’s van drie tot vijf zinnen; dat leest
+            prettig, zeker op een telefoon.
+          </p>
+          <p>
+            Dit is een tweede alinea. Een woord of naam kun je <em>schuin</em> zetten
+            met &lt;em&gt; en &lt;/em&gt;, of <strong>vet</strong> met &lt;strong&gt; en &lt;/strong&gt;.
+            Zweedse woorden zet je meestal schuin, zoals <em>fika</em> of <em>lagom</em>.
+          </p>
+
+          <h2>Een tussenkopje</h2>
+          <p>
+            Tussenkopjes helpen de lezer om een langer artikel te overzien.
+            Gebruik er ongeveer één per vier à vijf alinea’s.
+          </p>
+
+          <blockquote>
+            <p>Dit is een citaat. Gebruik het voor een opvallende uitspraak uit het artikel.</p>
+            <cite>Naam van de spreker</cite>
+          </blockquote>
+
+          <p>
+            Dit is de laatste alinea. Een goed artikel eindigt met een conclusie,
+            een vooruitblik of een treffend detail dat bij de lezer blijft hangen.
+          </p>
+        </div>
+
+      </article>
+
+      <!-- Andere artikelen uit dezelfde rubriek (verschijnen automatisch) -->
+      <section class="lees-ook">
+        <h2>Meer uit deze rubriek</h2>
+        <div class="grid" data-lees-ook></div>
+      </section>
+
+    </main>
+
+    <footer>
+      <p class="klein">© 2026 De Suecofiel</p>
+    </footer>
+
+  </div>
+
+  <script src="artikelen.js"></script>
+  <script src="zoeken.js"></script>
+</body>
+</html>
