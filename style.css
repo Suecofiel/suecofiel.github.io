@@ -107,7 +107,7 @@ header.panel {
   display: block;
   margin-top: 0.12em;
   color: var(--blue);
-  font-size: 0.3em;
+  font-size: 0.32em;
   font-weight: normal;
   letter-spacing: 0;
   text-align: right;
@@ -670,6 +670,7 @@ nav a[aria-current="page"] {
     flex-basis: 100%;
     font-size: clamp(2rem, 10.5vw, 2.6rem);  /* op mobiel iets groter, zodat de slogan leesbaar blijft */
   }
+  .brand-tagline { font-size: 0.3em; }
   .search { flex: 1; }
   .search input { width: 100%; }
   .zoekresultaten { width: 100%; max-width: none; }
