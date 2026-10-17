@@ -345,7 +345,9 @@ main.panel {
 
 /* ===== VOETTEKST ===== */
 footer {
+  margin-top: 20px;               /* blauwe strook tussen inhoud en voettekst */
   padding: 36px 20px 24px;
+  background: var(--blue-dark);   /* zelfde donkerblauw als de knoppen */
   color: #dce7f2;
   font-size: .95rem;
 }
@@ -748,6 +750,7 @@ footer li {
 @media (max-width: 800px) {
   .page { padding-top: 0; }
   main.panel { margin-top: 12px; }
+  footer { margin-top: 12px; }
   .grid { grid-template-columns: 1fr; gap: 24px; }
   /* Per rubriek alleen het eerste artikel tonen */
   .grid .artikel:nth-child(n+2) { display: none; }
