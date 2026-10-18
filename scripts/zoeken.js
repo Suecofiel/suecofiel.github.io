@@ -10,6 +10,7 @@ const extraPaginas = [
   { titel: "Over De Suecofiel", rubriek: "Over", tekst: "suecofiel betekenis woordenboek platform over Zweden", url: "over.html" },
   { titel: "Zo spreek je het Zweeds uit", rubriek: "Kennisbank", tekst: "uitspraakhulp uitspraak klinkers medeklinkers å ä ö y g k sj tj klanken", url: "uitspraakhulp.html" },
   { titel: "Zweedse feestdagen", rubriek: "Kennisbank", tekst: "feestdagen tradities kalender agenda midsommar lucia nationaldag kerst valborg pasen", url: "feestdagen.html" },
+  { titel: "Tijdlijn van de Zweedse geschiedenis", rubriek: "Kennisbank", tekst: "geschiedenis tijdlijn vikingen vasa gustav kalmarunie grootmacht stormaktstiden bernadotte folkhemmet palme navo eu", url: "tijdlijn.html" },
   { titel: "Kennisbank", rubriek: "Kennisbank", tekst: "naslag feiten begrippen tijdlijn geschiedenis politiek", url: "kennisbank.html" },
   { titel: "Evenementen", rubriek: "Evenementen", tekst: "evenementen Nederland lezing film concert tentoonstelling viering", url: "evenementen.html" },
   { titel: "Actualiteiten", rubriek: "Rubriek", tekst: "alle artikelen actualiteiten nieuws duiding achtergrond", url: "actualiteiten.html" },
