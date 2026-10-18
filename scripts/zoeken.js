@@ -8,7 +8,6 @@
    ============================================================ */
 const extraPaginas = [
   { titel: "Over De Suecofiel", rubriek: "Over", tekst: "suecofiel betekenis woordenboek platform over Zweden", url: "over.html" },
-  { titel: "Privacyverklaring", rubriek: "Over", tekst: "privacy cookies gegevens avg", url: "privacy.html" },
   { titel: "Zo spreek je het Zweeds uit", rubriek: "Kennisbank", tekst: "uitspraakhulp uitspraak klinkers medeklinkers å ä ö y g k sj tj klanken", url: "uitspraakhulp.html" },
   { titel: "Zweedse feestdagen", rubriek: "Kennisbank", tekst: "feestdagen tradities kalender agenda midsommar lucia nationaldag kerst valborg pasen", url: "feestdagen.html" },
   { titel: "Kennisbank", rubriek: "Kennisbank", tekst: "naslag feiten begrippen tijdlijn geschiedenis politiek", url: "kennisbank.html" },
