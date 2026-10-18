@@ -12,6 +12,11 @@
       titel      de kop van het artikel
       rubriek    precies één van: Actualiteiten, Cultuur & Tradities,
                  Samenleving
+      onderwerp  onderwerp binnen de rubriek, of "" voor geen onderwerp.
+                 Cultuur & Tradities: Tradities, Taal & Literatuur,
+                   Muziek & Film, Eten & Drinken, Design & Architectuur
+                 Samenleving: Geschiedenis, Politiek, Werk & Economie
+                 Actualiteiten: geen onderwerpen ("")
       labels     soort artikel, tussen rechte haken, bijvoorbeeld
                  ["Achtergrond"] of ["Duiding", "Zweden & Nederland"].
                  Mogelijk: Achtergrond, Duiding, Uitgelegd, Interview,
@@ -27,36 +32,49 @@
 const artikelen = [
 
   // ----- Voorbeeldartikelen: later vervangen door echte artikelen -----
-  { titel: "Voorbeeldartikel Actualiteiten 3", rubriek: "Actualiteiten", labels: ["Duiding"], datum: "2026-10-17",
+  { titel: "Voorbeeldartikel Actualiteiten 3", rubriek: "Actualiteiten", onderwerp: "", labels: ["Duiding"], datum: "2026-10-17",
     inleiding: "Een korte inleiding van één of twee zinnen over het artikel.",
     afbeelding: "", url: "artikel-sjabloon.html" },
-  { titel: "Voorbeeldartikel Actualiteiten 2", rubriek: "Actualiteiten", labels: ["Duiding", "Zweden & Nederland"], datum: "2026-10-10",
+  { titel: "Voorbeeldartikel Actualiteiten 2", rubriek: "Actualiteiten", onderwerp: "", labels: ["Duiding", "Zweden & Nederland"], datum: "2026-10-10",
     inleiding: "Een korte inleiding van één of twee zinnen over het artikel.",
     afbeelding: "", url: "#" },
-  { titel: "Voorbeeldartikel Actualiteiten 1", rubriek: "Actualiteiten", labels: ["Achtergrond"], datum: "2026-10-03",
+  { titel: "Voorbeeldartikel Actualiteiten 1", rubriek: "Actualiteiten", onderwerp: "", labels: ["Achtergrond"], datum: "2026-10-03",
     inleiding: "Een korte inleiding van één of twee zinnen over het artikel.",
     afbeelding: "", url: "#" },
-  { titel: "Voorbeeldartikel Cultuur 3", rubriek: "Cultuur & Tradities", labels: ["Uitgelegd"], datum: "2026-10-16",
+  { titel: "Voorbeeldartikel Cultuur 3", rubriek: "Cultuur & Tradities", onderwerp: "Tradities", labels: ["Uitgelegd"], datum: "2026-10-16",
     inleiding: "Een korte inleiding van één of twee zinnen over het artikel.",
     afbeelding: "", url: "#" },
-  { titel: "Voorbeeldartikel Cultuur 2", rubriek: "Cultuur & Tradities", labels: ["Achtergrond"], datum: "2026-10-09",
+  { titel: "Voorbeeldartikel Cultuur 2", rubriek: "Cultuur & Tradities", onderwerp: "Design & Architectuur", labels: ["Achtergrond"], datum: "2026-10-09",
     inleiding: "Een korte inleiding van één of twee zinnen over het artikel.",
     afbeelding: "", url: "#" },
-  { titel: "Voorbeeldartikel Cultuur 1", rubriek: "Cultuur & Tradities", labels: ["Recensie"], datum: "2026-10-02",
+  { titel: "Voorbeeldartikel Cultuur 1", rubriek: "Cultuur & Tradities", onderwerp: "Taal & Literatuur", labels: ["Recensie"], datum: "2026-10-02",
     inleiding: "Een korte inleiding van één of twee zinnen over het artikel.",
     afbeelding: "", url: "#" },
-  { titel: "Voorbeeldartikel Samenleving 3", rubriek: "Samenleving", labels: ["Achtergrond"], datum: "2026-10-15",
+  { titel: "Voorbeeldartikel Samenleving 3", rubriek: "Samenleving", onderwerp: "Geschiedenis", labels: ["Achtergrond"], datum: "2026-10-15",
     inleiding: "Een korte inleiding van één of twee zinnen over het artikel.",
     afbeelding: "", url: "#" },
-  { titel: "Voorbeeldartikel Samenleving 2", rubriek: "Samenleving", labels: ["Uitgelegd"], datum: "2026-10-08",
+  { titel: "Voorbeeldartikel Samenleving 2", rubriek: "Samenleving", onderwerp: "Werk & Economie", labels: ["Uitgelegd"], datum: "2026-10-08",
     inleiding: "Een korte inleiding van één of twee zinnen over het artikel.",
     afbeelding: "", url: "#" },
-  { titel: "Voorbeeldartikel Samenleving 1", rubriek: "Samenleving", labels: ["Interview", "Zweden & Nederland"], datum: "2026-10-01",
+  { titel: "Voorbeeldartikel Samenleving 1", rubriek: "Samenleving", onderwerp: "Geschiedenis", labels: ["Interview", "Zweden & Nederland"], datum: "2026-10-01",
     inleiding: "Een korte inleiding van één of twee zinnen over het artikel.",
     afbeelding: "", url: "#" },
 
 ];
 
+
+
+/* ============================================================
+   ONDERWERPEN PER RUBRIEK
+   Bepaalt welke onderwerpknoppen er op een rubriekpagina kunnen
+   staan, en in welke volgorde. Een knop verschijnt alleen als er
+   minstens één artikel met dat onderwerp is.
+   Nieuw onderwerp? Zet het hier in de lijst van de rubriek.
+   ============================================================ */
+const onderwerpen = {
+  "Cultuur & Tradities": ["Tradities", "Taal & Literatuur", "Muziek & Film", "Eten & Drinken", "Design & Architectuur"],
+  "Samenleving": ["Geschiedenis", "Politiek", "Werk & Economie"]
+};
 
 
 /* ============================================================
@@ -140,7 +158,14 @@ document.querySelectorAll(".grid[data-rubriek]").forEach(function (grid) {
   lijst.forEach(function (a) { grid.appendChild(maakKaart(a)); });
 });
 
-// Rubriekpagina: alle artikelen uit de rubriek, nieuwste eerst
+// Van een onderwerp een adres maken: "Werk & Economie" wordt "werk-en-economie"
+function onderwerpAdres(tekst) {
+  return tekst.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+    .replace(/&/g, "en").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+}
+
+// Rubriekpagina: alle artikelen uit de rubriek, nieuwste eerst,
+// met knoppen om op onderwerp te filteren
 document.querySelectorAll("[data-rubriek-alle]").forEach(function (grid) {
   const rubriek = grid.getAttribute("data-rubriek-alle");
   const lijst = artikelenOpDatum.filter(function (a) { return a.rubriek === rubriek; });
@@ -152,7 +177,51 @@ document.querySelectorAll("[data-rubriek-alle]").forEach(function (grid) {
     grid.appendChild(leeg);
     return;
   }
-  lijst.forEach(function (a) { grid.appendChild(maakKaart(a)); });
+
+  const kaarten = lijst.map(function (a) {
+    const kaart = maakKaart(a);
+    kaart.dataset.onderwerp = a.onderwerp ? onderwerpAdres(a.onderwerp) : "";
+    grid.appendChild(kaart);
+    return kaart;
+  });
+
+  // Alleen onderwerpen tonen waar artikelen in staan, in de vaste volgorde
+  const aanwezig = (onderwerpen[rubriek] || []).filter(function (o) {
+    return lijst.some(function (a) { return a.onderwerp === o; });
+  });
+  if (aanwezig.length === 0) { return; }
+
+  const balk = document.createElement("div");
+  balk.className = "onderwerpen";
+  balk.setAttribute("role", "group");
+  balk.setAttribute("aria-label", "Filter op onderwerp");
+
+  const knoppen = [{ naam: "Alles", adres: "" }].concat(aanwezig.map(function (o) {
+    return { naam: o, adres: onderwerpAdres(o) };
+  })).map(function (o) {
+    const knop = document.createElement("button");
+    knop.type = "button";
+    knop.textContent = o.naam;
+    knop.dataset.adres = o.adres;
+    knop.addEventListener("click", function () {
+      history.replaceState(null, "", o.adres ? "#" + o.adres : window.location.pathname);
+      toon(o.adres);
+    });
+    balk.appendChild(knop);
+    return knop;
+  });
+  grid.parentNode.insertBefore(balk, grid);
+
+  function toon(adres) {
+    if (adres && !aanwezig.some(function (o) { return onderwerpAdres(o) === adres; })) { adres = ""; }
+    knoppen.forEach(function (k) { k.setAttribute("aria-pressed", k.dataset.adres === adres ? "true" : "false"); });
+    kaarten.forEach(function (k) { k.hidden = adres !== "" && k.dataset.onderwerp !== adres; });
+  }
+
+  toon(decodeURIComponent(window.location.hash.slice(1)));
+  window.addEventListener("hashchange", function () {
+    toon(decodeURIComponent(window.location.hash.slice(1)));
+  });
 });
 
 // Artikelpagina: drie andere artikelen uit dezelfde rubriek

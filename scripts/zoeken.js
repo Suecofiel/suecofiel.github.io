@@ -19,7 +19,7 @@ const extraPaginas = [
 
 // Artikelen uit artikelen.js (nieuwste eerst)
 const artikelenVoorZoeken = (typeof artikelenOpDatum !== "undefined" ? artikelenOpDatum : []).map(function (a) {
-  return { titel: a.titel, rubriek: a.rubriek, tekst: a.inleiding + " " + (a.labels || []).join(" "), url: a.url };
+  return { titel: a.titel, rubriek: a.rubriek, tekst: a.inleiding + " " + (a.onderwerp || "") + " " + (a.labels || []).join(" "), url: a.url };
 });
 
 const zoekindex = artikelenVoorZoeken.concat(extraPaginas);

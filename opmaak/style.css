@@ -651,6 +651,21 @@ footer li {
   margin: 0;
 }
 
+.artikel-onderwerp {
+  color: var(--blue);
+  font-family: Arial, sans-serif;
+  font-size: .85rem;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.artikel-onderwerp:hover { text-decoration: underline; }
+
+.artikel-onderwerp::before {
+  content: "› ";
+  color: var(--muted);
+}
+
 .artikel-kop-meta .label::before {
   content: "· ";
   color: var(--muted);
@@ -920,6 +935,37 @@ footer li {
   letter-spacing: .5px;
   text-transform: uppercase;
 }
+
+/* Onderwerpknoppen op een rubriekpagina */
+.onderwerpen {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 4px 24px;
+}
+
+.onderwerpen button {
+  padding: 7px 14px;
+  border: 1px solid var(--blue-dark);
+  background: var(--white);
+  color: var(--blue-dark);
+  font-family: Arial, sans-serif;
+  font-size: .85rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.onderwerpen button:hover {
+  background: #eef4fa;
+}
+
+.onderwerpen button[aria-pressed="true"] {
+  background: var(--blue-dark);
+  color: var(--white);
+}
+
+/* Kaarten die door het filter verborgen zijn */
+.artikel[hidden] { display: none !important; }
 
 /* 'Zie ook' op een rubriekpagina */
 .zie-ook {
