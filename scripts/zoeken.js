@@ -8,17 +8,18 @@
    ============================================================ */
 const extraPaginas = [
   { titel: "Over De Suecofiel", rubriek: "Over", tekst: "suecofiel betekenis woordenboek platform over Zweden", url: "over.html" },
-  { titel: "Zo spreek je het Zweeds uit", rubriek: "Uitspraakhulp", tekst: "uitspraak klinkers medeklinkers å ä ö y g k sj tj klanken", url: "uitspraakhulp.html" },
-  { titel: "Agenda", rubriek: "Agenda", tekst: "feestdagen tradities evenementen midsommar lucia nationaldag kerst valborg kalender", url: "agenda.html" },
-  { titel: "Actualiteiten", rubriek: "Rubriek", tekst: "alle artikelen actualiteiten Wat speelt er nu in Zweden? Nieuws en ontwikkelingen uit de Zweedse politiek en samenleving, met achtergrond en duiding.", url: "actualiteiten.html" },
-  { titel: "Cultuur", rubriek: "Rubriek", tekst: "alle artikelen cultuur Taal, tradities, literatuur, muziek en de vele manieren waarop Zweden zichzelf ziet.", url: "cultuur.html" },
-  { titel: "Wetenschap", rubriek: "Rubriek", tekst: "alle artikelen wetenschap Onderzoek, uitvindingen en wetenschappelijke ontwikkelingen in en over Zweden.", url: "wetenschap.html" },
-  { titel: "Geschiedenis", rubriek: "Rubriek", tekst: "alle artikelen geschiedenis Van de Vikingtijd en het Zweedse rijk tot de wortels van het moderne Zweden.", url: "geschiedenis.html" }
+  { titel: "Zo spreek je het Zweeds uit", rubriek: "Kennisbank", tekst: "uitspraakhulp uitspraak klinkers medeklinkers å ä ö y g k sj tj klanken", url: "uitspraakhulp.html" },
+  { titel: "Zweedse feestdagen", rubriek: "Kennisbank", tekst: "feestdagen tradities kalender agenda midsommar lucia nationaldag kerst valborg pasen", url: "feestdagen.html" },
+  { titel: "Kennisbank", rubriek: "Kennisbank", tekst: "naslag feiten begrippen tijdlijn geschiedenis politiek", url: "kennisbank.html" },
+  { titel: "Evenementen", rubriek: "Evenementen", tekst: "evenementen Nederland lezing film concert tentoonstelling viering", url: "evenementen.html" },
+  { titel: "Actualiteiten", rubriek: "Rubriek", tekst: "alle artikelen actualiteiten nieuws duiding achtergrond", url: "actualiteiten.html" },
+  { titel: "Cultuur & Tradities", rubriek: "Rubriek", tekst: "alle artikelen cultuur tradities gewoontes taal literatuur muziek kunst levensstijl", url: "cultuur.html" },
+  { titel: "Samenleving", rubriek: "Rubriek", tekst: "alle artikelen samenleving verzorgingsstaat onderwijs werk geschiedenis", url: "samenleving.html" }
 ];
 
 // Artikelen uit artikelen.js (nieuwste eerst)
 const artikelenVoorZoeken = (typeof artikelenOpDatum !== "undefined" ? artikelenOpDatum : []).map(function (a) {
-  return { titel: a.titel, rubriek: a.rubriek, tekst: a.inleiding, url: a.url };
+  return { titel: a.titel, rubriek: a.rubriek, tekst: a.inleiding + " " + (a.labels || []).join(" "), url: a.url };
 });
 
 const zoekindex = artikelenVoorZoeken.concat(extraPaginas);

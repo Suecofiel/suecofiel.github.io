@@ -1,6 +1,6 @@
 ---
 # AANPASSEN: titel (tabblad), omschrijving (voor Google) en menu
-# (actualiteiten, cultuur, wetenschap of geschiedenis)
+# (actualiteiten, cultuur of samenleving)
 layout: standaard
 titel: "Titel van het artikel"
 omschrijving: "Korte omschrijving van het artikel in één zin."
@@ -14,15 +14,21 @@ menu: "actualiteiten"
               bijvoorbeeld "gustav-vasa.html" (kleine letters, geen spaties).
            2. Pas het blokje bovenaan aan (titel, omschrijving, menu)
               en alles hieronder wat met AANPASSEN is gemarkeerd.
-           3. Zet het artikel in artikelen.js, met dezelfde titel,
-              rubriek en datum en als url de nieuwe bestandsnaam.
+           3. Zet het artikel in scripts/artikelen.js, met dezelfde titel,
+              rubriek, labels en datum en als url de nieuwe bestandsnaam.
            ============================================================ -->
 
-      <!-- AANPASSEN: data-rubriek = Actualiteiten, Cultuur, Wetenschap of Geschiedenis -->
+      <!-- AANPASSEN: data-rubriek = Actualiteiten, Cultuur &amp; Tradities of Samenleving -->
       <article class="artikelpagina" data-rubriek="Actualiteiten">
 
-        <!-- AANPASSEN: rubriek (twee keer: in de link en als tekst) -->
-        <a class="artikel-rubriek" href="/actualiteiten.html">Actualiteiten</a>
+        <!-- AANPASSEN: rubriek (link en tekst) en label(s).
+             Rubrieken: actualiteiten.html / Actualiteiten,
+             cultuur.html / Cultuur &amp; Tradities, samenleving.html / Samenleving.
+             Labels: Achtergrond, Duiding, Uitgelegd, Interview, Recensie, Zweden &amp; Nederland -->
+        <p class="artikel-kop-meta">
+          <a class="artikel-rubriek" href="/actualiteiten.html">Actualiteiten</a>
+          <span class="label">Duiding</span>
+        </p>
 
         <!-- AANPASSEN: titel van het artikel -->
         <h1>Titel van het artikel</h1>

@@ -292,12 +292,36 @@ main.panel {
   display: block;
 }
 
-.artikel .datum {
-  display: block;
-  margin-top: 10px;
-  color: var(--muted);
+/* Regel boven de titel van een artikelkaart: labels en datum */
+.kaart-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 2px 10px;
+  margin: 10px 0 0;
   font-family: Arial, sans-serif;
   font-size: .8rem;
+}
+
+.artikel .datum {
+  color: var(--muted);
+  font-size: .75rem;
+}
+
+/* Puntje tussen twee labels */
+.kaart-meta .label + .label::before {
+  content: "· ";
+  color: var(--muted);
+}
+
+/* Label: soort artikel (Achtergrond, Duiding, Uitgelegd …) */
+.label {
+  color: var(--blue);
+  font-family: Arial, sans-serif;
+  font-size: .75rem;
+  font-weight: bold;
+  letter-spacing: .5px;
+  text-transform: uppercase;
 }
 
 .artikel h3 {
@@ -618,6 +642,25 @@ footer li {
 
 .artikel-rubriek:hover { text-decoration: underline; }
 
+/* Rubriek en labels boven de titel van een artikel */
+.artikel-kop-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 2px 10px;
+  margin: 0;
+}
+
+.artikel-kop-meta .label::before {
+  content: "· ";
+  color: var(--muted);
+}
+
+.tekstpagina > .artikel-rubriek {
+  display: inline-block;
+  margin-bottom: 2px;
+}
+
 .artikelpagina h1 {
   margin: 6px 0 14px;
   font-size: clamp(1.9rem, 4.5vw, 2.7rem);
@@ -805,8 +848,110 @@ footer li {
   .voettekst-kolommen { grid-template-columns: 1fr 1fr; }
 }
 
+/* Kleinere laptops: menu iets compacter, zodat het op één regel past */
+@media (min-width: 801px) and (max-width: 1180px) {
+  #hoofdmenu { font-size: .8rem; letter-spacing: .2px; }
+  #hoofdmenu li + li::before { margin: 0 9px; }
+}
+
+/* ===== KENNISBANK ===== */
+.kennis-lijst {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.kennis-item {
+  border: 1px solid #d9d9d9;
+  border-top: 4px solid var(--blue);
+  background: var(--white);
+}
+
+.kennis-item a,
+.kennis-item.binnenkort {
+  display: block;
+  height: 100%;
+  padding: 16px 18px;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.kennis-item a:hover {
+  background: #eef4fa;
+}
+
+.kennis-item a:hover h2 {
+  color: var(--blue);
+  text-decoration: underline;
+}
+
+.kennis-item h2 {
+  margin: 0 0 6px;
+  padding: 0;
+  border: none;
+  font-size: 1.15rem;
+  line-height: 1.3;
+}
+
+.kennis-item p {
+  margin: 0;
+  color: var(--muted);
+  font-size: .95rem;
+}
+
+.kennis-item.binnenkort {
+  border-top-color: #b8c4cf;
+}
+
+.kennis-item.binnenkort h2 {
+  color: var(--muted);
+}
+
+.kennis-status {
+  display: inline-block;
+  margin-top: 10px;
+  color: var(--muted);
+  font-family: Arial, sans-serif;
+  font-size: .75rem;
+  font-weight: bold;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+}
+
+/* 'Zie ook' op een rubriekpagina */
+.zie-ook {
+  margin: 0 0 24px;
+}
+
+/* ===== EVENEMENTEN ===== */
+.agenda-details {
+  margin: 0 0 4px !important;
+  font-family: Arial, sans-serif;
+  font-size: .8rem;
+}
+
+.agenda-link {
+  display: inline-block;
+  margin-top: 6px;
+  color: var(--blue);
+  font-family: Arial, sans-serif;
+  font-size: .85rem;
+  font-weight: bold;
+}
+
+.voorbehoud {
+  margin-top: 30px;
+  color: var(--muted);
+  font-family: Arial, sans-serif;
+  font-size: .8rem;
+}
+
 /* ===== MOBIELE TELEFOONS ===== */
 @media (max-width: 800px) {
+  .kennis-lijst { grid-template-columns: 1fr; }
   .page { padding-top: 0; }
   main.panel { margin-top: 12px; }
   .grid { grid-template-columns: 1fr; gap: 24px; }

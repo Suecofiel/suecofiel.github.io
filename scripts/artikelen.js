@@ -10,8 +10,12 @@
    2. Plak het bovenaan de lijst, direct onder "const artikelen = [".
    3. Pas de gegevens aan:
       titel      de kop van het artikel
-      rubriek    precies één van: Actualiteiten, Cultuur,
-                 Wetenschap, Geschiedenis
+      rubriek    precies één van: Actualiteiten, Cultuur & Tradities,
+                 Samenleving
+      labels     soort artikel, tussen rechte haken, bijvoorbeeld
+                 ["Achtergrond"] of ["Duiding", "Zweden & Nederland"].
+                 Mogelijk: Achtergrond, Duiding, Uitgelegd, Interview,
+                 Recensie, en de invalshoek Zweden & Nederland.
       datum      jaar-maand-dag, bijvoorbeeld "2026-11-03"
       inleiding  één of twee zinnen
       afbeelding foto in de map afbeeldingen, bijvoorbeeld
@@ -23,47 +27,36 @@
 const artikelen = [
 
   // ----- Voorbeeldartikelen: later vervangen door echte artikelen -----
-  { titel: "Voorbeeldartikel Actualiteiten 3", rubriek: "Actualiteiten", datum: "2026-10-17",
+  { titel: "Voorbeeldartikel Actualiteiten 3", rubriek: "Actualiteiten", labels: ["Duiding"], datum: "2026-10-17",
     inleiding: "Een korte inleiding van één of twee zinnen over het artikel.",
     afbeelding: "", url: "artikel-sjabloon.html" },
-  { titel: "Voorbeeldartikel Actualiteiten 2", rubriek: "Actualiteiten", datum: "2026-10-10",
+  { titel: "Voorbeeldartikel Actualiteiten 2", rubriek: "Actualiteiten", labels: ["Duiding", "Zweden & Nederland"], datum: "2026-10-10",
     inleiding: "Een korte inleiding van één of twee zinnen over het artikel.",
     afbeelding: "", url: "#" },
-  { titel: "Voorbeeldartikel Actualiteiten 1", rubriek: "Actualiteiten", datum: "2026-10-03",
+  { titel: "Voorbeeldartikel Actualiteiten 1", rubriek: "Actualiteiten", labels: ["Achtergrond"], datum: "2026-10-03",
     inleiding: "Een korte inleiding van één of twee zinnen over het artikel.",
     afbeelding: "", url: "#" },
-
-  { titel: "Voorbeeldartikel Cultuur 3", rubriek: "Cultuur", datum: "2026-10-16",
+  { titel: "Voorbeeldartikel Cultuur 3", rubriek: "Cultuur & Tradities", labels: ["Uitgelegd"], datum: "2026-10-16",
     inleiding: "Een korte inleiding van één of twee zinnen over het artikel.",
     afbeelding: "", url: "#" },
-  { titel: "Voorbeeldartikel Cultuur 2", rubriek: "Cultuur", datum: "2026-10-09",
+  { titel: "Voorbeeldartikel Cultuur 2", rubriek: "Cultuur & Tradities", labels: ["Achtergrond"], datum: "2026-10-09",
     inleiding: "Een korte inleiding van één of twee zinnen over het artikel.",
     afbeelding: "", url: "#" },
-  { titel: "Voorbeeldartikel Cultuur 1", rubriek: "Cultuur", datum: "2026-10-02",
+  { titel: "Voorbeeldartikel Cultuur 1", rubriek: "Cultuur & Tradities", labels: ["Recensie"], datum: "2026-10-02",
     inleiding: "Een korte inleiding van één of twee zinnen over het artikel.",
     afbeelding: "", url: "#" },
-
-  { titel: "Voorbeeldartikel Wetenschap 3", rubriek: "Wetenschap", datum: "2026-10-15",
+  { titel: "Voorbeeldartikel Samenleving 3", rubriek: "Samenleving", labels: ["Achtergrond"], datum: "2026-10-15",
     inleiding: "Een korte inleiding van één of twee zinnen over het artikel.",
     afbeelding: "", url: "#" },
-  { titel: "Voorbeeldartikel Wetenschap 2", rubriek: "Wetenschap", datum: "2026-10-08",
+  { titel: "Voorbeeldartikel Samenleving 2", rubriek: "Samenleving", labels: ["Uitgelegd"], datum: "2026-10-08",
     inleiding: "Een korte inleiding van één of twee zinnen over het artikel.",
     afbeelding: "", url: "#" },
-  { titel: "Voorbeeldartikel Wetenschap 1", rubriek: "Wetenschap", datum: "2026-10-01",
-    inleiding: "Een korte inleiding van één of twee zinnen over het artikel.",
-    afbeelding: "", url: "#" },
-
-  { titel: "Voorbeeldartikel Geschiedenis 3", rubriek: "Geschiedenis", datum: "2026-10-14",
-    inleiding: "Een korte inleiding van één of twee zinnen over het artikel.",
-    afbeelding: "", url: "#" },
-  { titel: "Voorbeeldartikel Geschiedenis 2", rubriek: "Geschiedenis", datum: "2026-10-07",
-    inleiding: "Een korte inleiding van één of twee zinnen over het artikel.",
-    afbeelding: "", url: "#" },
-  { titel: "Voorbeeldartikel Geschiedenis 1", rubriek: "Geschiedenis", datum: "2026-09-30",
+  { titel: "Voorbeeldartikel Samenleving 1", rubriek: "Samenleving", labels: ["Interview", "Zweden & Nederland"], datum: "2026-10-01",
     inleiding: "Een korte inleiding van één of twee zinnen over het artikel.",
     afbeelding: "", url: "#" },
 
 ];
+
 
 
 /* ============================================================
@@ -107,10 +100,20 @@ function maakKaart(a) {
     beeld.textContent = "Afbeelding";
   }
 
+  // Regel boven de titel: labels en datum
+  const meta = document.createElement("p");
+  meta.className = "kaart-meta";
+  (a.labels || []).forEach(function (l) {
+    const label = document.createElement("span");
+    label.className = "label";
+    label.textContent = l;
+    meta.appendChild(label);
+  });
   const datum = document.createElement("time");
   datum.className = "datum";
   datum.dateTime = a.datum;
   datum.textContent = leesbareDatum(a.datum);
+  meta.appendChild(datum);
 
   const kop = document.createElement("h3");
   kop.textContent = a.titel;
@@ -118,7 +121,7 @@ function maakKaart(a) {
   const tekst = document.createElement("p");
   tekst.textContent = a.inleiding;
 
-  kaart.append(beeld, datum, kop, tekst);
+  kaart.append(beeld, meta, kop, tekst);
   return kaart;
 }
 

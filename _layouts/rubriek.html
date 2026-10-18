@@ -3,13 +3,17 @@ layout: standaard
 ---
 <!-- ============================================================
      LAYOUT VOOR RUBRIEKPAGINA'S
-     Gebruikt door actualiteiten.html, cultuur.html, wetenschap.html
-     en geschiedenis.html. De titel en de inleiding komen uit het
+     Gebruikt door actualiteiten.html, cultuur.html en samenleving.html. De titel en de inleiding komen uit het
      blokje bovenaan die pagina's.
      ============================================================ -->
       <div class="rubriekpagina-kop">
         <h1>{{ page.titel }}</h1>
         <p class="inleiding">{{ page.inleiding }}</p>
+        {% if page.zie_ook_url %}
+        <div class="opmerking zie-ook">
+          <p>Zie ook: <a href="{{ page.zie_ook_url }}">{{ page.zie_ook_titel }}</a> in de Kennisbank.</p>
+        </div>
+        {% endif %}
       </div>
 
       <!-- Alle artikelen uit deze rubriek, nieuwste eerst (automatisch uit artikelen.js) -->
