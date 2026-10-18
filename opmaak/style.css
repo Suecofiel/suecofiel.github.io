@@ -818,21 +818,54 @@ footer li {
   .klank .voorbeeld { grid-column: 1; }
   .opmerking .klinkerlijst { padding-left: 0; }
 
-  /* Kop: titel bovenaan, daaronder zoekveld en menuknop naast elkaar */
-  .header-top {
+  /* Kop: titel links, menuknop rechts. Het zoekveld zit onderaan het menu.
+     De kop wordt één rij met vaste volgorde: titel, menuknop, menu, zoekveld. */
+  header.panel {
+    display: flex;
     flex-wrap: wrap;
-    gap: 10px;
-    padding-bottom: 12px;
+    align-items: flex-start;
+    column-gap: 10px;
   }
+  .header-top { display: contents; }
   .brand {
-    flex-basis: 100%;
+    order: 1;
+    flex: 1 1 auto;
+    min-width: 0;
+    padding-left: 10px;
+    margin-bottom: 4px;
     font-size: clamp(2rem, 10.5vw, 2.6rem);  /* op mobiel iets groter, zodat de slogan leesbaar blijft */
   }
   .brand-tagline { font-size: 0.3em; }
-  .search { flex: 1; }
+  .menuknop {
+    display: flex;
+    order: 2;
+    margin: 4px 10px 0 0;
+    padding: 10px;
+  }
+  #hoofdmenu {
+    order: 3;
+    flex-basis: 100%;
+  }
+  /* Het woord "Menu" alleen voor schermlezers; zichtbaar is het icoon */
+  .menuknop-tekst {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+
+  /* Zoekveld: verborgen tot het menu openstaat, dan onderaan het menu */
+  .search {
+    display: none;
+    order: 4;
+    flex-basis: 100%;
+    padding: 4px 0 14px;
+  }
+  header.menu-open .search { display: block; }
   .search input { width: 100%; }
   .zoekresultaten { width: 100%; max-width: none; }
-  .menuknop { display: flex; }
 
   /* Voettekst: kolommen onder elkaar */
   .voettekst-kolommen { grid-template-columns: 1fr; gap: 24px; }
