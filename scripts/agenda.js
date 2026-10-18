@@ -44,7 +44,7 @@ const agenda = [
   { datum: "2027-01-06", titel: "Trettondedag jul", soort: "Officiële feestdag", plaats: "",
     beschrijving: "Driekoningen, de dertiende dag na kerst, is in Zweden een vrije dag." },
   { datum: "2027-01-13", titel: "Tjugondedag Knut", soort: "Traditie", plaats: "",
-    beschrijving: "Op de twintigste dag na kerst eindigt de kersttijd. De kerstboom wordt ‘geplunderd’ en naar buiten gezet, vaak met een feestje voor kinderen." },
+    beschrijving: "Op de twintigste dag na kerst eindigt de kersttijd. De kerstboom wordt afgetuigd en naar buiten gezet, vaak met een kinderfeestje waarbij nog één keer rond de boom wordt gedanst en de kinderen het snoepgoed uit de boom mogen halen." },
   { datum: "2027-02-09", titel: "Fettisdagen", soort: "Traditie", plaats: "",
     beschrijving: "Vette dinsdag, de dag van de semla: een zoete bol met amandelspijs en slagroom. Zweden eten er op deze dag miljoenen van." },
   { datum: "2027-03-25", titel: "Våffeldagen", soort: "Traditie", plaats: "",
