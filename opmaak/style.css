@@ -839,7 +839,7 @@ footer li {
   .menuknop {
     display: flex;
     order: 2;
-    margin: 4px 10px 0 0;
+    margin: 0 10px 0 0;   /* bovenkant gelijk met de bovenkant van de titeltekst */
     padding: 10px;
   }
   #hoofdmenu {
