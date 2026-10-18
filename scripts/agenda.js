@@ -24,7 +24,7 @@ const agenda = [
   { datum: "2026-11-06", titel: "Gustav Adolfsdagen", soort: "Traditie", plaats: "",
     beschrijving: "Herdenking van koning Gustav II Adolf, die in 1632 sneuvelde bij Lützen. Bakkers verkopen het Gustav Adolfsbakelse, een gebakje met zijn beeltenis in chocolade." },
   { datum: "2026-11-10", titel: "Mårtensafton", soort: "Traditie", plaats: "",
-    beschrijving: "Sint-Maartensavond, vooral in Skåne gevierd met een uitgebreid ganzenmaal en zwartzuur (svartsoppa)." },
+    beschrijving: "Sint-Maartensavond, vooral in Skåne gevierd met een uitgebreid ganzenmaal. Traditioneel begint de maaltijd met svartsoppa, een donkere, kruidige soep op basis van ganzenbloed." },
   { datum: "2026-12-10", titel: "Nobeldagen", soort: "Traditie", plaats: "Stockholm",
     beschrijving: "Uitreiking van de Nobelprijzen in het Konserthuset, gevolgd door het Nobelbanket in het stadhuis, live uitgezonden op de Zweedse televisie." },
   { datum: "2026-12-13", titel: "Luciadagen", soort: "Traditie", plaats: "",
