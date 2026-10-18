@@ -2,10 +2,62 @@
    Dit bestand bepaalt hoe elke pagina eruitziet. Een wijziging
    hier geldt dus direct voor de hele website. */
 
-/* Lettertype Gelasio: ontworpen als vervanger van Georgia, met
-   dezelfde vorm en maten. Wordt geladen via Google Fonts, zodat
-   de site er op elk apparaat (ook Android) hetzelfde uitziet. */
-@import url("https://fonts.googleapis.com/css2?family=Gelasio:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+/* ===== LETTERTYPES =====
+   De lettertypes staan in de map lettertypes op de site zelf, zodat
+   er geen gegevens van bezoekers naar Google gaan.
+   Gelasio: vervanger van Georgia, voor alle gewone tekst.
+   Crimson Pro: voor de woordenboekpassage op de pagina Over.
+   Beide vallen onder de SIL Open Font License (zie de map lettertypes).
+   Een lettertype wordt alleen gedownload als het echt wordt gebruikt. */
+@font-face {
+  font-family: "Gelasio";
+  src: url("/lettertypes/gelasio-400-normal.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Gelasio";
+  src: url("/lettertypes/gelasio-700-normal.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Gelasio";
+  src: url("/lettertypes/gelasio-400-italic.woff2") format("woff2");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Gelasio";
+  src: url("/lettertypes/gelasio-700-italic.woff2") format("woff2");
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Crimson Pro";
+  src: url("/lettertypes/crimson-pro-400-normal.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Crimson Pro";
+  src: url("/lettertypes/crimson-pro-700-normal.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Crimson Pro";
+  src: url("/lettertypes/crimson-pro-400-italic.woff2") format("woff2");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
 
 /* ===== KLEUREN =====
    Wil je een andere blauwtint? Verander dan alleen de waarde achter --blue. */
@@ -499,6 +551,11 @@ footer li {
 
 .voettekst-onder p {
   margin: 0;
+}
+
+.voettekst-onder-links {
+  display: flex;
+  gap: 18px;
 }
 
 /* Huidige pagina in het menu onderstrepen */
