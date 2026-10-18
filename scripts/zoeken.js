@@ -85,15 +85,19 @@ document.addEventListener("click", function (e) {
 
 /* ============================================================
    MENUKNOP OP MOBIELE TELEFOONS
-   Opent en sluit het menu als je op "Menu" tikt.
+   Opent en sluit het menu (met het zoekveld) als je op de menuknop tikt.
    ============================================================ */
 const menuknop = document.querySelector(".menuknop");
 const hoofdmenu = document.getElementById("hoofdmenu");
 
 if (menuknop && hoofdmenu) {
+  const kop = menuknop.closest("header");
+
   menuknop.addEventListener("click", function () {
     const open = hoofdmenu.classList.toggle("open");
     menuknop.setAttribute("aria-expanded", open ? "true" : "false");
+    // Op mobiel staat het zoekveld in het menu: mee openen en sluiten
+    if (kop) { kop.classList.toggle("menu-open", open); }
   });
 
   // Menu weer sluiten nadat je op een knop in het menu hebt getikt
@@ -101,6 +105,7 @@ if (menuknop && hoofdmenu) {
     if (e.target.closest("a")) {
       hoofdmenu.classList.remove("open");
       menuknop.setAttribute("aria-expanded", "false");
+      if (kop) { kop.classList.remove("menu-open"); }
     }
   });
 }
