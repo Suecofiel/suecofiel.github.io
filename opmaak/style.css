@@ -926,6 +926,16 @@ footer li {
   #hoofdmenu li + li::before { margin: 0 9px; }
 }
 
+/* Lijst op de pagina Over */
+.over-lijst {
+  margin: 0 0 1em;
+  padding-left: 1.2em;
+}
+
+.over-lijst li {
+  margin-bottom: 6px;
+}
+
 /* ===== KENNISBANK ===== */
 .kennis-lijst {
   display: grid;
