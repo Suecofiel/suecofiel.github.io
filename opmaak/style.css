@@ -613,6 +613,12 @@ footer li {
   margin: 0;
 }
 
+/* Tweede regel binnen één klank (bijvoorbeeld de g als j) */
+.klank .deelregel {
+  grid-column: 2;
+  margin-top: 8px;
+}
+
 /* Regel met voorbeeldwoorden onder de uitleg */
 .klank .voorbeeld {
   grid-column: 2;
@@ -1187,7 +1193,7 @@ footer li {
   .lees-ook .grid .artikel:nth-child(n+2),
   .alle-artikelen .artikel:nth-child(n+2) { display: block; }
   .klank { grid-template-columns: 1fr; }
-  .klank .voorbeeld { grid-column: 1; }
+  .klank .voorbeeld, .klank .deelregel { grid-column: 1; }
   .opmerking .klinkerlijst { padding-left: 0; }
 
   /* Kop: titel links, menuknop rechts. Het zoekveld zit onderaan het menu.
