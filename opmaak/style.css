@@ -1039,6 +1039,46 @@ footer li {
   margin: 0 0 24px;
 }
 
+/* ===== BEGRIPPEN VAN A TOT Z ===== */
+.letterbalk a {
+  min-width: 2.2em;
+  text-align: center;
+}
+
+.begrippen {
+  margin: 0;
+}
+
+.begrip {
+  padding: 12px 0;
+  border-bottom: 1px solid #dddddd;
+  scroll-margin-top: 16px;
+}
+
+.begrip dt {
+  color: var(--blue);
+  font-size: 1.2rem;
+  font-weight: bold;
+  font-style: italic;
+}
+
+.begrip dd {
+  margin: 0;
+}
+
+.begrip .letterlijk {
+  margin-bottom: 4px;
+  color: var(--muted);
+  font-family: Arial, sans-serif;
+  font-size: .8rem;
+}
+
+/* Begrip waar naartoe gelinkt is, kort oplichten */
+.begrip:target {
+  background: #eef4fa;
+  box-shadow: -10px 0 0 #eef4fa, 10px 0 0 #eef4fa;
+}
+
 /* ===== TIJDLIJN ===== */
 .tijdvakken {
   display: flex;
