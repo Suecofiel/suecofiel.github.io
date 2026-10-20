@@ -64,6 +64,7 @@
 :root {
   --blue: #005293;       /* achtergrond en accenten (Zweeds blauw) */
   --blue-dark: #003366;  /* donkerblauw: knoppen */
+  --rood: #b3261e;       /* rood: officiële feestdagen */
   --ink: #1d262b;        /* tekstkleur */
   --muted: #5f6b72;      /* grijze tekst */
   --line: #1d262b;       /* scheidingslijnen */
@@ -868,6 +869,35 @@ footer li {
 .agenda-weekdag {
   font-family: Arial, sans-serif;
   font-size: .75rem;
+}
+
+/* Officiële feestdagen: rood datumblokje, zoals in Zweedse kalenders */
+.agenda-item.vrije-dag .agenda-datum {
+  background: var(--rood);
+}
+
+.agenda-nederlands {
+  margin: -2px 0 4px !important;
+  color: var(--muted);
+  font-family: Arial, sans-serif;
+  font-size: .8rem;
+}
+
+.legenda {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin: -14px 0 6px;
+  color: var(--muted);
+  font-size: .9rem;
+}
+
+.legenda-rood {
+  flex: none;
+  width: 14px;
+  height: 14px;
+  margin-top: 5px;
+  background: var(--rood);
 }
 
 .agenda-soort {

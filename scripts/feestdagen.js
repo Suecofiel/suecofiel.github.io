@@ -8,71 +8,71 @@
    Kopieer een blok van { tot en met }, inclusief de komma,
    plak het ergens in de lijst en pas de gegevens aan:
       datum         jaar-maand-dag, bijvoorbeeld "2027-03-14"
-      titel         naam van de gebeurtenis
-      soort         bijvoorbeeld "Officiële feestdag", "Traditie",
-                    "Film", "Concert", "Lezing", "Tentoonstelling"
-      plaats        bijvoorbeeld "Amsterdam" of "" als het niet van
-                    toepassing is
-      beschrijving  één of twee zinnen
+      titel         Zweedse naam
+      nederlands    Nederlandse naam (verschijnt klein onder de titel)
+      soort         "Officiële feestdag" (krijgt een rood datumblokje),
+                    "Traditie", of "Traditie · in de praktijk een vrije dag"
+      plaats        bijvoorbeeld "Stockholm", of ""
+      beschrijving  één of twee zinnen, of "" voor geen beschrijving.
+                    Zweedse woorden schuin: <em lang=\"sv\">woord</em>
    De volgorde in de lijst maakt niet uit.
    ============================================================ */
 const feestdagen = [
 
-  // ----- 2026 -----
-  { datum: "2026-10-31", titel: "Alla helgons dag", soort: "Officiële feestdag", plaats: "",
-    beschrijving: "Allerheiligen. Zweden steken massaal kaarsen aan op de graven van hun dierbaren; begraafplaatsen veranderen 's avonds in zeeën van licht." },
-  { datum: "2026-11-06", titel: "Gustav Adolfsdagen", soort: "Traditie", plaats: "",
-    beschrijving: "Herdenking van koning Gustav II Adolf, die in 1632 sneuvelde bij Lützen. Bakkers verkopen het Gustav Adolfsbakelse, een gebakje met zijn beeltenis in chocolade." },
-  { datum: "2026-11-10", titel: "Mårtensafton", soort: "Traditie", plaats: "",
-    beschrijving: "Sint-Maartensavond, vooral in Skåne gevierd met een uitgebreid ganzenmaal. Traditioneel begint de maaltijd met svartsoppa, een donkere, kruidige soep op basis van ganzenbloed." },
-  { datum: "2026-12-10", titel: "Nobeldagen", soort: "Traditie", plaats: "Stockholm",
-    beschrijving: "Uitreiking van de Nobelprijzen in het Konserthuset, gevolgd door het Nobelbanket in het stadhuis, live uitgezonden op de Zweedse televisie." },
-  { datum: "2026-12-13", titel: "Luciadagen", soort: "Traditie", plaats: "",
+  { datum: "2026-10-31", titel: "Alla helgons dag", nederlands: "Allerheiligen", soort: "Officiële feestdag", plaats: "",
+    beschrijving: "Zweden steken massaal kaarsen aan op de graven van hun dierbaren; ’s avonds veranderen begraafplaatsen in zeeën van licht." },
+  { datum: "2026-11-06", titel: "Gustav Adolfsdagen", nederlands: "Gustaaf Adolfdag", soort: "Traditie", plaats: "",
+    beschrijving: "Herdenking van koning Gustav II Adolf, die in 1632 sneuvelde bij Lützen. Bakkers verkopen het <em lang=\"sv\">Gustav Adolfsbakelse</em>, een gebakje met zijn beeltenis in chocolade of marsepein." },
+  { datum: "2026-11-10", titel: "Mårtensafton", nederlands: "Sint-Maartensavond", soort: "Traditie", plaats: "",
+    beschrijving: "Vooral in Skåne gevierd met een uitgebreid ganzenmaal. Traditioneel begint de maaltijd met <em lang=\"sv\">svartsoppa</em>, een donkere, kruidige soep op basis van ganzenbloed." },
+  { datum: "2026-11-29", titel: "Första advent", nederlands: "Eerste advent", soort: "Traditie", plaats: "",
+    beschrijving: "Het begin van de adventstijd. Voor de ramen verschijnen overal elektrische kandelaars (<em lang=\"sv\">adventsljusstakar</em>) en papieren sterren, die in veel huizen tot na de jaarwisseling blijven branden." },
+  { datum: "2026-12-10", titel: "Nobeldagen", nederlands: "Nobeldag", soort: "Traditie", plaats: "Stockholm",
+    beschrijving: "Op de sterfdag van Alfred Nobel worden de Nobelprijzen uitgereikt in het Konserthuset, gevolgd door het Nobelbanket in het stadhuis, live op de Zweedse televisie." },
+  { datum: "2026-12-13", titel: "Luciadagen", nederlands: "Luciadag", soort: "Traditie", plaats: "",
     beschrijving: "In het donkerste deel van het jaar trekken processies in witte gewaden, met Lucia voorop met een kroon van kaarsen, zingend door scholen, kerken en kantoren." },
-  { datum: "2026-12-24", titel: "Julafton", soort: "Traditie", plaats: "",
-    beschrijving: "Kerstavond is in Zweden het hoogtepunt van kerst, met het julbord, om drie uur Donald Duck op televisie en 's avonds de cadeaus." },
-  { datum: "2026-12-25", titel: "Juldagen", soort: "Officiële feestdag", plaats: "",
-    beschrijving: "Eerste kerstdag, traditioneel begonnen met de vroege julotta-kerkdienst." },
-  { datum: "2026-12-26", titel: "Annandag jul", soort: "Officiële feestdag", plaats: "",
-    beschrijving: "Tweede kerstdag, tegenwoordig ook de dag van de grote uitverkoop." },
-  { datum: "2026-12-31", titel: "Nyårsafton", soort: "Traditie", plaats: "",
-    beschrijving: "Oudejaarsavond, met om middernacht vuurwerk en het voorlezen van het gedicht Nyårsklockan van Tennyson vanuit Skansen in Stockholm." },
-
-  // ----- 2027 -----
-  { datum: "2027-01-01", titel: "Nyårsdagen", soort: "Officiële feestdag", plaats: "",
-    beschrijving: "Nieuwjaarsdag." },
-  { datum: "2027-01-06", titel: "Trettondedag jul", soort: "Officiële feestdag", plaats: "",
-    beschrijving: "Driekoningen, de dertiende dag na kerst, is in Zweden een vrije dag." },
-  { datum: "2027-01-13", titel: "Tjugondedag Knut", soort: "Traditie", plaats: "",
-    beschrijving: "Op de twintigste dag na kerst eindigt de kersttijd. De kerstboom wordt afgetuigd en naar buiten gezet, vaak met een kinderfeestje waarbij nog één keer rond de boom wordt gedanst en de kinderen het snoepgoed uit de boom mogen halen." },
-  { datum: "2027-02-09", titel: "Fettisdagen", soort: "Traditie", plaats: "",
-    beschrijving: "Vette dinsdag, de dag van de semla: een zoete bol met amandelspijs en slagroom. Zweden eten er op deze dag miljoenen van." },
-  { datum: "2027-03-25", titel: "Våffeldagen", soort: "Traditie", plaats: "",
-    beschrijving: "Wafeldag. De naam komt van Vårfrudagen (Maria-Boodschap), dat in de volksmond veranderde in våffeldagen." },
-  { datum: "2027-03-26", titel: "Långfredagen", soort: "Officiële feestdag", plaats: "",
-    beschrijving: "Goede Vrijdag, traditioneel een stille dag." },
-  { datum: "2027-03-28", titel: "Påskdagen", soort: "Officiële feestdag", plaats: "",
-    beschrijving: "Pasen. Kinderen verkleden zich rond Pasen als påskkärringar (paasheksjes) en takken worden versierd met gekleurde veren." },
-  { datum: "2027-03-29", titel: "Annandag påsk", soort: "Officiële feestdag", plaats: "",
-    beschrijving: "Tweede paasdag." },
-  { datum: "2027-04-30", titel: "Valborgsmässoafton", soort: "Traditie", plaats: "",
-    beschrijving: "Walpurgisnacht. Met grote vreugdevuren en koorzang wordt de lente verwelkomd; in Uppsala en Lund is het een groot studentenfeest." },
-  { datum: "2027-05-01", titel: "Första maj", soort: "Officiële feestdag", plaats: "",
-    beschrijving: "Dag van de Arbeid, met demonstraties en toespraken van politieke partijen en vakbonden." },
-  { datum: "2027-05-06", titel: "Kristi himmelsfärdsdag", soort: "Officiële feestdag", plaats: "",
-    beschrijving: "Hemelvaartsdag." },
-  { datum: "2027-05-16", titel: "Pingstdagen", soort: "Officiële feestdag", plaats: "",
-    beschrijving: "Pinksteren. Anders dan in Nederland is tweede pinksterdag in Zweden geen vrije dag meer." },
-  { datum: "2027-06-06", titel: "Sveriges nationaldag", soort: "Officiële feestdag", plaats: "",
-    beschrijving: "Nationale feestdag, ter herinnering aan de verkiezing van Gustav Vasa tot koning in 1523 en de grondwet van 1809." },
-  { datum: "2027-06-25", titel: "Midsommarafton", soort: "Traditie", plaats: "",
-    beschrijving: "Het bekendste Zweedse feest: dansen rond de midsommarstång, haring met nieuwe aardappelen, aardbeien en bloemenkransen in het haar." },
-  { datum: "2027-06-26", titel: "Midsommardagen", soort: "Officiële feestdag", plaats: "",
-    beschrijving: "Midzomerdag, de dag na het grote feest." },
-  { datum: "2027-08-19", titel: "Surströmmingspremiären", soort: "Traditie", plaats: "",
+  { datum: "2026-12-24", titel: "Julafton", nederlands: "Kerstavond", soort: "Traditie · in de praktijk een vrije dag", plaats: "",
+    beschrijving: "Het hoogtepunt van de Zweedse kerst, met het <em lang=\"sv\">julbord</em>, om drie uur ’s middags <em lang=\"sv\">Kalle Anka</em> (Donald Duck) op televisie en ’s avonds de cadeaus." },
+  { datum: "2026-12-25", titel: "Juldagen", nederlands: "Eerste kerstdag", soort: "Officiële feestdag", plaats: "",
+    beschrijving: "Traditioneel begonnen met de vroege kerkdienst <em lang=\"sv\">julotta</em>." },
+  { datum: "2026-12-26", titel: "Annandag jul", nederlands: "Tweede kerstdag", soort: "Officiële feestdag", plaats: "",
+    beschrijving: "Tegenwoordig ook de dag waarop de grote uitverkoop begint." },
+  { datum: "2026-12-31", titel: "Nyårsafton", nederlands: "Oudejaarsavond", soort: "Traditie · in de praktijk een vrije dag", plaats: "",
+    beschrijving: "Met vuurwerk om middernacht en, live op televisie vanaf Skansen in Stockholm, het voorlezen van Tennysons gedicht <em lang=\"sv\">Nyårsklockan</em>, een traditie sinds het eind van de negentiende eeuw." },
+  { datum: "2027-01-01", titel: "Nyårsdagen", nederlands: "Nieuwjaarsdag", soort: "Officiële feestdag", plaats: "",
+    beschrijving: "" },
+  { datum: "2027-01-06", titel: "Trettondedag jul", nederlands: "Driekoningen", soort: "Officiële feestdag", plaats: "",
+    beschrijving: "Letterlijk ‘de dertiende dag van kerst’: dertien dagen na kerstavond." },
+  { datum: "2027-01-13", titel: "Tjugondedag Knut", nederlands: "Einde van de kersttijd", soort: "Traditie", plaats: "",
+    beschrijving: "Twintig dagen na kerstavond eindigt officieel de kersttijd. Vroeger werd de kerstboom dan met een feestje afgetuigd, de <em lang=\"sv\">julgransplundring</em>, maar die traditie is grotendeels verdwenen; veel Zweden zetten de boom al eerder buiten." },
+  { datum: "2027-02-09", titel: "Fettisdagen", nederlands: "Vette dinsdag", soort: "Traditie", plaats: "",
+    beschrijving: "De dag van de <em lang=\"sv\">semla</em>: een zoete bol met amandelspijs en slagroom, waarvan er op deze dag miljoenen worden gegeten." },
+  { datum: "2027-03-25", titel: "Våffeldagen", nederlands: "Wafeldag", soort: "Traditie", plaats: "",
+    beschrijving: "De naam is ontstaan uit <em lang=\"sv\">Vårfrudagen</em> (Maria-Boodschap), dat in de volksmond ging klinken als <em lang=\"sv\">våffeldagen</em>." },
+  { datum: "2027-03-26", titel: "Långfredagen", nederlands: "Goede Vrijdag", soort: "Officiële feestdag", plaats: "",
+    beschrijving: "Traditioneel een stille dag." },
+  { datum: "2027-03-28", titel: "Påskdagen", nederlands: "Pasen", soort: "Officiële feestdag", plaats: "",
+    beschrijving: "Rond Pasen verkleden kinderen zich als <em lang=\"sv\">påskkärringar</em> (paasheksjes), en takken worden versierd met gekleurde veren." },
+  { datum: "2027-03-29", titel: "Annandag påsk", nederlands: "Tweede paasdag", soort: "Officiële feestdag", plaats: "",
+    beschrijving: "" },
+  { datum: "2027-04-30", titel: "Valborgsmässoafton", nederlands: "Walpurgisnacht", soort: "Traditie", plaats: "",
+    beschrijving: "Met grote vreugdevuren en koorzang wordt de lente verwelkomd; in Uppsala en Lund is het een groot studentenfeest." },
+  { datum: "2027-05-01", titel: "Första maj", nederlands: "Dag van de Arbeid", soort: "Officiële feestdag", plaats: "",
+    beschrijving: "Met demonstraties en toespraken van politieke partijen en vakbonden." },
+  { datum: "2027-05-06", titel: "Kristi himmelsfärdsdag", nederlands: "Hemelvaartsdag", soort: "Officiële feestdag", plaats: "",
+    beschrijving: "Valt altijd op een donderdag; veel Zweden nemen de vrijdag erna vrij, een zogeheten <em lang=\"sv\">klämdag</em> (brugdag)." },
+  { datum: "2027-05-16", titel: "Pingstdagen", nederlands: "Pinksteren", soort: "Officiële feestdag", plaats: "",
+    beschrijving: "Anders dan in Nederland is tweede pinksterdag in Zweden sinds 2005 geen vrije dag meer." },
+  { datum: "2027-06-06", titel: "Sveriges nationaldag", nederlands: "Nationale feestdag", soort: "Officiële feestdag", plaats: "",
+    beschrijving: "Ter herinnering aan de verkiezing van Gustav Vasa tot koning in 1523 en de grondwet van 1809. Sinds 2005 een officiële vrije dag." },
+  { datum: "2027-06-25", titel: "Midsommarafton", nederlands: "Midzomeravond", soort: "Traditie · in de praktijk een vrije dag", plaats: "",
+    beschrijving: "Het bekendste Zweedse feest: dansen rond de <em lang=\"sv\">midsommarstång</em>, haring met nieuwe aardappelen, aardbeien en bloemenkransen in het haar." },
+  { datum: "2027-06-26", titel: "Midsommardagen", nederlands: "Midzomerdag", soort: "Officiële feestdag", plaats: "",
+    beschrijving: "De dag na het grote feest." },
+  { datum: "2027-08-19", titel: "Surströmmingspremiären", nederlands: "Begin van het surströmmingseizoen", soort: "Traditie", plaats: "",
     beschrijving: "Op de derde donderdag van augustus begint traditioneel het seizoen van de beruchte gegiste haring, vooral in Noord-Zweden." },
-  { datum: "2027-10-04", titel: "Kanelbullens dag", soort: "Traditie", plaats: "",
-    beschrijving: "De dag van het kaneelbroodje, sinds 1999 een feestdag voor de kanelbulle, een vaste waarde bij de Zweedse fika." },
+  { datum: "2027-10-04", titel: "Kanelbullens dag", nederlands: "Dag van het kaneelbroodje", soort: "Traditie", plaats: "",
+    beschrijving: "Sinds 1999 een themadag voor de <em lang=\"sv\">kanelbulle</em>, een vaste waarde bij de Zweedse <em lang=\"sv\">fika</em>." },
 
 ];
 
@@ -125,7 +125,7 @@ const feestdagen = [
     }
 
     const item = document.createElement("li");
-    item.className = "agenda-item";
+    item.className = "agenda-item" + (g.soort === "Officiële feestdag" ? " vrije-dag" : "");
 
     const datumBlok = document.createElement("time");
     datumBlok.className = "agenda-datum";
@@ -145,9 +145,19 @@ const feestdagen = [
     const titel = document.createElement("h3");
     titel.lang = "sv";
     titel.textContent = g.titel;
-    const tekst = document.createElement("p");
-    tekst.textContent = g.beschrijving;
-    inhoud.append(soort, titel, tekst);
+    inhoud.append(soort, titel);
+
+    if (g.nederlands) {
+      const nl = document.createElement("p");
+      nl.className = "agenda-nederlands";
+      nl.textContent = g.nederlands;
+      inhoud.appendChild(nl);
+    }
+    if (g.beschrijving) {
+      const tekst = document.createElement("p");
+      tekst.innerHTML = g.beschrijving;
+      inhoud.appendChild(tekst);
+    }
 
     item.append(datumBlok, inhoud);
     maandLijst.appendChild(item);
