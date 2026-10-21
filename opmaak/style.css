@@ -125,7 +125,7 @@ header.panel {
   align-items: flex-start;
   font-size: clamp(2rem, 9vw, 2.4rem);   /* grootte van titel én logo */
   line-height: 1;
-  padding-bottom: 0.65em;   /* ruimte voor het logo onder de tekst */
+  padding-bottom: 0.72em;   /* ruimte voor het logo onder de tekst */
   text-decoration: none;
   color: var(--ink);
 }
@@ -134,6 +134,7 @@ header.panel {
   position: relative;
   z-index: 2;               /* tekst ligt boven het logo */
   top: -0.1em;              /* naam iets omhoog, los van het logo */
+  font-size: 0.9em;         /* tekst iets kleiner dan het logo */
   font-weight: bold;
   letter-spacing: -0.02em;
 }
@@ -147,7 +148,7 @@ header.panel {
 
 .brand-ruimte img {
   position: absolute;
-  top: 0.17em;
+  top: 0.1em;
   left: 50%;
   height: 1.85em;
   width: auto;
