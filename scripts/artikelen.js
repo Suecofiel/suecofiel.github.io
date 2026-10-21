@@ -192,10 +192,14 @@ if (uitgelichtVak) {
   }
 }
 
-// Homepage: per rubriek de drie nieuwste artikelen (zonder het uitgelichte)
+// Homepage: per rubriek de drie nieuwste artikelen.
+// Het uitgelichte artikel wordt overgeslagen, behalve als de rubriek
+// anders leeg zou blijven.
 document.querySelectorAll(".grid[data-rubriek]").forEach(function (grid) {
   const rubriek = grid.getAttribute("data-rubriek");
-  const lijst = artikelenOpDatum.filter(function (a) { return a.rubriek === rubriek && a !== uitgelichtArtikel; }).slice(0, 3);
+  const inRubriek = artikelenOpDatum.filter(function (a) { return a.rubriek === rubriek; });
+  const zonderUitgelicht = inRubriek.filter(function (a) { return a !== uitgelichtArtikel; });
+  const lijst = (zonderUitgelicht.length > 0 ? zonderUitgelicht : inRubriek).slice(0, 3);
 
   if (lijst.length === 0) {
     const leeg = document.createElement("p");
