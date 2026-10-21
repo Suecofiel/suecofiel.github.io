@@ -39,9 +39,6 @@ const artikelen = [
     afbeelding: "afbeeldingen/alla-helgons-dag.jpg", url: "alla-helgons-dag.html" },
 
   // ----- Voorbeeldartikelen: later vervangen door echte artikelen -----
-  { titel: "Voorbeeldartikel Cultuur 3", rubriek: "Cultuur & Tradities", onderwerp: "Tradities", labels: ["Uitgelegd"], datum: "2026-10-16",
-    inleiding: "Een korte inleiding van één of twee zinnen over het artikel.",
-    afbeelding: "", url: "#" },
   { titel: "Voorbeeldartikel Cultuur 2", rubriek: "Cultuur & Tradities", onderwerp: "Design & Architectuur", labels: ["Achtergrond"], datum: "2026-10-09",
     inleiding: "Een korte inleiding van één of twee zinnen over het artikel.",
     afbeelding: "", url: "#" },
@@ -203,12 +200,12 @@ if (uitgelichtVak) {
 
 // Homepage: per rubriek de drie nieuwste artikelen.
 // Het uitgelichte artikel wordt overgeslagen, behalve als de rubriek
-// anders leeg zou blijven.
+// anders minder dan drie artikelen zou tonen.
 document.querySelectorAll(".grid[data-rubriek]").forEach(function (grid) {
   const rubriek = grid.getAttribute("data-rubriek");
   const inRubriek = artikelenOpDatum.filter(function (a) { return a.rubriek === rubriek; });
   const zonderUitgelicht = inRubriek.filter(function (a) { return a !== uitgelichtArtikel; });
-  const lijst = (zonderUitgelicht.length > 0 ? zonderUitgelicht : inRubriek).slice(0, 3);
+  const lijst = (zonderUitgelicht.length >= 3 ? zonderUitgelicht : inRubriek).slice(0, 3);
 
   if (lijst.length === 0) {
     const leeg = document.createElement("p");
