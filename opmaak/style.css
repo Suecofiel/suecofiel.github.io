@@ -814,6 +814,24 @@ footer li {
 
 .artikel-tekst cite::before { content: "— "; }
 
+/* Bronverwijzing in de tekst: klein cijfertje */
+sup.bron {
+  font-family: Arial, sans-serif;
+  font-size: .65em;
+  line-height: 0;
+}
+
+sup.bron a {
+  padding: 0 1px;
+  color: var(--muted);
+  text-decoration: none;
+}
+
+sup.bron a:hover {
+  color: var(--blue);
+  text-decoration: underline;
+}
+
 /* Bronnen onder een artikel */
 .bronnen {
   margin-top: 30px;
@@ -833,9 +851,18 @@ footer li {
   color: var(--ink);
 }
 
-.bronnen ul {
+.bronnen ul,
+.bronnen ol {
   margin: 0;
-  padding-left: 1.1em;
+  padding-left: 1.6em;
+}
+
+.bronnen li {
+  scroll-margin-top: 16px;
+}
+
+.bronnen li:target {
+  background: #eef4fa;
 }
 
 .bronnen li {
