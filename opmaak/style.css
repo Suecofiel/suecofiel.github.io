@@ -814,6 +814,38 @@ footer li {
 
 .artikel-tekst cite::before { content: "— "; }
 
+/* Bronnen onder een artikel */
+.bronnen {
+  margin-top: 30px;
+  padding-top: 12px;
+  border-top: 1px solid #dddddd;
+  font-family: Arial, sans-serif;
+  font-size: .8rem;
+  color: var(--muted);
+}
+
+.bronnen h2 {
+  margin: 0 0 6px;
+  font-family: Arial, sans-serif;
+  font-size: .85rem;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.bronnen ul {
+  margin: 0;
+  padding-left: 1.1em;
+}
+
+.bronnen li {
+  margin-bottom: 4px;
+}
+
+.agenda-item p a {
+  color: var(--blue);
+}
+
 /* Meer uit deze rubriek */
 .lees-ook {
   margin-top: 20px;
