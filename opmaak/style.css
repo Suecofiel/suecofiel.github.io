@@ -125,7 +125,7 @@ header.panel {
   align-items: flex-start;
   font-size: clamp(2rem, 9vw, 2.4rem);   /* grootte van titel én logo */
   line-height: 1;
-  padding-bottom: 0.9em;   /* ruimte voor het logo onder de tekst */
+  padding-bottom: 0.55em;   /* ruimte voor het logo onder de tekst */
   text-decoration: none;
   color: var(--ink);
 }
@@ -141,15 +141,15 @@ header.panel {
 /* Lege ruimte tussen "De" en "Suecofiel" waar de kroon in valt */
 .brand-ruimte {
   position: relative;
-  width: 1.05em;
+  width: 0.88em;
   flex: none;
 }
 
 .brand-ruimte img {
   position: absolute;
-  top: 0.08em;
+  top: 0.07em;
   left: 50%;
-  height: 2.2em;
+  height: 1.85em;
   width: auto;
   transform: translateX(-58%); /* kroon precies in het midden */
   display: block;
@@ -1031,6 +1031,50 @@ sup.bron a:hover {
   margin-bottom: 6px;
 }
 
+/* ===== UITGELICHT ARTIKEL (homepage) ===== */
+.uitgelicht {
+  padding: 18px 0 26px;
+  border-bottom: 2px solid var(--line);
+  margin-bottom: 6px;
+}
+
+.uitgelicht-kaart {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: 28px;
+  align-items: center;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.uitgelicht-kaart .afbeelding {
+  aspect-ratio: 16 / 9;
+}
+
+.uitgelicht-kaart h2 {
+  margin: 6px 0 10px;
+  font-size: clamp(1.5rem, 3vw, 2.1rem);
+  line-height: 1.2;
+}
+
+.uitgelicht-kaart:hover h2 {
+  color: var(--blue);
+  text-decoration: underline;
+}
+
+.uitgelicht-kaart p.uitgelicht-inleiding {
+  margin: 0 0 10px;
+  color: var(--muted);
+  font-size: 1.05rem;
+}
+
+.uitgelicht-rubriek {
+  color: var(--blue);
+  font-family: Arial, sans-serif;
+  font-size: .85rem;
+  font-weight: bold;
+}
+
 /* ===== KENNISBANK ===== */
 .kennis-lijst {
   display: grid;
@@ -1273,6 +1317,7 @@ sup.bron a:hover {
 /* ===== MOBIELE TELEFOONS ===== */
 @media (max-width: 800px) {
   .kennis-lijst { grid-template-columns: 1fr; }
+  .uitgelicht-kaart { grid-template-columns: 1fr; gap: 12px; }
   .tijdlijn-item { grid-template-columns: 1fr; }
   .page { padding-top: 0; }
   main.panel { margin-top: 12px; }

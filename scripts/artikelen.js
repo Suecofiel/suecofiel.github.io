@@ -26,6 +26,9 @@
       afbeelding foto in de map afbeeldingen, bijvoorbeeld
                  "afbeeldingen/stockholm.jpg", of "" voor een grijs vak
       url        bestandsnaam van de artikelpagina
+      uitgelicht optioneel: zet uitgelicht: true om dit artikel bovenaan
+                 de homepage te tonen. Zonder deze regel wordt het
+                 nieuwste artikel automatisch uitgelicht.
    De volgorde in deze lijst maakt niet uit: de datum bepaalt
    welk artikel vooraan komt.
    ============================================================ */
@@ -138,10 +141,61 @@ function maakKaart(a) {
   return kaart;
 }
 
-// Homepage: per rubriek de drie nieuwste artikelen
+// Homepage: uitgelicht artikel bovenaan
+// (het nieuwste artikel met uitgelicht: true, anders het nieuwste artikel)
+const uitgelichtVak = document.getElementById("uitgelicht");
+let uitgelichtArtikel = null;
+if (uitgelichtVak) {
+  uitgelichtArtikel = artikelenOpDatum.find(function (a) { return a.uitgelicht; }) || artikelenOpDatum[0];
+  if (uitgelichtArtikel) {
+    const a = uitgelichtArtikel;
+    const kaart = document.createElement("a");
+    kaart.className = "uitgelicht-kaart";
+    kaart.href = siteAdres(a.url);
+    const beeld = document.createElement("div");
+    beeld.className = "afbeelding";
+    if (a.afbeelding) {
+      const img = document.createElement("img");
+      img.src = siteAdres(a.afbeelding);
+      img.alt = "";
+      beeld.appendChild(img);
+    } else {
+      beeld.textContent = "Afbeelding";
+    }
+    const tekst = document.createElement("div");
+    const meta = document.createElement("p");
+    meta.className = "kaart-meta";
+    const rb = document.createElement("span");
+    rb.className = "uitgelicht-rubriek";
+    rb.textContent = a.rubriek;
+    meta.appendChild(rb);
+    (a.labels || []).forEach(function (l) {
+      const label = document.createElement("span");
+      label.className = "label";
+      label.textContent = l;
+      meta.appendChild(label);
+    });
+    const kop = document.createElement("h2");
+    kop.textContent = a.titel;
+    const inl = document.createElement("p");
+    inl.className = "uitgelicht-inleiding";
+    inl.textContent = a.inleiding;
+    const datum = document.createElement("time");
+    datum.className = "datum";
+    datum.dateTime = a.datum;
+    datum.textContent = leesbareDatum(a.datum);
+    tekst.append(meta, kop, inl, datum);
+    kaart.append(beeld, tekst);
+    uitgelichtVak.appendChild(kaart);
+  } else {
+    uitgelichtVak.closest(".uitgelicht").hidden = true;
+  }
+}
+
+// Homepage: per rubriek de drie nieuwste artikelen (zonder het uitgelichte)
 document.querySelectorAll(".grid[data-rubriek]").forEach(function (grid) {
   const rubriek = grid.getAttribute("data-rubriek");
-  const lijst = artikelenOpDatum.filter(function (a) { return a.rubriek === rubriek; }).slice(0, 3);
+  const lijst = artikelenOpDatum.filter(function (a) { return a.rubriek === rubriek && a !== uitgelichtArtikel; }).slice(0, 3);
 
   if (lijst.length === 0) {
     const leeg = document.createElement("p");
