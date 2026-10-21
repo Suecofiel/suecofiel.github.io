@@ -20,7 +20,7 @@
 const feestdagen = [
 
   { datum: "2026-10-31", titel: "Alla helgons dag", nederlands: "Allerheiligen", soort: "Officiële feestdag", plaats: "",
-    beschrijving: "Valt altijd op de zaterdag tussen 31 oktober en 6 november. In dat weekend bezoekt ongeveer de helft van de Zweden een begraafplaats om kaarsen aan te steken bij de graven van dierbaren; ’s avonds branden er duizenden lichtjes." },
+    beschrijving: "Valt altijd op de zaterdag tussen 31 oktober en 6 november. In dat weekend bezoekt ongeveer de helft van de Zweden een begraafplaats om kaarsen aan te steken bij de graven van dierbaren; ’s avonds branden er duizenden lichtjes. <a href=\"/alla-helgons-dag.html\">Lees het artikel</a>" },
   { datum: "2026-11-06", titel: "Gustav Adolfsdagen", nederlands: "Gustaaf Adolfdag", soort: "Traditie", plaats: "",
     beschrijving: "Herdenking van koning Gustav II Adolf, die in 1632 sneuvelde bij Lützen. Bakkers verkopen het <em lang=\"sv\">Gustav Adolfsbakelse</em>, een gebakje met zijn beeltenis in chocolade of marsepein." },
   { datum: "2026-11-10", titel: "Mårtensafton", nederlands: "Sint-Maartensavond", soort: "Traditie", plaats: "",

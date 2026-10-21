@@ -31,6 +31,10 @@
    ============================================================ */
 const artikelen = [
 
+  { titel: "De predikant uit Arvika en de lichtjes van Allerheiligen", rubriek: "Cultuur & Tradities", onderwerp: "Tradities", labels: ["Achtergrond"], datum: "2026-10-21",
+    inleiding: "Met Alla helgons dag bezoekt ongeveer de helft van de Zweden een begraafplaats. Een opvallend jonge traditie, met een predikant uit Arvika in een onverwachte hoofdrol.",
+    afbeelding: "afbeeldingen/alla-helgons-dag.jpg", url: "alla-helgons-dag.html" },
+
   // ----- Voorbeeldartikelen: later vervangen door echte artikelen -----
   { titel: "Voorbeeldartikel Actualiteiten 3", rubriek: "Actualiteiten", onderwerp: "", labels: ["Duiding"], datum: "2026-10-17",
     inleiding: "Een korte inleiding van één of twee zinnen over het artikel.",
