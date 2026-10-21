@@ -39,6 +39,15 @@ const artikelen = [
     afbeelding: "afbeeldingen/alla-helgons-dag.jpg", url: "alla-helgons-dag.html" },
 
   // ----- Voorbeeldartikelen: later vervangen door echte artikelen -----
+  { titel: "Voorbeeldartikel Cultuur 3", rubriek: "Cultuur & Tradities", onderwerp: "Tradities", labels: ["Uitgelegd"], datum: "2026-10-16",
+    inleiding: "Een korte inleiding van één of twee zinnen over het artikel.",
+    afbeelding: "", url: "#" },
+  { titel: "Voorbeeldartikel Cultuur 2", rubriek: "Cultuur & Tradities", onderwerp: "Design & Architectuur", labels: ["Achtergrond"], datum: "2026-10-09",
+    inleiding: "Een korte inleiding van één of twee zinnen over het artikel.",
+    afbeelding: "", url: "#" },
+  { titel: "Voorbeeldartikel Cultuur 1", rubriek: "Cultuur & Tradities", onderwerp: "Taal & Literatuur", labels: ["Recensie"], datum: "2026-10-02",
+    inleiding: "Een korte inleiding van één of twee zinnen over het artikel.",
+    afbeelding: "", url: "#" },
   { titel: "Voorbeeldartikel Actualiteiten 3", rubriek: "Actualiteiten", onderwerp: "", labels: ["Duiding"], datum: "2026-10-17",
     inleiding: "Een korte inleiding van één of twee zinnen over het artikel.",
     afbeelding: "", url: "artikel-sjabloon.html" },
