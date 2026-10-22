@@ -10,6 +10,7 @@ const extraPaginas = [
   { titel: "Over De Suecofiel", rubriek: "Over", tekst: "suecofiel betekenis woordenboek platform over Zweden", url: "over.html" },
   { titel: "Zo spreek je het Zweeds uit", rubriek: "Kennisbank", tekst: "uitspraakhulp uitspraak klinkers medeklinkers å ä ö y g k sj tj klanken", url: "uitspraakhulp.html" },
   { titel: "Zweedse feestdagen", rubriek: "Kennisbank", tekst: "feestdagen tradities kalender agenda midsommar lucia nationaldag kerst valborg pasen", url: "feestdagen.html" },
+  { titel: "Zweden en Nederland in cijfers", rubriek: "Kennisbank", tekst: "cijfers feiten vergelijking oppervlakte inwoners hoofdstad staatsvorm munteenheid kroon euro vakantiedagen levensverwachting ouderschapsverlof", url: "cijfers.html" },
   { titel: "Begrippen van A tot Z", rubriek: "Kennisbank", tekst: "begrippen woordenlijst betekenis stormaktstiden grootmacht svenska akademien zweedse academie nobelprijs allemansratten fika folkhemmet fredagsmys hen jantelagen julbord kraftskiva lagom landskap en lan moder svea norrland offentlighetsprincipen personnummer riksdag sambo skargard stuga systembolaget tre kronor", url: "begrippen.html" },
   { titel: "Tijdlijn van de Zweedse geschiedenis", rubriek: "Kennisbank", tekst: "geschiedenis tijdlijn vikingen vasa gustav kalmarunie grootmacht stormaktstiden bernadotte folkhemmet palme navo eu", url: "tijdlijn.html" },
   { titel: "Kennisbank", rubriek: "Kennisbank", tekst: "naslag feiten begrippen tijdlijn geschiedenis politiek", url: "kennisbank.html" },
@@ -130,10 +131,15 @@ if (menuknop && hoofdmenu) {
     "https://api.frankfurter.app/latest?from=EUR&to=SEK"
   ];
 
+  // Geen API-sleutel of wachtwoord nodig: Frankfurter is een openbare dienst.
+  // Na 5 seconden zonder antwoord wordt het opgegeven, zodat de site nooit blijft hangen.
   function haalKoers(i) {
     if (i >= adressen.length) { return Promise.reject(new Error("geen koers")); }
-    return fetch(adressen[i])
+    const controle = ("AbortController" in window) ? new AbortController() : null;
+    const wekker = controle ? setTimeout(function () { controle.abort(); }, 5000) : null;
+    return fetch(adressen[i], controle ? { signal: controle.signal } : {})
       .then(function (r) { if (!r.ok) { throw new Error("fout"); } return r.json(); })
+      .finally(function () { if (wekker) { clearTimeout(wekker); } })
       .catch(function () { return haalKoers(i + 1); });
   }
 
@@ -147,7 +153,7 @@ if (menuknop && hoofdmenu) {
 
   haalKoers(0).then(function (data) {
     const koers = data && data.rates && data.rates.SEK;
-    if (!koers) { return; }
+    if (!koers || typeof koers !== "number" || !data.date) { return; }
 
     const d = data.date.split("-").map(Number);
     const datum = new Date(d[0], d[1] - 1, d[2])
