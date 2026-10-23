@@ -1315,6 +1315,80 @@ sup.bron a:hover {
   font-size: .8rem;
 }
 
+/* ===== ZWEDEN EN NEDERLAND IN CIJFERS (vergelijkingstabellen) =====
+   Elke tabel heeft drie kolommen: onderwerp, Zweden, Nederland.
+   Een regel met class="toelichting" staat in grijs direct onder de regel erboven. */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.tabel-schuif {
+  overflow-x: auto;
+}
+
+.vergelijking {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.vergelijking thead th {
+  width: 32%;
+  padding: 10px 12px 6px;
+  border-bottom: 1px solid #dddddd;
+  color: var(--muted);
+  font-family: Arial, sans-serif;
+  font-size: .75rem;
+  font-weight: bold;
+  letter-spacing: .5px;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.vergelijking thead th:first-child {
+  width: 36%;
+}
+
+.vergelijking tbody th,
+.vergelijking tbody td {
+  padding: 10px 12px;
+  text-align: left;
+  vertical-align: top;
+}
+
+.vergelijking tbody th {
+  font-weight: bold;
+}
+
+/* Een lichtgrijze lijn boven elke regel, behalve boven een toelichting */
+.vergelijking tbody tr:not(.toelichting) > * {
+  border-top: 1px solid #dddddd;
+}
+
+.vergelijking tbody tr:first-child > * {
+  border-top: none;
+}
+
+/* De regel vlak boven een toelichting krijgt minder ruimte eronder */
+.vergelijking tbody tr:has(+ .toelichting) > * {
+  padding-bottom: 4px;
+}
+
+.vergelijking tr.toelichting td {
+  padding: 0 12px 12px;
+  color: var(--muted);
+  font-size: .9rem;
+  line-height: 1.5;
+}
+
 /* ===== MOBIELE TELEFOONS ===== */
 @media (max-width: 800px) {
   .kennis-lijst { grid-template-columns: 1fr; }
@@ -1410,4 +1484,70 @@ sup.bron a:hover {
     font-size: .8rem;
   }
   #hoofdmenu .sitelinks li:last-child a { border-bottom: none; }
+}
+
+
+/* ===== CIJFERPAGINA OP MOBIELE TELEFOONS =====
+   Per regel: onderwerp bovenaan, daaronder Zweden en Nederland naast elkaar. */
+@media (max-width: 800px) {
+  .vergelijking,
+  .vergelijking tbody,
+  .vergelijking tr.toelichting,
+  .vergelijking tr.toelichting td {
+    display: block;
+  }
+
+  /* Kolomkoppen blijven voor schermlezers; het landlabel staat boven elke waarde */
+  .vergelijking thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+  }
+
+  .vergelijking tbody tr:not(.toelichting) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 14px;
+    padding: 10px 0;
+    border-top: 1px solid #dddddd;
+  }
+
+  .vergelijking tbody tr:first-child {
+    border-top: none;
+  }
+
+  .vergelijking tbody tr:not(.toelichting) > *,
+  .vergelijking tbody tr:first-child > * {
+    padding: 0;
+    border-top: none;
+  }
+
+  .vergelijking tbody tr:has(+ .toelichting) {
+    padding-bottom: 4px;
+  }
+
+  .vergelijking tbody tr:has(+ .toelichting) > * {
+    padding-bottom: 0;
+  }
+
+  .vergelijking tbody th {
+    grid-column: 1 / -1;
+    padding-bottom: 4px;
+  }
+
+  .vergelijking tbody td::before {
+    content: attr(data-land);
+    display: block;
+    color: var(--muted);
+    font-family: Arial, sans-serif;
+    font-size: .7rem;
+    letter-spacing: .5px;
+    text-transform: uppercase;
+  }
+
+  .vergelijking tr.toelichting td {
+    padding: 0 0 10px;
+  }
 }
