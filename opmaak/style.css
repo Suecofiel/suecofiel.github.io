@@ -870,6 +870,52 @@ sup.bron a:hover {
   margin-bottom: 4px;
 }
 
+/* Inklapbare bronnenlijst */
+details.bronnen > summary {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-family: Arial, sans-serif;
+  font-size: .85rem;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: var(--ink);
+}
+
+details.bronnen > summary::-webkit-details-marker {
+  display: none;
+}
+
+details.bronnen > summary::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-right: 2px solid var(--muted);
+  border-bottom: 2px solid var(--muted);
+  transform: rotate(-45deg);
+  transition: transform .15s;
+}
+
+details.bronnen[open] > summary::before {
+  transform: rotate(45deg);
+}
+
+details.bronnen > summary:hover {
+  color: var(--blue);
+}
+
+details.bronnen > summary:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 3px;
+}
+
+details.bronnen > ol {
+  margin-top: 10px;
+}
+
 .agenda-item p a {
   color: var(--blue);
 }

@@ -108,6 +108,22 @@
 
   </div>
 
+  <script>
+    // Klapt de bronnenlijst open als de lezer op een bronnummer in de tekst klikt
+    (function () {
+      function openBron() {
+        var id = decodeURIComponent(location.hash.slice(1));
+        var el = id && document.getElementById(id);
+        var d = el && el.closest("details");
+        if (d && !d.open) {
+          d.open = true;
+          el.scrollIntoView();
+        }
+      }
+      window.addEventListener("hashchange", openBron);
+      openBron();
+    })();
+  </script>
   <script src="/scripts/artikelen.js"></script>
   <script src="/scripts/feestdagen.js"></script>
   <script src="/scripts/evenementen.js"></script>
