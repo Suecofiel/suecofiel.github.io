@@ -34,9 +34,13 @@
    ============================================================ */
 const artikelen = [
 
+  { titel: "Göteborg: hoe Nederlanders een Zweedse havenstad hielpen vormgeven", rubriek: "Samenleving", onderwerp: "Geschiedenis", labels: ["Achtergrond", "Zweden & Nederland"], datum: "2026-10-25",
+    inleiding: "Van zeventiende-eeuwse grachten tot een moderne internationale haven: de geschiedenis van Göteborg laat zien hoe nauw Zweden en de Nederlandse Republiek met elkaar verbonden waren.",
+    afbeelding: "afbeeldingen/goteborg-stora-hamnkanalen.jpg", url: "goteborg-nederlanders.html" },
+
   { titel: "De predikant uit Arvika en de lichtjes van Allerheiligen", rubriek: "Cultuur & Tradities", onderwerp: "Tradities", labels: ["Achtergrond"], datum: "2026-10-21",
     inleiding: "Met Alla helgons dag bezoekt ongeveer de helft van de Zweden een begraafplaats. Een opvallend jonge traditie, met een predikant uit Arvika in een onverwachte hoofdrol.",
-    afbeelding: "afbeeldingen/alla-helgons-dag.jpg", url: "alla-helgons-dag.html" },
+    afbeelding: "afbeeldingen/alla-helgons-dag.jpg", url: "alla-helgons-dag.html", uitgelicht: true },
 
   // ----- Voorbeeldartikelen: later vervangen door echte artikelen -----
   { titel: "Voorbeeldartikel Cultuur 2", rubriek: "Cultuur & Tradities", onderwerp: "Design & Architectuur", labels: ["Achtergrond"], datum: "2026-10-09",
