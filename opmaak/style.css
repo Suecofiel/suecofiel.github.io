@@ -1460,6 +1460,10 @@ details.bronnen > ol {
   .rubriek .grid .artikel .kaart-meta { grid-column: 2; margin-top: 0; }
   .rubriek .grid .artikel h3 { grid-column: 2; margin-top: 4px; font-size: 1.05rem; }
   .rubriek .grid .artikel p:not(.kaart-meta) { display: none; }
+
+  /* Knop "Meer in …" kleiner, passend bij de compacte artikelen */
+  .rubriek .meer { margin-top: 14px; }
+  .rubriek .meer a { padding: 6px 12px; font-size: .9rem; }
   .klank { grid-template-columns: 1fr; }
   .klank .voorbeeld, .klank .deelregel { grid-column: 1; }
   .opmerking .klinkerlijst { padding-left: 0; }
