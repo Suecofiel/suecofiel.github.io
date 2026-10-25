@@ -1463,7 +1463,7 @@ details.bronnen > ol {
 
   /* Knop "Meer in …" kleiner, passend bij de compacte artikelen */
   .rubriek .meer { margin-top: 14px; }
-  .rubriek .meer a { padding: 6px 12px; font-size: .9rem; }
+  .rubriek .meer a { padding: 6px 12px; font-size: .9rem; width: 15rem; max-width: 100%; box-sizing: border-box; }
   .klank { grid-template-columns: 1fr; }
   .klank .voorbeeld, .klank .deelregel { grid-column: 1; }
   .opmerking .klinkerlijst { padding-left: 0; }
