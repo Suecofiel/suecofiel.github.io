@@ -68,6 +68,7 @@
   --ink: #1d262b;        /* tekstkleur */
   --muted: #5f6b72;      /* grijze tekst */
   --line: #1d262b;       /* scheidingslijnen */
+  --line-soft: #d4d4d4;  /* dunne grijze lijnen tussen onderwerpen */
   --soft: #d4d4d4;       /* lichtgrijze knoppen */
   --placeholder: #9b9b9b;/* grijze vakken voor afbeeldingen */
   --white: #ffffff;
@@ -295,7 +296,7 @@ header.panel {
 
 /* ===== INHOUD ===== */
 main.panel {
-  margin-top: 20px;
+  margin-top: 10px;
   padding-top: 6px;
   padding-bottom: 30px;
 }
@@ -305,7 +306,7 @@ main.panel {
 }
 
 .rubriek + .rubriek {
-  border-top: 2px solid var(--line);
+  border-top: 1px solid var(--line-soft);
   margin: 0 0;
 }
 
@@ -587,7 +588,7 @@ footer li {
 .tekstpagina h2 {
   margin: 32px 0 6px;
   padding-bottom: 6px;
-  border-bottom: 2px solid var(--line);
+  border-bottom: 1px solid var(--line-soft);
   font-size: 1.35rem;
 }
 
@@ -924,7 +925,7 @@ details.bronnen > ol {
 .lees-ook {
   margin-top: 20px;
   padding-top: 6px;
-  border-top: 2px solid var(--line);
+  border-top: 1px solid var(--line-soft);
 }
 
 .lees-ook h2 {
@@ -936,7 +937,7 @@ details.bronnen > ol {
 .agenda-maand {
   margin: 30px 0 4px;
   padding-bottom: 6px;
-  border-bottom: 2px solid var(--line);
+  border-bottom: 1px solid var(--line-soft);
   font-size: 1.35rem;
 }
 
@@ -1081,7 +1082,7 @@ details.bronnen > ol {
 /* ===== UITGELICHT ARTIKEL (homepage) ===== */
 .uitgelicht {
   padding: 18px 0 26px;
-  border-bottom: 2px solid var(--line);
+  border-bottom: 1px solid var(--line-soft);
   margin-bottom: 6px;
 }
 
@@ -1461,11 +1462,21 @@ details.bronnen > ol {
   .rubriek .grid .artikel h3 { grid-column: 2; margin-top: 4px; font-size: 1.05rem; }
   .rubriek .grid .artikel p:not(.kaart-meta) { display: none; }
 
-  /* Knop "Meer in …" kleiner, passend bij de compacte artikelen */
+  /* Knop "Meer in …": witte knop met donkerblauwe rand, bijna zo breed als het witte vlak.
+     Alle knoppen zijn even breed en hebben dezelfde letterafstand. */
   .rubriek .meer { margin-top: 14px; }
-  .rubriek .meer a { padding: 6px 12px; font-size: .9rem; width: 14rem; max-width: 100%; box-sizing: border-box; }
-  /* De twee kortste namen iets ruimer gezet, zodat de knoppen gelijkmatiger gevuld lijken */
-  #actualiteiten .meer a, #samenleving .meer a { letter-spacing: .08em; }
+  .rubriek .meer a {
+    display: block;
+    background: var(--white);
+    color: var(--blue-dark);
+    border: 1px solid var(--blue-dark);
+    padding: 8px 12px;
+    font-size: .95rem;
+    text-align: center;
+    box-sizing: border-box;
+    width: calc(100% - 20px);
+    margin: 0 auto;
+  }
   .klank { grid-template-columns: 1fr; }
   .klank .voorbeeld, .klank .deelregel { grid-column: 1; }
   .opmerking .klinkerlijst { padding-left: 0; }
