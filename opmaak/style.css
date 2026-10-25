@@ -101,6 +101,7 @@ a:focus-visible, input:focus-visible, button:focus-visible {
 .panel {
   background: var(--white);
   padding: 0 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .18);  /* lichte schaduw op de blauwe achtergrond */
 }
 
 /* ===== KOP MET LOGO ===== */
@@ -280,7 +281,7 @@ header.panel {
 
 #hoofdmenu li + li::before {
   content: "|";
-  margin: 0 14px;
+  margin: 0 16px;
   font-weight: bold;
 }
 
@@ -302,7 +303,7 @@ main.panel {
 }
 
 .rubriek {
-  padding: 4px 0 20px;
+  padding: 12px 0 30px;
 }
 
 .rubriek + .rubriek {
@@ -311,7 +312,7 @@ main.panel {
 }
 
 .rubriek h2 {
-  margin: 6px 4px 10px;
+  margin: 8px 4px 16px;
   font-size: 1.35rem;
   font-weight: bold;
 }
@@ -338,6 +339,8 @@ main.panel {
   color: #eeeeee;
   font-family: Arial, sans-serif;
   font-size: .85rem;
+  border-radius: 3px;
+  overflow: hidden;
 }
 
 .afbeelding img {
@@ -415,6 +418,7 @@ main.panel {
   padding: 9px 16px;
   text-decoration: none;
   font-size: 1.05rem;
+  border-radius: 3px;
 }
 
 .meer a:hover {
@@ -1468,8 +1472,8 @@ details.bronnen > ol {
   .rubriek .meer a {
     display: block;
     background: var(--white);
-    color: var(--blue-dark);
-    border: 1px solid var(--blue-dark);
+    color: var(--blue);
+    border: 1px solid var(--blue);
     padding: 8px 12px;
     font-size: .95rem;
     text-align: center;
