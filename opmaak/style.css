@@ -174,7 +174,7 @@ header.panel {
   padding: 7px 10px;
   border: 1px solid var(--ink);
   border-radius: 4px;
-  font-family: inherit;
+  font-family: Arial, sans-serif;
   font-size: 1rem;
 }
 
@@ -485,6 +485,10 @@ footer ul {
 
 footer li {
   margin-bottom: 6px;
+}
+
+footer li a {
+  font-family: Arial, sans-serif;
 }
 
 /* Wisselkoers (wordt automatisch toegevoegd door zoeken.js) */
@@ -1110,6 +1114,13 @@ details.bronnen > ol {
 .uitgelicht-kaart:hover h2 {
   color: var(--blue);
   text-decoration: underline;
+}
+
+/* Datum onder de inleiding van het uitgelichte artikel */
+.uitgelicht-kaart time.datum {
+  color: var(--muted);
+  font-family: Arial, sans-serif;
+  font-size: .75rem;
 }
 
 .uitgelicht-kaart p.uitgelicht-inleiding {
