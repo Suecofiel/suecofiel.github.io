@@ -80,7 +80,7 @@
 :root {
   --blue: #005293;       /* accenten, labels en knoppen (Zweeds blauw) */
   --blue-dark: #003366;  /* donkerblauw: kop, voettekst, datumblokjes */
-  --menubalk: #1f5191;   /* iets lichter blauw: menubalk */
+  --menubalk: var(--blue);   /* menubalk: Zweeds blauw, de kleur van de vlag */
   --band: #e8edf4;       /* heel lichtblauw: om de andere rubriek op de homepage */
   /* Zijmarge van kop, menu, rubrieken en voettekst: de inhoud blijft in een
      kolom van maximaal 1210 px, de gekleurde vlakken lopen door tot de rand. */
@@ -162,6 +162,7 @@ header.panel {
 
 .brand-woord {
   position: relative;
+  top: -0.025em;            /* tekst een fractie omhoog, in evenwicht met het wapen */
   z-index: 2;               /* tekst ligt boven het wapen */
   font-weight: 600;
   letter-spacing: 0;
@@ -170,14 +171,14 @@ header.panel {
 /* Lege ruimte tussen "De" en "Suecofiel" waar het wapen in valt */
 .brand-ruimte {
   position: relative;
-  width: 1.73em;
+  width: 1.63em;
   flex: none;
 }
 
 .brand-ruimte img {
   position: absolute;
   top: -0.02em;
-  left: 0.02em;
+  left: -0.106em;
   height: 1.9em;
   width: auto;
   display: block;
