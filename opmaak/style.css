@@ -5,38 +5,10 @@
 /* ===== LETTERTYPES =====
    De lettertypes staan in de map lettertypes op de site zelf, zodat
    er geen gegevens van bezoekers naar Google gaan.
-   Gelasio: vervanger van Georgia, voor alle gewone tekst.
-   Crimson Pro: voor de woordenboekpassage op de pagina Over.
+   Source Sans 3: voor alle tekst (logo, menu, titels, lopende tekst).
+   Crimson Pro: alleen voor de woordenboekpassage op de pagina Over.
    Alle lettertypes vallen onder de SIL Open Font License (zie de map lettertypes).
    Een lettertype wordt alleen gedownload als het echt wordt gebruikt. */
-@font-face {
-  font-family: "Gelasio";
-  src: url("/lettertypes/gelasio-400-normal.woff2") format("woff2");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Gelasio";
-  src: url("/lettertypes/gelasio-700-normal.woff2") format("woff2");
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Gelasio";
-  src: url("/lettertypes/gelasio-400-italic.woff2") format("woff2");
-  font-weight: 400;
-  font-style: italic;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Gelasio";
-  src: url("/lettertypes/gelasio-700-italic.woff2") format("woff2");
-  font-weight: 700;
-  font-style: italic;
-  font-display: swap;
-}
 @font-face {
   font-family: "Crimson Pro";
   src: url("/lettertypes/crimson-pro-400-normal.woff2") format("woff2");
@@ -59,13 +31,21 @@
   font-display: swap;
 }
 
-/* Source Sans 3: voor alle functionele tekst (menu, knoppen, labels, datums,
-   bijschriften, bronnen). size-adjust houdt de letters even groot als Arial,
-   zodat de maten in de opmaak niet hoeven te veranderen. */
+/* Source Sans 3: size-adjust houdt de letters even groot als Arial,
+   zodat de maten in de opmaak niet hoeven te veranderen.
+   Gewichten: 400 gewoon, 600 semibold (logo en titels), 700 vet (labels en nadruk). */
 @font-face {
   font-family: "Source Sans 3";
   src: url("/lettertypes/source-sans-3-400-normal.woff") format("woff");
   font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  size-adjust: 106%;
+}
+@font-face {
+  font-family: "Source Sans 3";
+  src: url("/lettertypes/source-sans-3-600-normal.woff") format("woff");
+  font-weight: 600;
   font-style: normal;
   font-display: swap;
   size-adjust: 106%;
@@ -86,12 +66,25 @@
   font-display: swap;
   size-adjust: 106%;
 }
+@font-face {
+  font-family: "Source Sans 3";
+  src: url("/lettertypes/source-sans-3-700-italic.woff") format("woff");
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+  size-adjust: 106%;
+}
 
 /* ===== KLEUREN =====
    Wil je een andere blauwtint? Verander dan alleen de waarde achter --blue. */
 :root {
-  --blue: #005293;       /* achtergrond en accenten (Zweeds blauw) */
-  --blue-dark: #003366;  /* donkerblauw: knoppen */
+  --blue: #005293;       /* accenten, labels en knoppen (Zweeds blauw) */
+  --blue-dark: #003366;  /* donkerblauw: kop, voettekst, datumblokjes */
+  --menubalk: #1f5191;   /* iets lichter blauw: menubalk */
+  --band: #e8edf4;       /* heel lichtblauw: om de andere rubriek op de homepage */
+  /* Zijmarge van kop, menu, rubrieken en voettekst: de inhoud blijft in een
+     kolom van maximaal 1210 px, de gekleurde vlakken lopen door tot de rand. */
+  --kader: max(10px, calc((100% - 1230px) / 2 + 10px));
   --rood: #b3261e;       /* rood: officiële feestdagen */
   --ink: #1d262b;        /* tekstkleur */
   --muted: #5f6b72;      /* grijze tekst */
@@ -106,11 +99,14 @@
 
 body {
   margin: 0;
-  background: var(--blue);
+  background: var(--white);
   color: var(--ink);
-  font-family: Gelasio, Georgia, "Times New Roman", serif;
+  font-family: "Source Sans 3", Arial, sans-serif;
   line-height: 1.65;
 }
+
+/* Titels in semibold */
+h1, h2, h3, h4 { font-weight: 600; }
 
 a { color: inherit; }
 
@@ -119,21 +115,25 @@ a:focus-visible, input:focus-visible, button:focus-visible {
   outline-offset: 2px;
 }
 
-/* De witte "pagina" die midden op de blauwe achtergrond staat */
+/* Op donkerblauw (kop, menu, voettekst) is de focusrand wit */
+header a:focus-visible, header input:focus-visible, header button:focus-visible,
+footer a:focus-visible, footer input:focus-visible {
+  outline-color: var(--white);
+}
+
+/* De pagina loopt over de volle breedte; kop, menu, rubrieken en voettekst
+   houden zelf een zijmarge (--kader), zodat de inhoud in het midden blijft. */
 .page {
-  max-width: 1230px;
-  margin: 0 auto;
-  padding: 16px 0 0;
+  padding: 0;
 }
 
 .panel {
-  background: var(--white);
-  padding: 0 10px;
+  padding: 0;
 }
 
 /* ===== KOP MET LOGO ===== */
 header.panel {
-  padding-top: 14px;
+  background: var(--blue-dark);
 }
 
 .header-top {
@@ -141,58 +141,56 @@ header.panel {
   justify-content: space-between;
   align-items: flex-start;
   gap: 20px;
-  padding: 0 10px 8px;
+  padding: 13px var(--kader) 13px;
 }
 
 /* ===== TITEL MET LOGO TUSSEN "De" EN "Suecofiel" =====
    Alle maten staan in "em": ze groeien en krimpen mee met de
    lettergrootte. Daardoor blijft het logo op elk scherm op
-   dezelfde plek tussen de twee woorden staan. */
+   dezelfde plek tussen de twee woorden staan. De verhoudingen zijn
+   gemeten aan het ontwerp. */
 .brand {
   position: relative;
   display: inline-flex;
   align-items: flex-start;
-  font-size: clamp(2rem, 9vw, 2.4rem);   /* grootte van titel én logo */
+  font-size: 3.1rem;        /* grootte van titel én logo */
   line-height: 1;
-  padding-bottom: 0.72em;   /* ruimte voor het logo onder de tekst */
+  padding-bottom: 0.52em;   /* ruimte voor het wapen onder de tekst */
   text-decoration: none;
-  color: var(--ink);
+  color: var(--white);
 }
 
 .brand-woord {
   position: relative;
-  z-index: 2;               /* tekst ligt boven het logo */
-  top: -0.1em;              /* naam iets omhoog, los van het logo */
-  font-size: 0.9em;         /* tekst iets kleiner dan het logo */
-  font-weight: bold;
-  letter-spacing: -0.02em;
+  z-index: 2;               /* tekst ligt boven het wapen */
+  font-weight: 600;
+  letter-spacing: 0;
 }
 
-/* Lege ruimte tussen "De" en "Suecofiel" waar de kroon in valt */
+/* Lege ruimte tussen "De" en "Suecofiel" waar het wapen in valt */
 .brand-ruimte {
   position: relative;
-  width: 0.88em;
+  width: 1.73em;
   flex: none;
 }
 
 .brand-ruimte img {
   position: absolute;
-  top: 0.1em;
-  left: 50%;
-  height: 1.85em;
+  top: -0.02em;
+  left: 0.02em;
+  height: 1.9em;
   width: auto;
-  transform: translateX(-58%); /* kroon precies in het midden */
   display: block;
   z-index: 1;
 }
 
 .brand-tagline {
   display: block;
-  margin-top: 0.12em;
-  color: var(--blue);
-  font-size: 0.325em;      /* Z staat ongeveer even ver van het schild als de S van het logo */
-  font-weight: normal;
-  letter-spacing: 0;
+  margin-top: 0.26em;
+  color: var(--white);
+  font-size: 0.29em;       /* de slogan is even breed als het woord Suecofiel */
+  font-weight: 400;
+  letter-spacing: 0.06em;
   text-align: right;
 }
 
@@ -200,7 +198,7 @@ header.panel {
 .search input {
   width: 230px;
   padding: 7px 10px;
-  border: 1px solid var(--ink);
+  border: 1px solid rgba(255, 255, 255, .6);
   border-radius: 4px;
   font-family: "Source Sans 3", Arial, sans-serif;
   font-size: 1rem;
@@ -262,10 +260,10 @@ header.panel {
   align-items: center;
   gap: 8px;
   padding: 7px 12px;
-  background: var(--white);
-  border: 1px solid var(--ink);
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, .6);
   border-radius: 4px;
-  color: var(--ink);
+  color: var(--white);
   font-family: "Source Sans 3", Arial, sans-serif;
   font-size: .9rem;
   font-weight: bold;
@@ -280,8 +278,8 @@ header.panel {
 }
 
 .menuknop[aria-expanded="true"] {
-  background: var(--blue);
-  border-color: var(--blue);
+  background: var(--menubalk);
+  border-color: var(--menubalk);
   color: var(--white);
 }
 
@@ -291,8 +289,9 @@ header.panel {
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 6px 20px;
-  border-top: 2px solid var(--line);
-  padding: 10px 4px 12px;
+  background: var(--menubalk);
+  color: var(--white);
+  padding: 7px var(--kader) 8px;
   font-family: "Source Sans 3", Arial, sans-serif;
   font-size: .9rem;
   letter-spacing: .5px;
@@ -307,42 +306,68 @@ header.panel {
   list-style: none;
 }
 
+/* Overal hetzelfde scheidingsteken (alleen op het brede menu) */
 #hoofdmenu li + li::before {
   content: "|";
   margin: 0 16px;
-  font-weight: bold;
+  opacity: .6;
 }
 
 #hoofdmenu a {
   text-decoration: none;
-  font-weight: bold;
 }
 
 #hoofdmenu a:hover {
-  color: var(--blue);
+  color: var(--white);
   text-decoration: underline;
 }
 
 /* ===== INHOUD ===== */
 main.panel {
-  margin-top: 10px;
-  padding-top: 6px;
-  padding-bottom: 30px;
+  margin-top: 0;
+  padding: 10px var(--kader) 30px;
+}
+
+/* Homepage: gekleurde banden over de volle breedte, om en om wit en lichtblauw
+   (uitgelicht artikel wit, Actualiteiten lichtblauw, Cultuur & Tradities wit,
+   Samenleving lichtblauw). Het wisselen gaat vanzelf op volgorde. */
+main.home {
+  padding: 0;
+}
+
+main.home > section {
+  padding-left: var(--kader);
+  padding-right: var(--kader);
+}
+
+main.home > section:nth-of-type(even) {
+  background: var(--band);
 }
 
 .rubriek {
-  padding: 12px 0 30px;
-}
-
-.rubriek + .rubriek {
-  border-top: 1px solid var(--line-soft);
-  margin: 0 0;
+  padding: 22px 0 30px;
 }
 
 .rubriek h2 {
   margin: 8px 4px 16px;
   font-size: 1.35rem;
-  font-weight: bold;
+  font-weight: 600;
+}
+
+/* Op een lichtblauwe band staan de kaarten op een wit vlak */
+main.home .rubriek:nth-of-type(even) .artikel {
+  background: var(--white);
+}
+
+main.home .rubriek:nth-of-type(even) .artikel .kaart-meta,
+main.home .rubriek:nth-of-type(even) .artikel h3,
+main.home .rubriek:nth-of-type(even) .artikel p:not(.kaart-meta) {
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+main.home .rubriek:nth-of-type(even) .artikel p:last-child {
+  padding-bottom: 10px;
 }
 
 .grid {
@@ -437,11 +462,13 @@ main.panel {
   margin-top: 18px;
 }
 
+/* Knop "Meer in …": witte knop met blauwe rand, op desktop en mobiel gelijk */
 .meer a {
   display: inline-block;
-  background: var(--blue-dark);
-  color: var(--white);
-  padding: 9px 16px;
+  background: var(--white);
+  color: var(--blue);
+  border: 1px solid var(--blue);
+  padding: 8px 16px;
   text-decoration: none;
   font-family: "Source Sans 3", Arial, sans-serif;
   font-size: .95rem;
@@ -455,8 +482,8 @@ main.panel {
 
 /* ===== VOETTEKST ===== */
 footer {
-  padding: 36px 20px 24px;
-  background: var(--blue-dark);   /* zelfde donkerblauw als de knoppen */
+  padding: 36px calc(var(--kader) + 10px) 24px;
+  background: var(--blue-dark);   /* zelfde donkerblauw als de kop */
   color: #dce7f2;
   font-size: .95rem;
 }
@@ -785,8 +812,8 @@ footer li a {
 
 .artikel-inleiding {
   margin: 0 0 14px;
-  font-size: 1.22rem;
-  line-height: 1.55;
+  font-size: 1.3rem;
+  line-height: 1.5;
 }
 
 .artikel-meta {
@@ -815,8 +842,8 @@ footer li a {
 }
 
 .artikel-tekst {
-  font-size: 1.1rem;
-  line-height: 1.75;
+  font-size: 1.2rem;    /* Source Sans 3 is smaller dan een schreef: iets groter, voor een prettige regellengte */
+  line-height: 1.65;
 }
 
 .artikel-tekst p {
@@ -1101,7 +1128,7 @@ details.bronnen > ol {
 /* Kleinere laptops: menu iets compacter, zodat het op één regel past */
 @media (min-width: 801px) and (max-width: 1180px) {
   #hoofdmenu { font-size: .8rem; letter-spacing: .2px; }
-  #hoofdmenu li + li::before { margin: 0 9px; }
+  #hoofdmenu li + li::before { margin: 0 7px; }
 }
 
 /* Lijst op de pagina Over */
@@ -1116,9 +1143,7 @@ details.bronnen > ol {
 
 /* ===== UITGELICHT ARTIKEL (homepage) ===== */
 .uitgelicht {
-  padding: 18px 0 26px;
-  border-bottom: 1px solid var(--line-soft);
-  margin-bottom: 6px;
+  padding: 26px 0 30px;
 }
 
 .uitgelicht-kaart {
@@ -1492,8 +1517,8 @@ details.bronnen > ol {
   /* Terug naar boven rechts in de voettekst, handiger voor rechtshandigen */
   .voettekst-onder p:last-child { margin-left: auto; text-align: right; }
   .tijdlijn-item { grid-template-columns: 1fr; }
-  .page { padding-top: 0; }
-  main.panel { margin-top: 12px; }
+  :root { --kader: 14px; }
+  main.panel:not(.home) { padding-top: 12px; padding-left: 10px; padding-right: 10px; }
   .grid { grid-template-columns: 1fr; gap: 24px; }
   /* Per rubriek alleen het eerste artikel tonen */
   .grid .artikel:nth-child(n+2) { display: none; }
@@ -1514,21 +1539,22 @@ details.bronnen > ol {
   .rubriek .grid .artikel .kaart-meta { grid-column: 2; grid-row: 2; margin-top: 4px; }
   .rubriek .grid .artikel p:not(.kaart-meta) { display: none; }
 
-  /* Knop "Meer in …": witte knop met donkerblauwe rand, bijna zo breed als het witte vlak.
-     Alle knoppen zijn even breed en hebben dezelfde letterafstand. */
+  /* Knop "Meer in …": bijna zo breed als het vlak. Alle knoppen zijn even breed
+     en hebben dezelfde letterafstand. */
   .rubriek .meer { margin-top: 14px; }
   .rubriek .meer a {
     display: block;
-    background: var(--white);
-    color: var(--blue);
-    border: 1px solid var(--blue);
     padding: 8px 12px;
     font-size: .95rem;
     text-align: center;
     box-sizing: border-box;
-    width: calc(100% - 20px);
+    width: 100%;
     margin: 0 auto;
   }
+  main.home .rubriek:nth-of-type(even) .artikel { background: transparent; }
+  main.home .rubriek:nth-of-type(even) .artikel .kaart-meta,
+  main.home .rubriek:nth-of-type(even) .artikel h3,
+  main.home .rubriek:nth-of-type(even) .artikel p:not(.kaart-meta) { padding-left: 0; padding-right: 0; }
   .klank { grid-template-columns: 1fr; }
   .klank .voorbeeld, .klank .deelregel { grid-column: 1; }
   .opmerking .klinkerlijst { padding-left: 0; }
@@ -1544,17 +1570,16 @@ details.bronnen > ol {
   .header-top { display: contents; }
   .brand {
     order: 1;
-    flex: 1 1 auto;
+    flex: 0 1 auto;
     min-width: 0;
-    padding-left: 10px;
-    margin-bottom: 4px;
-    font-size: clamp(2rem, 10.5vw, 2.6rem);  /* op mobiel iets groter, zodat de slogan leesbaar blijft */
+    padding: 13px 0 0.52em var(--kader);
+    font-size: clamp(1.6rem, 8.6vw, 2.4rem);  /* de slogan blijft leesbaar */
   }
-  .brand-tagline { font-size: 0.32em; }
+  .brand-tagline { font-size: 0.31em; }
   .menuknop {
     display: flex;
     order: 2;
-    margin: 0 10px 0 0;   /* bovenkant gelijk met de bovenkant van de titeltekst */
+    margin: 13px var(--kader) 0 auto;   /* bovenkant gelijk met de bovenkant van de titeltekst */
     padding: 10px;
   }
   #hoofdmenu {
@@ -1576,20 +1601,22 @@ details.bronnen > ol {
     display: none;
     order: 4;
     flex-basis: 100%;
-    padding: 4px 0 14px;
+    padding: 4px var(--kader) 14px;
+    background: var(--menubalk);
   }
   header.menu-open .search { display: block; }
   .search input { width: 100%; }
   .zoekresultaten { width: 100%; max-width: none; }
 
   /* Voettekst: kolommen onder elkaar */
+  footer { padding-left: 20px; padding-right: 20px; }
   .voettekst-kolommen { grid-template-columns: 1fr; gap: 24px; }
 
   /* Menu is dicht tot je op de menuknop tikt */
   #hoofdmenu { display: none; }
   #hoofdmenu.open {
     display: block;
-    padding: 0 0 8px;
+    padding: 0 var(--kader) 8px;
   }
 
   #hoofdmenu ul { flex-direction: column; }
@@ -1598,17 +1625,17 @@ details.bronnen > ol {
   #hoofdmenu a {
     display: block;
     padding: 11px 6px;
-    border-bottom: 1px solid #dddddd;
+    border-bottom: 1px solid rgba(255, 255, 255, .25);
   }
 
   /* Uitspraakhulp en Over: na een lijn, kleiner en grijs */
   #hoofdmenu .sitelinks {
     margin-top: 10px;
-    border-top: 2px solid var(--line);
+    border-top: 1px solid rgba(255, 255, 255, .45);
   }
   #hoofdmenu .sitelinks a {
     padding: 8px 6px;
-    color: var(--muted);
+    color: #cfdcec;
     font-size: .8rem;
   }
   #hoofdmenu .sitelinks li:last-child a { border-bottom: none; }

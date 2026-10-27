@@ -32,7 +32,7 @@
         <a class="brand" href="/" aria-label="De Suecofiel, naar de homepage">
           <span class="brand-woord">De</span>
           <span class="brand-ruimte">
-            <img src="/afbeeldingen/logo.jpg" alt="">
+            <img src="/afbeeldingen/logo-wit.png" alt="">
           </span>
           <span class="brand-woord">Suecofiel
             <span class="brand-tagline">Zweden van dichtbij bekeken</span>
@@ -67,7 +67,7 @@
     </header>
 
     <!-- ===== INHOUD VAN DE PAGINA ===== -->
-    <main class="panel">
+    <main class="panel{% if page.menu == "home" %} home{% endif %}">
 {{ content }}
     </main>
 
