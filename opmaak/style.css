@@ -1557,14 +1557,14 @@ details.bronnen > ol {
   .header-top { display: contents; }
   /* Dunne lichtblauwe strook tussen de kop en de foto van het uitgelichte artikel;
      verdwijnt als het menu openstaat */
-  header.panel { border-bottom: 5px solid var(--blue); }
+  header.panel { border-bottom: 10px solid var(--blue); }
   header.panel.menu-open { border-bottom: 0; }
   .brand {
     order: 1;
     flex: 0 1 auto;
     min-width: 0;
     padding: 12px 0 calc(0.535em + 6px) var(--kader);
-    font-size: clamp(1.6rem, 8.6vw, 2.4rem);  /* de slogan blijft leesbaar */
+    font-size: clamp(1.9rem, 10.3vw, 2.9rem);  /* de slogan blijft leesbaar */
   }
   .menuknop {
     display: flex;
