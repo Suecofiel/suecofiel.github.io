@@ -1508,6 +1508,10 @@ details.bronnen > ol {
 @media (max-width: 800px) {
   .kennis-lijst { grid-template-columns: 1fr; }
   .uitgelicht-kaart { grid-template-columns: 1fr; gap: 12px; }
+  /* Artikelpagina op een telefoon: iets kleinere letters (desktop ongewijzigd) */
+  .artikelpagina h1 { font-size: 1.75rem; }
+  .artikel-inleiding { font-size: 1.2rem; }
+  .artikel-tekst { font-size: 1.1rem; }
   /* Foto van het uitgelichte artikel: van schermrand tot schermrand, direct onder de blauwe kop */
   .uitgelicht { padding-top: 0; }
   .uitgelicht-kaart .afbeelding { margin: 0 calc(-1 * var(--kader)); border-radius: 0; }
