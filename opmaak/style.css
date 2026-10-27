@@ -1555,6 +1555,10 @@ details.bronnen > ol {
     column-gap: 10px;
   }
   .header-top { display: contents; }
+  /* Dunne lichtblauwe strook tussen de kop en de foto van het uitgelichte artikel;
+     verdwijnt als het menu openstaat */
+  header.panel { border-bottom: 5px solid var(--blue); }
+  header.panel.menu-open { border-bottom: 0; }
   .brand {
     order: 1;
     flex: 0 1 auto;
@@ -1616,7 +1620,7 @@ details.bronnen > ol {
 
   /* Uitspraakhulp en Over: na een lijn, kleiner en grijs */
   #hoofdmenu .sitelinks {
-    margin-top: 10px;
+    margin-top: 0;
     border-top: 1px solid rgba(255, 255, 255, .45);
   }
   #hoofdmenu .sitelinks a {
