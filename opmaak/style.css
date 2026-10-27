@@ -141,7 +141,7 @@ header.panel {
   justify-content: space-between;
   align-items: flex-start;
   gap: 20px;
-  padding: 13px var(--kader) 13px;
+  padding: 15px var(--kader) 11px;
 }
 
 /* ===== TITEL MET LOGO TUSSEN "De" EN "Suecofiel" =====
@@ -155,7 +155,7 @@ header.panel {
   align-items: flex-start;
   font-size: 3.1rem;        /* grootte van titel én logo */
   line-height: 1;
-  padding-bottom: 0.52em;   /* ruimte voor het wapen onder de tekst */
+  padding-bottom: 0.535em;  /* ruimte voor het wapen onder de tekst */
   text-decoration: none;
   color: var(--white);
 }
@@ -177,7 +177,7 @@ header.panel {
 
 .brand-ruimte img {
   position: absolute;
-  top: -0.02em;
+  top: 0;
   left: -0.106em;
   height: 1.9em;
   width: auto;
@@ -1573,14 +1573,14 @@ details.bronnen > ol {
     order: 1;
     flex: 0 1 auto;
     min-width: 0;
-    padding: 13px 0 0.52em var(--kader);
+    padding: 10px 0 calc(0.535em + 8px) var(--kader);
     font-size: clamp(1.6rem, 8.6vw, 2.4rem);  /* de slogan blijft leesbaar */
   }
   .brand-tagline { font-size: 0.31em; }
   .menuknop {
     display: flex;
     order: 2;
-    margin: 13px var(--kader) 0 auto;   /* bovenkant gelijk met de bovenkant van de titeltekst */
+    margin: 10px var(--kader) 0 auto;   /* bovenkant gelijk met de bovenkant van de titeltekst */
     padding: 10px;
   }
   #hoofdmenu {
