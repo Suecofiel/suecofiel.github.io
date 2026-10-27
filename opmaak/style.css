@@ -1573,7 +1573,7 @@ details.bronnen > ol {
     order: 1;
     flex: 0 1 auto;
     min-width: 0;
-    padding: 10px 0 calc(0.535em + 8px) var(--kader);
+    padding: 12px 0 calc(0.535em + 6px) var(--kader);
     font-size: clamp(1.6rem, 8.6vw, 2.4rem);  /* de slogan blijft leesbaar */
   }
   .menuknop {
