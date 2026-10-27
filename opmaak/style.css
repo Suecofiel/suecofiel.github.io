@@ -351,7 +351,7 @@ main.home > section:nth-of-type(even) {
 
 .rubriek h2 {
   margin: 8px 4px 16px;
-  font-size: 1.35rem;
+  font-size: 1.25rem;
   font-weight: 600;
 }
 
@@ -436,14 +436,14 @@ main.home .rubriek:nth-of-type(even) .artikel {
 
 .artikel h3 {
   margin: 6px 0 4px;
-  font-size: 1.2rem;
+  font-size: 1.125rem;
   line-height: 1.3;
 }
 
 .artikel p {
   margin: 0;
   color: var(--muted);
-  font-size: .95rem;
+  font-size: .9rem;
 }
 
 .artikel:hover h3 {
@@ -756,7 +756,7 @@ footer li a {
 
 /* ===== ARTIKELPAGINA ===== */
 .artikelpagina {
-  max-width: 720px;
+  max-width: 660px;
   margin: 0 auto;        /* artikel in het midden van de pagina */
   padding: 22px 14px 10px;
 }
@@ -807,13 +807,13 @@ footer li a {
 
 .artikelpagina h1 {
   margin: 12px 0 14px;
-  font-size: clamp(1.9rem, 4.5vw, 2.7rem);
+  font-size: clamp(1.9rem, 3.5vw, 2.4rem);
   line-height: 1.15;
 }
 
 .artikel-inleiding {
   margin: 0 0 14px;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   line-height: 1.5;
 }
 
@@ -843,7 +843,7 @@ footer li a {
 }
 
 .artikel-tekst {
-  font-size: 1.2rem;    /* Source Sans 3 is smaller dan een schreef: iets groter, voor een prettige regellengte */
+  font-size: 1.1rem;    /* Source Sans 3 is smaller dan een schreef: iets groter, voor een prettige regellengte */
   line-height: 1.65;
 }
 
@@ -853,7 +853,7 @@ footer li a {
 
 .artikel-tekst h2 {
   margin: 1.6em 0 .4em;
-  font-size: 1.35rem;
+  font-size: 1.25rem;
   line-height: 1.3;
 }
 
@@ -1162,7 +1162,7 @@ details.bronnen > ol {
 
 .uitgelicht-kaart h2 {
   margin: 12px 0 10px;
-  font-size: clamp(1.5rem, 3vw, 2.1rem);
+  font-size: clamp(1.5rem, 3vw, 1.875rem);
   line-height: 1.2;
 }
 
@@ -1181,7 +1181,7 @@ details.bronnen > ol {
 .uitgelicht-kaart p.uitgelicht-inleiding {
   margin: 0 0 10px;
   color: var(--muted);
-  font-size: 1.05rem;
+  font-size: 1rem;
 }
 
 .uitgelicht-rubriek {
@@ -1512,6 +1512,12 @@ details.bronnen > ol {
   .artikelpagina h1 { font-size: 1.75rem; }
   .artikel-inleiding { font-size: 1.2rem; }
   .artikel-tekst { font-size: 1.1rem; }
+  .artikel-tekst h2 { font-size: 1.35rem; }
+  /* Homepage op een telefoon: maten ongewijzigd */
+  .rubriek h2 { font-size: 1.35rem; }
+  .artikel h3 { font-size: 1.2rem; }
+  .artikel p { font-size: .95rem; }
+  .uitgelicht-kaart p.uitgelicht-inleiding { font-size: 1.05rem; }
   /* Foto van het uitgelichte artikel: van schermrand tot schermrand, direct onder de blauwe kop */
   .uitgelicht { padding-top: 0; }
   .uitgelicht-kaart .afbeelding { margin: 0 calc(-1 * var(--kader)); border-radius: 0; }
