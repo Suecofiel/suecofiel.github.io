@@ -367,8 +367,8 @@ main.home .rubriek:nth-of-type(even) .artikel p:not(.kaart-meta) {
   padding-right: 8px;
 }
 
-main.home .rubriek:nth-of-type(even) .artikel p:last-child {
-  padding-bottom: 10px;
+main.home .rubriek:nth-of-type(even) .artikel {
+  padding-bottom: 24px;   /* extra ruimte onder de laatste regel, ongeveer één regel */
 }
 
 .grid {
@@ -1576,7 +1576,6 @@ details.bronnen > ol {
     padding: 10px 0 calc(0.535em + 8px) var(--kader);
     font-size: clamp(1.6rem, 8.6vw, 2.4rem);  /* de slogan blijft leesbaar */
   }
-  .brand-tagline { font-size: 0.31em; }
   .menuknop {
     display: flex;
     order: 2;
