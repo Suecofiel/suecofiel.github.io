@@ -1508,6 +1508,9 @@ details.bronnen > ol {
 @media (max-width: 800px) {
   .kennis-lijst { grid-template-columns: 1fr; }
   .uitgelicht-kaart { grid-template-columns: 1fr; gap: 12px; }
+  /* Foto van het uitgelichte artikel: van schermrand tot schermrand, direct onder de blauwe kop */
+  .uitgelicht { padding-top: 0; }
+  .uitgelicht-kaart .afbeelding { margin: 0 calc(-1 * var(--kader)); border-radius: 0; }
   /* Uitgelicht artikel: titel, inleiding, daaronder rubriek, labels en datum op één regel */
   .uitgelicht-kaart > div { display: flex; flex-wrap: wrap; align-items: baseline; }
   .uitgelicht-kaart h2 { order: 1; width: 100%; margin-top: 0; }
@@ -1526,20 +1529,7 @@ details.bronnen > ol {
   .lees-ook .grid .artikel:nth-child(n+2),
   .alle-artikelen .artikel:nth-child(n+2) { display: block; }
 
-  /* Artikelen per rubriek op de homepage: compact, plaatje links en tekst rechts,
-     zodat ze duidelijk kleiner zijn dan het uitgelichte artikel. */
-  .rubriek .grid .artikel:first-child {
-    display: grid;
-    grid-template-columns: 40% 1fr;
-    column-gap: 14px;
-    align-items: start;
-  }
-  .rubriek .grid .artikel .afbeelding { grid-column: 1; grid-row: 1 / span 3; aspect-ratio: 4 / 3; }
-  /* Titel boven, labels en datum eronder */
-  .rubriek .grid .artikel h3 { grid-column: 2; grid-row: 1; margin-top: 0; font-size: 1.05rem; }
-  .rubriek .grid .artikel .kaart-meta { grid-column: 2; grid-row: 2; margin-top: 4px; }
-  .rubriek .grid .artikel p:not(.kaart-meta) { display: none; }
-
+  /* Artikelen per rubriek op de homepage: kaartjes zoals op de desktop, één per rij */
   /* Knop "Meer in …": bijna zo breed als het vlak. Alle knoppen zijn even breed
      en hebben dezelfde letterafstand. */
   .rubriek .meer { margin-top: 14px; }
@@ -1552,10 +1542,6 @@ details.bronnen > ol {
     width: 100%;
     margin: 0 auto;
   }
-  main.home .rubriek:nth-of-type(even) .artikel { background: transparent; }
-  main.home .rubriek:nth-of-type(even) .artikel .kaart-meta,
-  main.home .rubriek:nth-of-type(even) .artikel h3,
-  main.home .rubriek:nth-of-type(even) .artikel p:not(.kaart-meta) { padding-left: 0; padding-right: 0; }
   .klank { grid-template-columns: 1fr; }
   .klank .voorbeeld, .klank .deelregel { grid-column: 1; }
   .opmerking .klinkerlijst { padding-left: 0; }
@@ -1639,6 +1625,8 @@ details.bronnen > ol {
     font-size: .8rem;
   }
   #hoofdmenu .sitelinks li:last-child a { border-bottom: none; }
+  /* Geen dubbele streep: de lijn onder Kennisbank vervalt, de scheidingslijn blijft */
+  #hoofdmenu ul:not(.sitelinks) li:last-child a { border-bottom: none; }
 }
 
 
