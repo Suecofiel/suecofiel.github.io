@@ -1226,6 +1226,11 @@ details.bronnen > ol {
   #hoofdmenu li + li::before { margin: 0 7px; }
 }
 
+/* Brede menubalk: tekst 1 rem, maar de balk zelf houdt zijn oorspronkelijke dikte (38,8 px) */
+@media (min-width: 1181px) {
+  #hoofdmenu { line-height: 23.76px; }
+}
+
 /* Lijst op de pagina Over */
 .over-lijst {
   margin: 0 0 1em;
