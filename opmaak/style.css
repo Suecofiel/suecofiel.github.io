@@ -1264,7 +1264,7 @@ details.bronnen > ol {
   text-decoration: underline;
 }
 
-/* Datum onder de inleiding van het uitgelichte artikel */
+/* Datum naast de labels van het uitgelichte artikel */
 .uitgelicht-kaart time.datum {
   color: var(--muted);
   font-family: "Source Sans 3", Arial, sans-serif;
@@ -1609,13 +1609,8 @@ details.bronnen > ol {
   /* Foto van het uitgelichte artikel: van schermrand tot schermrand, direct onder de blauwe kop */
   .uitgelicht { padding-top: 0; }
   .uitgelicht-kaart .afbeelding { margin: 0 calc(-1 * var(--kader)); border-radius: 0; }
-  /* Uitgelicht artikel: titel, inleiding, daaronder rubriek, labels en datum op één regel */
-  .uitgelicht-kaart > div { display: flex; flex-wrap: wrap; align-items: baseline; }
-  .uitgelicht-kaart h2 { order: 1; width: 100%; margin-top: 0; }
-  .uitgelicht-kaart p.uitgelicht-inleiding { order: 2; width: 100%; }
-  .uitgelicht-kaart .kaart-meta { order: 3; margin: 0; }
-  .uitgelicht-kaart time.datum { order: 4; font-family: "Source Sans 3", Arial, sans-serif; font-size: .75rem; color: var(--muted); }
-  .uitgelicht-kaart time.datum::before { content: "·"; margin: 0 8px; }
+  /* Uitgelicht artikel: zelfde indeling als een gewoon kaartje (label en datum, titel, inleiding) */
+  .uitgelicht-kaart .kaart-meta { margin-top: 4px; }
   /* Terug naar boven rechts in de voettekst, handiger voor rechtshandigen */
   .voettekst-onder p:last-child { margin-left: auto; text-align: right; }
   .tijdlijn-item { grid-template-columns: 1fr; }
@@ -1795,4 +1790,35 @@ details.bronnen > ol {
   .vergelijking tr.toelichting td {
     padding: 0 0 10px;
   }
+}
+
+
+/* ===== LABELBLOKJES (voorstel, kleiner blokje, tekst op oorspronkelijke grootte) ===== */
+.kruimelpad { margin-bottom: 14px; }
+
+.artikel-labels {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0;
+}
+
+.artikel-labels .label,
+.kaart-meta .label {
+  padding: 1px 6px;
+  background: var(--blue);
+  color: var(--white);
+  border-radius: 2px;
+  line-height: 1.35;
+  letter-spacing: .5px;
+}
+
+/* Homepage en rubriekpagina's: blokje met witruimte onder de foto */
+.kaart-meta { align-items: center; gap: 4px 6px; }
+.artikel .kaart-meta { margin-top: 12px; }
+.kaart-meta .label + .label::before { content: none; }
+.kaart-meta .datum, .uitgelicht-kaart time.datum { margin-left: 4px; }
+
+@media (max-width: 800px) {
+  .artikel .kaart-meta { margin-top: 16px; }
 }

@@ -175,26 +175,24 @@ if (uitgelichtVak) {
     const tekst = document.createElement("div");
     const meta = document.createElement("p");
     meta.className = "kaart-meta";
-    const rb = document.createElement("span");
-    rb.className = "uitgelicht-rubriek";
-    rb.textContent = a.rubriek;
-    meta.appendChild(rb);
     (a.labels || []).forEach(function (l) {
       const label = document.createElement("span");
       label.className = "label";
       label.textContent = l;
       meta.appendChild(label);
     });
+    // Datum naast de labels, zoals bij de gewone kaartjes
+    const datum = document.createElement("time");
+    datum.className = "datum";
+    datum.dateTime = a.datum;
+    datum.textContent = leesbareDatum(a.datum);
+    meta.appendChild(datum);
     const kop = document.createElement("h2");
     kop.textContent = a.titel;
     const inl = document.createElement("p");
     inl.className = "uitgelicht-inleiding";
     inl.textContent = a.inleiding;
-    const datum = document.createElement("time");
-    datum.className = "datum";
-    datum.dateTime = a.datum;
-    datum.textContent = leesbareDatum(a.datum);
-    tekst.append(meta, kop, inl, datum);
+    tekst.append(meta, kop, inl);
     kaart.append(beeld, tekst);
     uitgelichtVak.appendChild(kaart);
   } else {

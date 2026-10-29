@@ -21,8 +21,14 @@ menu: "actualiteiten"
       <!-- AANPASSEN: data-rubriek = Actualiteiten, Cultuur &amp; Tradities of Samenleving -->
       <article class="artikelpagina" data-rubriek="Actualiteiten">
 
-        <!-- AANPASSEN: kruimelpad. Zet hier dezelfde rubriek als in de regel hieronder
-             (adres en tekst), bijvoorbeeld /cultuur.html en Cultuur &amp; Tradities. -->
+        <!-- AANPASSEN: kruimelpad (Home > rubriek > onderwerp).
+             Rubrieken: actualiteiten.html / Actualiteiten,
+             cultuur.html / Cultuur &amp; Tradities, samenleving.html / Samenleving.
+             Onderwerp (niet bij Actualiteiten): voeg een derde regel toe, bijvoorbeeld
+             <li><a href="/samenleving.html#geschiedenis">Geschiedenis</a></li>
+             Het adres na # is het onderwerp in kleine letters, met - voor spaties en "en" voor &amp;,
+             zoals #werk-en-economie of #taal-en-literatuur.
+             Bij Actualiteiten laat je de derde regel weg. -->
         <nav class="kruimelpad" aria-label="Kruimelpad">
           <ol>
             <li><a href="/">Home</a></li>
@@ -30,16 +36,9 @@ menu: "actualiteiten"
           </ol>
         </nav>
 
-        <!-- AANPASSEN: rubriek (link en tekst) en label(s).
-             Rubrieken: actualiteiten.html / Actualiteiten,
-             cultuur.html / Cultuur &amp; Tradities, samenleving.html / Samenleving.
-             Labels: Achtergrond, Duiding, Uitgelegd, Interview, Recensie, Zweden &amp; Nederland
-             Onderwerp (niet bij Actualiteiten): zet na de rubriek bijvoorbeeld
-             <a class="artikel-onderwerp" href="/samenleving.html#geschiedenis">Geschiedenis</a>
-             Het adres na # is het onderwerp in kleine letters, met - voor spaties en "en" voor &amp;,
-             zoals #werk-en-economie of #taal-en-literatuur. -->
-        <p class="artikel-kop-meta">
-          <a class="artikel-rubriek" href="/actualiteiten.html">Actualiteiten</a>
+        <!-- AANPASSEN: label(s), die als blauw blokje boven de titel komen.
+             Labels: Achtergrond, Duiding, Uitgelegd, Interview, Recensie, Zweden &amp; Nederland -->
+        <p class="artikel-labels">
           <span class="label">Duiding</span>
         </p>
 
