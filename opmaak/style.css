@@ -356,7 +356,8 @@ header.panel {
   color: var(--white);
   padding: 7px var(--kader) 8px;
   font-family: "Source Sans 3", Arial, sans-serif;
-  font-size: 1rem;
+  font-size: .9rem;
+  letter-spacing: .5px;
 }
 
 #hoofdmenu ul {
@@ -381,14 +382,6 @@ header.panel {
 #hoofdmenu a:hover {
   color: var(--white);
   text-decoration: underline;
-}
-
-/* Menubalk op brede schermen: kleinere tekst en een dunnere balk (mobiel blijft ongewijzigd) */
-@media (min-width: 801px) {
-  #hoofdmenu {
-    font-size: .9rem;
-    padding: 5px var(--kader) 6px;
-  }
 }
 
 /* ===== INHOUD ===== */
@@ -1229,7 +1222,7 @@ details.bronnen > ol {
 
 /* Kleinere laptops: menu iets compacter, zodat het op één regel past */
 @media (min-width: 801px) and (max-width: 1180px) {
-  #hoofdmenu { font-size: .9rem; }
+  #hoofdmenu { font-size: .8rem; letter-spacing: .2px; }
   #hoofdmenu li + li::before { margin: 0 7px; }
 }
 
@@ -1676,6 +1669,8 @@ details.bronnen > ol {
   #hoofdmenu {
     order: 3;
     flex-basis: 100%;
+    font-size: 1rem;      /* mobiel: zoals goedgekeurd in de render */
+    letter-spacing: 0;
   }
   /* Het woord "Menu" alleen voor schermlezers; zichtbaar is het icoon */
   .menuknop-tekst {
