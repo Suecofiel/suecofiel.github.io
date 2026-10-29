@@ -356,7 +356,7 @@ header.panel {
   color: var(--white);
   padding: 7px var(--kader) 8px;
   font-family: "Source Sans 3", Arial, sans-serif;
-  font-size: .9rem;
+  font-size: 1rem;
   letter-spacing: .5px;
 }
 
