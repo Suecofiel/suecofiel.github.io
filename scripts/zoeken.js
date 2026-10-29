@@ -88,6 +88,32 @@ document.addEventListener("click", function (e) {
 
 
 /* ============================================================
+   ZOEKKNOP OP BREDE SCHERMEN
+   Het zoekveld schuift uit als je op het vergrootglas klikt.
+   ============================================================ */
+const zoekknop = document.querySelector(".zoekknop");
+const zoekblok = document.querySelector(".search");
+
+function zetZoekveld(open) {
+  zoekblok.classList.toggle("open", open);
+  zoekknop.setAttribute("aria-expanded", open ? "true" : "false");
+  if (open) { zoekveld.focus(); } else { resultaten.hidden = true; }
+}
+
+if (zoekknop && zoekblok) {
+  zoekknop.addEventListener("click", function () {
+    zetZoekveld(!zoekblok.classList.contains("open"));
+  });
+  zoekveld.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") { zetZoekveld(false); zoekknop.focus(); }
+  });
+  document.addEventListener("click", function (e) {
+    if (!e.target.closest(".search")) { zetZoekveld(false); }
+  });
+}
+
+
+/* ============================================================
    MENUKNOP OP MOBIELE TELEFOONS
    Opent en sluit het menu (met het zoekveld) als je op de menuknop tikt.
    ============================================================ */

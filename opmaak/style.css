@@ -255,6 +255,70 @@ header.panel {
   color: var(--muted);
 }
 
+/* Zoekknop (vergrootglas): alleen op brede schermen; op mobiel zit het zoekveld in het menu */
+.zoekknop { display: none; }
+
+@media (min-width: 801px) {
+  .header-top {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+  }
+  .brand { grid-column: 2; }
+  .search {
+    grid-column: 3;
+    justify-self: end;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .search input {
+    order: 1;
+    width: 0;
+    padding-left: 0;
+    padding-right: 0;
+    border-width: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: width .25s ease, padding .25s ease, opacity .2s ease, visibility 0s .25s;
+  }
+  .search.open input {
+    width: 230px;
+    padding: 7px 10px;
+    border-width: 1px;
+    opacity: 1;
+    visibility: visible;
+    transition: width .25s ease, padding .25s ease, opacity .2s ease, visibility 0s;
+  }
+  .zoekknop {
+    order: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, .6);
+    border-radius: 4px;
+    color: var(--white);
+    cursor: pointer;
+  }
+  .zoekknop:hover,
+  .zoekknop[aria-expanded="true"] {
+    background: var(--menubalk);
+    border-color: var(--menubalk);
+  }
+}
+
+/* Smalle desktopvensters: korter veld, zodat het niet over het logo schuift */
+@media (min-width: 801px) and (max-width: 900px) {
+  .search.open input { width: 160px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .search input, .search.open input { transition: none; }
+}
+
 /* Menuknop: alleen zichtbaar op mobiele telefoons */
 .menuknop {
   display: none;
@@ -268,8 +332,6 @@ header.panel {
   font-family: "Source Sans 3", Arial, sans-serif;
   font-size: .9rem;
   font-weight: bold;
-  letter-spacing: .5px;
-  text-transform: uppercase;
   cursor: pointer;
 }
 
@@ -294,9 +356,7 @@ header.panel {
   color: var(--white);
   padding: 7px var(--kader) 8px;
   font-family: "Source Sans 3", Arial, sans-serif;
-  font-size: .9rem;
-  letter-spacing: .5px;
-  text-transform: uppercase;
+  font-size: 1rem;
 }
 
 #hoofdmenu ul {
@@ -354,6 +414,10 @@ main.home > section:nth-of-type(even) {
   font-size: 1.35rem;
   font-weight: 600;
 }
+
+/* Rubrieknaam op de homepage: klikbaar naar de rubriek, ziet er verder hetzelfde uit */
+.rubriek h2 a { text-decoration: none; }
+.rubriek h2 a:hover { text-decoration: underline; }
 
 /* Op een lichtblauwe band staan de kaarten op een wit vlak */
 main.home .rubriek:nth-of-type(even) .artikel {
@@ -800,6 +864,35 @@ footer li a {
   color: var(--muted);
 }
 
+/* Kruimelpad bovenaan artikelen en Kennisbank-pagina's: Home › Rubriek */
+.kruimelpad {
+  margin: 0 0 10px;
+  font-family: "Source Sans 3", Arial, sans-serif;
+  font-size: .85rem;
+}
+
+.kruimelpad ol {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.kruimelpad li + li::before {
+  content: "›";
+  margin-right: 8px;
+  color: var(--muted);
+}
+
+.kruimelpad a {
+  color: var(--blue);
+  text-decoration: none;
+}
+
+.kruimelpad a:hover { text-decoration: underline; }
+
 .tekstpagina > .artikel-rubriek {
   display: inline-block;
   margin-bottom: 2px;
@@ -1128,7 +1221,7 @@ details.bronnen > ol {
 
 /* Kleinere laptops: menu iets compacter, zodat het op één regel past */
 @media (min-width: 801px) and (max-width: 1180px) {
-  #hoofdmenu { font-size: .8rem; letter-spacing: .2px; }
+  #hoofdmenu { font-size: .9rem; }
   #hoofdmenu li + li::before { margin: 0 7px; }
 }
 
