@@ -383,6 +383,14 @@ header.panel {
   text-decoration: underline;
 }
 
+/* Menubalk op brede schermen: kleinere tekst en een dunnere balk (mobiel blijft ongewijzigd) */
+@media (min-width: 801px) {
+  #hoofdmenu {
+    font-size: .9rem;
+    padding: 5px var(--kader) 6px;
+  }
+}
+
 /* ===== INHOUD ===== */
 main.panel {
   margin-top: 0;
