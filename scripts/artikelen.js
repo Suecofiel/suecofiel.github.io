@@ -34,13 +34,17 @@
    ============================================================ */
 const artikelen = [
 
+  { titel: "Een goed jaar voor de Zweedse wijnbouw", rubriek: "Actualiteiten", onderwerp: "", labels: ["Duiding"], datum: "2026-11-01",
+    inleiding: "Wijnboeren in Skåne spreken van een zeer goed oogstjaar. De sector is klein, maar groeit snel en mag sinds vorig jaar ook wijn verkopen op het eigen terrein.",
+    afbeelding: "afbeeldingen/lysekil-druiven.jpg", url: "zweedse-wijn.html" },
+
   { titel: "Göteborg: hoe Nederlanders een Zweedse havenstad hielpen vormgeven", rubriek: "Samenleving", onderwerp: "Geschiedenis", labels: ["Achtergrond", "Zweden & Nederland"], datum: "2026-10-25",
     inleiding: "Van zeventiende-eeuwse grachten tot een moderne internationale haven: de geschiedenis van Göteborg laat zien hoe nauw Zweden en de Nederlandse Republiek met elkaar verbonden waren.",
     afbeelding: "afbeeldingen/goteborg-stora-hamnkanalen.jpg", url: "goteborg-nederlanders.html" },
 
   { titel: "De predikant uit Arvika en de lichtjes van Allerheiligen", rubriek: "Cultuur & Tradities", onderwerp: "Tradities", labels: ["Achtergrond"], datum: "2026-10-21",
     inleiding: "Met Alla helgons dag bezoekt ongeveer de helft van de Zweden een begraafplaats. Een opvallend jonge traditie, met een predikant uit Arvika in een onverwachte hoofdrol.",
-    afbeelding: "afbeeldingen/alla-helgons-dag.jpg", url: "alla-helgons-dag.html", uitgelicht: true },
+    afbeelding: "afbeeldingen/alla-helgons-dag.jpg", url: "alla-helgons-dag.html" },
 
   // ----- Voorbeeldartikelen: later vervangen door echte artikelen -----
   { titel: "Voorbeeldartikel Cultuur 2", rubriek: "Cultuur & Tradities", onderwerp: "Design & Architectuur", labels: ["Achtergrond"], datum: "2026-10-09",
