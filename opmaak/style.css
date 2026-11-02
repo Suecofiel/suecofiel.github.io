@@ -1659,9 +1659,9 @@ details.bronnen > ol {
     column-gap: 10px;
   }
   .header-top { display: contents; }
-  /* Witte ruimte (15 px) tussen de kop en de foto van het uitgelichte artikel;
+  /* Witte ruimte (12 px) tussen de kop en de foto van het uitgelichte artikel;
      verdwijnt als het menu openstaat */
-  header.panel { margin-bottom: 15px; }
+  header.panel { margin-bottom: 12px; }
   header.panel.menu-open { margin-bottom: 0; }
   .brand {
     order: 1;
