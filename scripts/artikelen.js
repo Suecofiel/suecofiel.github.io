@@ -93,7 +93,8 @@ const onderwerpen = {
 function leesbareDatum(datum) {
   const delen = datum.split("-").map(Number);
   const d = new Date(delen[0], delen[1] - 1, delen[2]);
-  return d.toLocaleDateString("nl-NL", { day: "numeric", month: "long", year: "numeric" });
+  const maanden = ["jan", "feb", "mrt", "apr", "mei", "jun", "jul", "aug", "sep", "okt", "nov", "dec"];
+  return d.getDate() + " " + maanden[d.getMonth()] + " " + d.getFullYear();
 }
 
 // Nieuwste artikelen eerst
