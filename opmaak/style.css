@@ -121,6 +121,11 @@ footer a:focus-visible, footer input:focus-visible {
   outline-color: var(--white);
 }
 
+/* Zoekveld in de kop: dunnere focusrand (2 px) */
+header input:focus-visible {
+  outline-width: 2px;
+}
+
 /* De pagina loopt over de volle breedte; kop, menu, rubrieken en voettekst
    houden zelf een zijmarge (--kader), zodat de inhoud in het midden blijft. */
 .page {
