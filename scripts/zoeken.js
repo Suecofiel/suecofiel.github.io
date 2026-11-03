@@ -14,7 +14,7 @@ const extraPaginas = [
   { titel: "Begrippen van A tot Z", rubriek: "Kennisbank", tekst: "begrippen woordenlijst betekenis stormaktstiden grootmacht svenska akademien zweedse academie nobelprijs allemansratten fika folkhemmet fredagsmys hen jantelagen julbord kraftskiva lagom landskap en lan moder svea norrland offentlighetsprincipen personnummer riksdag sambo skargard stuga systembolaget tre kronor", url: "begrippen.html" },
   { titel: "Tijdlijn van de Zweedse geschiedenis", rubriek: "Kennisbank", tekst: "geschiedenis tijdlijn vikingen vasa gustav kalmarunie grootmacht stormaktstiden bernadotte folkhemmet palme navo eu", url: "tijdlijn.html" },
   { titel: "Kennisbank", rubriek: "Kennisbank", tekst: "naslag feiten begrippen tijdlijn geschiedenis politiek", url: "kennisbank.html" },
-  { titel: "Evenementen", rubriek: "Evenementen", tekst: "evenementen Nederland lezing film concert tentoonstelling viering", url: "evenementen.html" },
+  { titel: "Agenda", rubriek: "Agenda", tekst: "agenda evenementen Nederland lezing film concert tentoonstelling viering kerstmarkt lucia", url: "agenda.html" },
   { titel: "Actualiteiten", rubriek: "Rubriek", tekst: "alle artikelen actualiteiten nieuws duiding achtergrond", url: "actualiteiten.html" },
   { titel: "Cultuur & Tradities", rubriek: "Rubriek", tekst: "alle artikelen cultuur tradities gewoontes taal literatuur muziek kunst levensstijl", url: "cultuur.html" },
   { titel: "Samenleving", rubriek: "Rubriek", tekst: "alle artikelen samenleving verzorgingsstaat onderwijs werk geschiedenis", url: "samenleving.html" }
