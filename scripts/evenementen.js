@@ -32,7 +32,7 @@ const evenementen = [
   { datum: "2026-11-04", einddatum: "2026-11-08", tijd: "",
     titel: "Noordelijk Film Festival",
     soort: "Film", plaats: "Leeuwarden", organisator: "",
-    beschrijving: "Vijfdaags filmfestival in Leeuwarden met recente films uit Noord-Europa onder de naam Noordse Focus, vaak films die nog niet in Nederlandse bioscopen te zien zijn.",
+    beschrijving: "Vijfdaags filmfestival in Leeuwarden met recente films en documentaires uit Noord-Europa, vaak films die nog niet in Nederlandse bioscopen te zien zijn.",
     link: "https://noordelijkfilmfestival.nl/" },
 
   { datum: "2026-11-27", einddatum: "2026-11-28", tijd: "vrijdag 11.00–18.00 uur, zaterdag 11.00–17.00 uur",
@@ -86,7 +86,7 @@ const evenementen = [
   { datum: "2027-01-28", einddatum: "2027-02-07", tijd: "",
     titel: "International Film Festival Rotterdam (IFFR)",
     soort: "Film", plaats: "Rotterdam", organisator: "",
-    beschrijving: "Op IFFR draaien elk jaar nieuwe Zweedse films. Het programma voor 2027 is nog niet bekend; op de website kun je filteren op Zweeds als gesproken taal.",
+    beschrijving: "Op IFFR draaien regelmatig Zweedse films. Het programma voor 2027 is nog niet bekend; op de website kun je filteren op Zweeds als gesproken taal.",
     link: "https://iffr.com/nl/iffr_film_spoken_language/zweeds" }
 
 ];
