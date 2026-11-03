@@ -34,6 +34,10 @@
    ============================================================ */
 const artikelen = [
 
+  { titel: "Finland viert deze week de Zweedse taal", rubriek: "Actualiteiten", onderwerp: "", labels: ["Duiding"], datum: "2026-11-03",
+    inleiding: "Deze week staat in Finland de Zweedse taal centraal. Svenska veckan loopt van 2 tot en met 8 november, met Svenska dagen op vrijdag 6 november als hoogtepunt.",
+    afbeelding: "afbeeldingen/abo-svenska-teater.jpg", url: "svenska-veckan.html" },
+
   { titel: "Een goed jaar voor de Zweedse wijnbouw", rubriek: "Actualiteiten", onderwerp: "", labels: ["Duiding"], datum: "2026-11-01",
     inleiding: "Wijnboeren in Skåne spreken van een zeer goed oogstjaar. De sector is klein, maar groeit snel en mag sinds vorig jaar ook wijn verkopen op het eigen terrein.",
     afbeelding: "afbeeldingen/lysekil-druiven.jpg", url: "zweedse-wijn.html" },
