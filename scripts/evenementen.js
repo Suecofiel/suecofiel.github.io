@@ -35,12 +35,6 @@ const evenementen = [
     beschrijving: "Vijfdaags filmfestival in Leeuwarden met recente films en documentaires uit Noord-Europa, vaak films die nog niet in Nederlandse bioscopen te zien zijn.",
     link: "https://noordelijkfilmfestival.nl/" },
 
-  { datum: "2026-11-27", einddatum: "2026-11-28", tijd: "vrijdag 11.00–18.00 uur, zaterdag 11.00–17.00 uur",
-    titel: "Zweedse kerstmarkt van Svenska kyrkan",
-    soort: "Kerstmarkt", plaats: "Locatie nog niet bekendgemaakt", organisator: "Svenska kyrkan in Nederland",
-    beschrijving: "Jaarlijkse kerstmarkt van Svenska kyrkan, de Zweedse kerk in Nederland. In eerdere jaren vond de markt plaats in Rotterdam; de locatie voor dit jaar is nog niet bekendgemaakt.",
-    link: "https://zweeds-nederlandse-vereniging.nl/nieuws/27-en-28-november-2026-kerstmarkt-svenska-kyrkan-in-nederland/" },
-
   { datum: "2026-12-10", einddatum: "2026-12-20", tijd: "10 dec 18.45 uur, 13 dec 19.00 uur en 20 dec 18.20 uur",
     titel: "Persona van Ingmar Bergman",
     soort: "Film", plaats: "Delft, Filmhuis Lumen", organisator: "Filmhuis Lumen",
@@ -49,7 +43,7 @@ const evenementen = [
 
   { datum: "2026-12-11", einddatum: "", tijd: "18.00–20.00 uur",
     titel: "Lucia met de Young Professionals",
-    soort: "Viering", plaats: "Amsterdam, Stromma (Keizersgracht 270)", organisator: "Swedish Chamber of Commerce for the Netherlands",
+    soort: "Viering", plaats: "Amsterdam, Stromma", organisator: "Swedish Chamber of Commerce for the Netherlands",
     beschrijving: "Luciaviering van de Young Professionals van de Zweedse Kamer van Koophandel in Nederland. Leden melden zich aan via de website; niet-leden kunnen zich als gast aanmelden via een formulier.",
     link: "https://swedishchamber.nl/events/december-11-lucia-with-the-young-professionals/" },
 
@@ -62,8 +56,8 @@ const evenementen = [
   { datum: "2026-12-14", einddatum: "", tijd: "20.00 uur (zaal open 19.30 uur)",
     titel: "Luciaconcert van Svenska Högtidskören in Amsterdam",
     soort: "Concert", plaats: "Amsterdam, Obrechtkerk", organisator: "Svenska Högtidskören",
-    beschrijving: "Het Zweedse koor Svenska Högtidskören uit Amsterdam zingt rond Lucia, het Zweedse lichtfeest op 13 december. De toegang is gratis; een vrijwillige bijdrage wordt op prijs gesteld.",
-    link: "https://zweeds-nederlandse-vereniging.nl/nieuws/14-december-lucia-concert-2026-svenska-hogtidskoren-amsterdam-obrechtkerk/" },
+    beschrijving: "Het Zweedse koor Svenska Högtidskören zingt rond Lucia, het Zweedse lichtfeest op 13 december. De toegang is gratis; een vrijwillige bijdrage wordt op prijs gesteld.",
+    link: "https://www.facebook.com/events/obrechtkerk/lucia-concert-2026-amsterdam/1478054214236407/" },
 
   { datum: "2026-12-20", einddatum: "", tijd: "20.10 uur",
     titel: "Fanny och Alexander van Ingmar Bergman",
@@ -163,9 +157,18 @@ const evenementen = [
     datumBlok.append(dag, weekdag);
 
     const inhoud = document.createElement("div");
-    const soort = document.createElement("span");
-    soort.className = "agenda-soort";
-    soort.textContent = [e.soort, e.plaats].filter(Boolean).join(" · ");
+    const soort = document.createElement("div");
+    soort.className = "agenda-meta";
+    const label = document.createElement("span");
+    label.className = "agenda-label";
+    label.textContent = e.soort;
+    soort.appendChild(label);
+    if (e.plaats) {
+      const plaats = document.createElement("span");
+      plaats.className = "agenda-plaats";
+      plaats.textContent = e.plaats;
+      soort.appendChild(plaats);
+    }
     const titel = document.createElement("h3");
     titel.textContent = e.titel;
 
