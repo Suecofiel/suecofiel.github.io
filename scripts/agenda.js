@@ -10,76 +10,74 @@
    pas de gegevens aan:
       datum         jaar-maand-dag, bijvoorbeeld "2026-12-13"
       einddatum     laatste dag bij meerdaagse evenementen, anders ""
-      tijd          bijvoorbeeld "19.30 uur", of ""
       titel         naam van het evenement
       soort         bijvoorbeeld "Lezing", "Film", "Concert",
                     "Tentoonstelling", "Viering", "Kerstmarkt"
       plaats        stad en eventueel locatie
-      organisator   wie het organiseert
       beschrijving  één of twee zinnen, in je eigen woorden
       link          adres van de pagina van de organisator
    De volgorde in de lijst maakt niet uit.
 
    Voorbeeld:
-   // { datum: "2026-12-13", einddatum: "", tijd: "18.00 uur",
+   // { datum: "2026-12-13", einddatum: "",
    //   titel: "Luciaviering", soort: "Viering",
-   //   plaats: "Rotterdam", organisator: "Naam van de organisator",
+   //   plaats: "Rotterdam",
    //   beschrijving: "Traditionele Luciaviering met koor en processie.",
    //   link: "https://www.voorbeeld.nl" },
    ============================================================ */
 const evenementen = [
 
-  { datum: "2026-11-04", einddatum: "2026-11-08", tijd: "",
+  { datum: "2026-11-04", einddatum: "2026-11-08",
     titel: "Noordelijk Film Festival",
-    soort: "Film", plaats: "Leeuwarden", organisator: "",
+    soort: "Film", plaats: "Leeuwarden",
     beschrijving: "Vijfdaags filmfestival in Leeuwarden met recente films en documentaires uit Noord-Europa, vaak films die nog niet in Nederlandse bioscopen te zien zijn.",
     link: "https://noordelijkfilmfestival.nl/" },
 
-  { datum: "2026-12-10", einddatum: "2026-12-20", tijd: "10 dec 18.45 uur, 13 dec 19.00 uur en 20 dec 18.20 uur",
+  { datum: "2026-12-10", einddatum: "2026-12-20",
     titel: "Persona van Ingmar Bergman",
-    soort: "Film", plaats: "Delft, Filmhuis Lumen", organisator: "Filmhuis Lumen",
-    beschrijving: "Persona van Ingmar Bergman draait in Filmhuis Lumen in Delft als onderdeel van Focus on Ingmar Bergman. De film wordt in het Zweeds en Engels gesproken; er zijn Nederlandse ondertitels.",
+    soort: "Film", plaats: "Delft, Filmhuis Lumen",
+    beschrijving: "Persona van Ingmar Bergman is te zien als onderdeel van de reeks Focus on Ingmar Bergman. De film wordt in het Zweeds en Engels gesproken; er zijn Nederlandse ondertitels.",
     link: "https://filmhuis-lumen.nl/films/persona-focus-on-ingmar-bergman/" },
 
-  { datum: "2026-12-11", einddatum: "", tijd: "18.00–20.00 uur",
+  { datum: "2026-12-11", einddatum: "",
     titel: "Lucia met de Young Professionals",
-    soort: "Viering", plaats: "Amsterdam, Stromma", organisator: "Swedish Chamber of Commerce for the Netherlands",
-    beschrijving: "Luciaviering van de Young Professionals van de Zweedse Kamer van Koophandel in Nederland. Leden melden zich aan via de website; niet-leden kunnen zich als gast aanmelden via een formulier.",
+    soort: "Viering", plaats: "Amsterdam, Stromma",
+    beschrijving: "Luciaviering voor de Young Professionals. Leden melden zich aan via de website; niet-leden kunnen zich als gast aanmelden via een formulier.",
     link: "https://swedishchamber.nl/events/december-11-lucia-with-the-young-professionals/" },
 
-  { datum: "2026-12-12", einddatum: "2026-12-13", tijd: "10.00–17.00 uur",
+  { datum: "2026-12-12", einddatum: "2026-12-13",
     titel: "Zweedse Kerstmarkt Groningen",
-    soort: "Kerstmarkt", plaats: "Groningen, Suikerfabriek", organisator: "",
-    beschrijving: "Overdekte kerstmarkt in de voormalige suikerfabriek met meer dan honderd Scandinavische pop-upwinkels, Zweeds eten, live muziek en workshops, zoals het maken van een smörgåstårta (Zweedse broodtaart) of een Zweeds kerstlampje. Entree: 10 euro.",
+    soort: "Kerstmarkt", plaats: "Groningen, Suikerfabriek",
+    beschrijving: "Overdekte kerstmarkt in de voormalige suikerfabriek met meer dan honderd Scandinavische pop-upwinkels, Zweeds eten, live muziek en workshops, zoals het maken van een smörgåstårta (Zweedse broodtaart) of een Zweeds kerstlampje.",
     link: "https://zweedsekerstmarkt.nl/" },
 
-  { datum: "2026-12-14", einddatum: "", tijd: "20.00 uur (zaal open 19.30 uur)",
+  { datum: "2026-12-14", einddatum: "",
     titel: "Luciaconcert van Svenska Högtidskören in Amsterdam",
-    soort: "Concert", plaats: "Amsterdam, Obrechtkerk", organisator: "Svenska Högtidskören",
-    beschrijving: "Het Zweedse koor Svenska Högtidskören zingt rond Lucia, het Zweedse lichtfeest op 13 december. De toegang is gratis; een vrijwillige bijdrage wordt op prijs gesteld.",
+    soort: "Concert", plaats: "Amsterdam, Obrechtkerk",
+    beschrijving: "Concert van het Zweedse koor Svenska Högtidskören rond Lucia, het Zweedse lichtfeest op 13 december.",
     link: "https://www.facebook.com/events/obrechtkerk/lucia-concert-2026-amsterdam/1478054214236407/" },
 
-  { datum: "2026-12-20", einddatum: "", tijd: "20.10 uur",
+  { datum: "2026-12-20", einddatum: "",
     titel: "Fanny och Alexander van Ingmar Bergman",
-    soort: "Film", plaats: "Delft, Filmhuis Lumen", organisator: "Filmhuis Lumen",
-    beschrijving: "Fanny och Alexander van Ingmar Bergman draait vanaf 17 december in Filmhuis Lumen in Delft, als onderdeel van Focus on Ingmar Bergman. Op de website van het filmhuis staat voorlopig één voorstelling, op zondag 20 december.",
+    soort: "Film", plaats: "Delft, Filmhuis Lumen",
+    beschrijving: "Fanny och Alexander van Ingmar Bergman is te zien als onderdeel van de reeks Focus on Ingmar Bergman.",
     link: "https://filmhuis-lumen.nl/films/fanny-and-alexander-english-subs/" },
 
-  { datum: "2026-12-31", einddatum: "", tijd: "",
+  { datum: "2026-12-31", einddatum: "",
     titel: "Het zevende zegel van Ingmar Bergman",
-    soort: "Film", plaats: "Bergen, Filmtheater Cinebergen", organisator: "Filmtheater Cinebergen",
-    beschrijving: "Het zevende zegel (Det sjunde inseglet) komt in een digitale restauratie naar Filmtheater Cinebergen, vanaf 31 december. De film is Zweeds gesproken en Nederlands ondertiteld. De speeltijden zijn nog niet bekend.",
+    soort: "Film", plaats: "Bergen, Filmtheater Cinebergen",
+    beschrijving: "Het zevende zegel (Det sjunde inseglet) is te zien in een digitale restauratie, vanaf 31 december. De film is Zweeds gesproken en Nederlands ondertiteld.",
     link: "https://www.cinebergen.nl/film/the-seventh-seal-digitale-restauratie/" },
 
-  { datum: "2026-06-26", einddatum: "2027-01-24", tijd: "",
+  { datum: "2026-06-26", einddatum: "2027-01-24",
     titel: "Marit Törnqvist – Verborgen verhalen",
-    soort: "Tentoonstelling", plaats: "Dordrecht, Nationaal Onderwijsmuseum", organisator: "Nationaal Onderwijsmuseum",
+    soort: "Tentoonstelling", plaats: "Dordrecht, Nationaal Onderwijsmuseum",
     beschrijving: "Meer dan honderd originele tekeningen van de Zweeds-Nederlandse illustrator Marit Törnqvist, bekend van haar illustraties bij boeken van Astrid Lindgren. De tentoonstelling is verlengd tot 24 januari 2027.",
     link: "https://www.onderwijsmuseum.nl/tentoonstelling/marit-toernqvist-verborgen-verhalen" },
 
-  { datum: "2027-01-28", einddatum: "2027-02-07", tijd: "",
+  { datum: "2027-01-28", einddatum: "2027-02-07",
     titel: "International Film Festival Rotterdam (IFFR)",
-    soort: "Film", plaats: "Rotterdam", organisator: "",
+    soort: "Film", plaats: "Rotterdam",
     beschrijving: "Op IFFR draaien regelmatig Zweedse films. Het programma voor 2027 is nog niet bekend; op de website kun je filteren op Zweeds als gesproken taal.",
     link: "https://iffr.com/nl/iffr_film_spoken_language/zweeds" }
 
@@ -176,8 +174,6 @@ const evenementen = [
     details.className = "agenda-details";
     const delen = [];
     if (e.einddatum) { delen.push("t/m " + korteDatum(maakDatum(e.einddatum))); }
-    if (e.tijd) { delen.push(e.tijd); }
-    if (e.organisator) { delen.push("Organisatie: " + e.organisator); }
     details.textContent = delen.join(" · ");
 
     const tekst = document.createElement("p");
