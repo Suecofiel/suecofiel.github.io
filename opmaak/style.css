@@ -1169,11 +1169,29 @@ details.bronnen > ol {
   background: var(--rood);
 }
 
-.agenda-soort {
-  color: var(--blue);
+.agenda-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2px 8px;
+}
+
+.agenda-label {
+  padding: 1px 6px;
+  background: var(--blue);
+  color: var(--white);
+  border-radius: 2px;
   font-family: "Source Sans 3", Arial, sans-serif;
-  font-size: .8rem;
+  font-size: .75rem;
   font-weight: bold;
+  line-height: 1.35;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+}
+
+.agenda-plaats {
+  color: var(--muted);
+  font-size: .85rem;
 }
 
 .agenda-item h3 {
