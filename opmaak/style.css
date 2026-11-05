@@ -1135,6 +1135,9 @@ details.bronnen > ol {
   font-weight: bold;
 }
 
+.agenda-dag.agenda-nu {
+  font-size: 1.2rem;
+}
 .agenda-weekdag {
   font-family: "Source Sans 3", Arial, sans-serif;
   font-size: .75rem;
@@ -1172,7 +1175,7 @@ details.bronnen > ol {
 .agenda-info {
   position: relative;
   margin: 22px 0 0;
-  padding: 10px 14px 10px 44px;
+  padding: 10px 14px 10px 40px;
   background: var(--band);
   border-left: 4px solid var(--blue);
   color: #333;
@@ -1181,17 +1184,17 @@ details.bronnen > ol {
 .agenda-info::before {
   content: "i";
   position: absolute;
-  left: 13px;
-  top: 10px;
-  width: 20px;
-  height: 20px;
+  left: 14px;
+  top: 12px;
+  width: 16px;
+  height: 16px;
   background: var(--blue);
   border-radius: 50%;
   color: var(--white);
   font-family: "Source Sans 3", Arial, sans-serif;
-  font-size: .8rem;
+  font-size: .7rem;
   font-weight: 700;
-  line-height: 20px;
+  line-height: 16px;
   text-align: center;
 }
 
