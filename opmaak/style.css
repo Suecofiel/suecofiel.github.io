@@ -1182,11 +1182,9 @@ details.bronnen > ol {
   color: var(--white);
   border-radius: 2px;
   font-family: "Source Sans 3", Arial, sans-serif;
-  font-size: .75rem;
-  font-weight: bold;
+  font-size: .8rem;
+  font-weight: 600;
   line-height: 1.35;
-  letter-spacing: .5px;
-  text-transform: uppercase;
 }
 
 .agenda-plaats {
