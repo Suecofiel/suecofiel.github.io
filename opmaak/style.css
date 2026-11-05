@@ -1169,6 +1169,32 @@ details.bronnen > ol {
   background: var(--rood);
 }
 
+.agenda-info {
+  position: relative;
+  margin: 22px 0 0;
+  padding: 10px 14px 10px 44px;
+  background: var(--band);
+  border-left: 4px solid var(--blue);
+  color: #333;
+}
+
+.agenda-info::before {
+  content: "i";
+  position: absolute;
+  left: 13px;
+  top: 10px;
+  width: 20px;
+  height: 20px;
+  background: var(--blue);
+  border-radius: 50%;
+  color: var(--white);
+  font-family: "Source Sans 3", Arial, sans-serif;
+  font-size: .8rem;
+  font-weight: 700;
+  line-height: 20px;
+  text-align: center;
+}
+
 .agenda-meta {
   display: flex;
   flex-wrap: wrap;

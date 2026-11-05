@@ -10,6 +10,10 @@
    pas de gegevens aan:
       datum         jaar-maand-dag, bijvoorbeeld "2026-12-13"
       einddatum     laatste dag bij meerdaagse evenementen, anders ""
+      datums        alleen bij losse speeldata (bijvoorbeeld een film die op
+                    drie dagen draait): lijst van alle data, zoals
+                    datums: ["2026-12-10", "2026-12-13", "2026-12-20"]
+                    Laat dit weg als het niet nodig is.
       titel         naam van het evenement
       soort         bijvoorbeeld "Lezing", "Film", "Concert",
                     "Tentoonstelling", "Viering", "Kerstmarkt"
@@ -33,10 +37,11 @@ const evenementen = [
     beschrijving: "Vijfdaags filmfestival in Leeuwarden met recente films en documentaires uit Noord-Europa, vaak films die nog niet in Nederlandse bioscopen te zien zijn.",
     link: "https://noordelijkfilmfestival.nl/" },
 
-  { datum: "2026-12-10", einddatum: "2026-12-20",
+  { datum: "2026-12-10", einddatum: "",
+    datums: ["2026-12-10", "2026-12-13", "2026-12-20"],
     titel: "Persona van Ingmar Bergman",
     soort: "Film", plaats: "Delft, Filmhuis Lumen",
-    beschrijving: "Persona van Ingmar Bergman is te zien als onderdeel van de reeks Focus on Ingmar Bergman. De film wordt in het Zweeds en Engels gesproken; er zijn Nederlandse ondertitels.",
+    beschrijving: "Onderdeel van de filmreeks Focus on Ingmar Bergman. De film wordt in het Zweeds en Engels gesproken; er zijn Nederlandse ondertitels.",
     link: "https://filmhuis-lumen.nl/films/persona-focus-on-ingmar-bergman/" },
 
   { datum: "2026-12-11", einddatum: "",
@@ -60,7 +65,7 @@ const evenementen = [
   { datum: "2026-12-20", einddatum: "",
     titel: "Fanny och Alexander van Ingmar Bergman",
     soort: "Film", plaats: "Delft, Filmhuis Lumen",
-    beschrijving: "Fanny och Alexander van Ingmar Bergman is te zien als onderdeel van de reeks Focus on Ingmar Bergman.",
+    beschrijving: "Onderdeel van de filmreeks Focus on Ingmar Bergman.",
     link: "https://filmhuis-lumen.nl/films/fanny-and-alexander-english-subs/" },
 
   { datum: "2026-12-31", einddatum: "",
@@ -103,15 +108,47 @@ const evenementen = [
   const vandaag = new Date();
   vandaag.setHours(0, 0, 0, 0);
 
+  // Resterende speeldata (alleen bij evenementen met een lijst "datums"):
+  // data die voorbij zijn verdwijnen vanzelf.
+  function resterend(e) {
+    if (!e.datums) { return []; }
+    return e.datums.filter(function (d) { return maakDatum(d) >= vandaag; });
+  }
+  function laatsteDatum(e) {
+    if (e.datums && e.datums.length) { return e.datums[e.datums.length - 1]; }
+    return e.einddatum || e.datum;
+  }
+  // De datum waarmee het evenement in de lijst staat: de eerstvolgende
+  // speeldatum, of de startdatum.
+  function eerstvolgende(e) {
+    const rest = resterend(e);
+    return rest.length ? rest[0] : e.datum;
+  }
   // Een evenement dat al loopt (bijvoorbeeld een tentoonstelling)
   // staat onder de huidige maand.
   function groepDatum(e) {
-    const start = maakDatum(e.datum);
+    const start = maakDatum(eerstvolgende(e));
     return start < vandaag ? vandaag : start;
+  }
+  function loopt(e) {
+    return !e.datums && maakDatum(e.datum) < vandaag;
+  }
+  // "10, 13 en 20 december" (of "30 november en 3 december")
+  function datumLijst(data) {
+    const d = data.map(maakDatum);
+    const zelfdeMaand = d.every(function (x) { return x.getMonth() === d[0].getMonth(); });
+    const delen = zelfdeMaand
+      ? d.map(function (x) { return String(x.getDate()); })
+      : d.map(korteDatum);
+    let tekst = delen.length > 1
+      ? delen.slice(0, -1).join(", ") + " en " + delen[delen.length - 1]
+      : delen[0];
+    if (zelfdeMaand) { tekst += " " + d[0].toLocaleDateString("nl-NL", { month: "long" }); }
+    return tekst;
   }
 
   const komend = evenementen
-    .filter(function (e) { return maakDatum(e.einddatum || e.datum) >= vandaag; })
+    .filter(function (e) { return maakDatum(laatsteDatum(e)) >= vandaag; })
     .sort(function (a, b) { return groepDatum(a) - groepDatum(b); });
 
   if (komend.length === 0) {
@@ -126,7 +163,7 @@ const evenementen = [
   let maandLijst = null;
 
   komend.forEach(function (e) {
-    const datum = maakDatum(e.datum);
+    const datum = maakDatum(eerstvolgende(e));
     const maand = groepDatum(e).toLocaleDateString("nl-NL", { month: "long", year: "numeric" });
 
     if (maand !== huidigeMaand) {
@@ -145,14 +182,19 @@ const evenementen = [
 
     const datumBlok = document.createElement("time");
     datumBlok.className = "agenda-datum";
-    datumBlok.dateTime = e.datum;
+    datumBlok.dateTime = eerstvolgende(e);
     const dag = document.createElement("span");
     dag.className = "agenda-dag";
-    dag.textContent = datum.getDate();
-    const weekdag = document.createElement("span");
-    weekdag.className = "agenda-weekdag";
-    weekdag.textContent = datum.toLocaleDateString("nl-NL", { weekday: "short" });
-    datumBlok.append(dag, weekdag);
+    datumBlok.appendChild(dag);
+    if (loopt(e)) {
+      dag.textContent = "Nu";
+    } else {
+      dag.textContent = datum.getDate();
+      const weekdag = document.createElement("span");
+      weekdag.className = "agenda-weekdag";
+      weekdag.textContent = datum.toLocaleDateString("nl-NL", { weekday: "short" });
+      datumBlok.appendChild(weekdag);
+    }
 
     const inhoud = document.createElement("div");
     const soort = document.createElement("div");
@@ -173,6 +215,8 @@ const evenementen = [
     const details = document.createElement("p");
     details.className = "agenda-details";
     const delen = [];
+    const rest = resterend(e);
+    if (rest.length > 1) { delen.push(datumLijst(rest)); }
     if (e.einddatum) { delen.push("t/m " + korteDatum(maakDatum(e.einddatum))); }
     details.textContent = delen.join(" · ");
 
