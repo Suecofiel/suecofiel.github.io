@@ -1138,6 +1138,10 @@ details.bronnen > ol {
 .agenda-dag.agenda-nu {
   font-size: 1.2rem;
 }
+.agenda-datum.agenda-datum-nu {
+  box-sizing: border-box;
+  min-height: 46px;
+}
 .agenda-weekdag {
   font-family: "Source Sans 3", Arial, sans-serif;
   font-size: .75rem;

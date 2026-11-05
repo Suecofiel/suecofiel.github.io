@@ -189,6 +189,7 @@ const evenementen = [
     if (loopt(e)) {
       dag.textContent = "Nu";
       dag.classList.add("agenda-nu");
+      datumBlok.classList.add("agenda-datum-nu");
     } else {
       dag.textContent = datum.getDate();
       const weekdag = document.createElement("span");
