@@ -1,0 +1,1832 @@
+/* ===== DE SUECOFIEL — gedeelde opmaak voor alle pagina's =====
+   Dit bestand bepaalt hoe elke pagina eruitziet. Een wijziging
+   hier geldt dus direct voor de hele website. */
+
+/* ===== LETTERTYPES =====
+   De lettertypes staan in de map lettertypes op de site zelf, zodat
+   er geen gegevens van bezoekers naar Google gaan.
+   Source Sans 3: voor alle tekst (logo, menu, titels, lopende tekst).
+   Crimson Pro: alleen voor de woordenboekpassage op de pagina Over.
+   Alle lettertypes vallen onder de SIL Open Font License (zie de map lettertypes).
+   Een lettertype wordt alleen gedownload als het echt wordt gebruikt. */
+@font-face {
+  font-family: "Crimson Pro";
+  src: url("/lettertypes/crimson-pro-400-normal.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Crimson Pro";
+  src: url("/lettertypes/crimson-pro-700-normal.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Crimson Pro";
+  src: url("/lettertypes/crimson-pro-400-italic.woff2") format("woff2");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Source Sans 3: size-adjust houdt de letters even groot als Arial,
+   zodat de maten in de opmaak niet hoeven te veranderen.
+   Gewichten: 400 gewoon, 600 semibold (logo en titels), 700 vet (labels en nadruk). */
+@font-face {
+  font-family: "Source Sans 3";
+  src: url("/lettertypes/source-sans-3-400-normal.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  size-adjust: 106%;
+}
+@font-face {
+  font-family: "Source Sans 3";
+  src: url("/lettertypes/source-sans-3-600-normal.woff") format("woff");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+  size-adjust: 106%;
+}
+@font-face {
+  font-family: "Source Sans 3";
+  src: url("/lettertypes/source-sans-3-700-normal.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  size-adjust: 106%;
+}
+@font-face {
+  font-family: "Source Sans 3";
+  src: url("/lettertypes/source-sans-3-400-italic.woff") format("woff");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+  size-adjust: 106%;
+}
+@font-face {
+  font-family: "Source Sans 3";
+  src: url("/lettertypes/source-sans-3-700-italic.woff") format("woff");
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+  size-adjust: 106%;
+}
+
+/* ===== KLEUREN =====
+   Wil je een andere blauwtint? Verander dan alleen de waarde achter --blue. */
+:root {
+  --blue: #005293;       /* accenten, labels en knoppen (Zweeds blauw) */
+  --blue-dark: #003366;  /* donkerblauw: kop, voettekst, datumblokjes */
+  --menubalk: var(--blue);   /* menubalk: Zweeds blauw, de kleur van de vlag */
+  --band: #e8edf4;       /* heel lichtblauw: om de andere rubriek op de homepage */
+  /* Zijmarge van kop, menu, rubrieken en voettekst: de inhoud blijft in een
+     kolom van maximaal 1210 px, de gekleurde vlakken lopen door tot de rand. */
+  --kader: max(10px, calc((100% - 1230px) / 2 + 10px));
+  --rood: #b3261e;       /* rood: officiële feestdagen */
+  --ink: #1d262b;        /* tekstkleur */
+  --muted: #5f6b72;      /* grijze tekst */
+  --line: #1d262b;       /* scheidingslijnen */
+  --line-soft: #d4d4d4;  /* dunne grijze lijnen tussen onderwerpen */
+  --soft: #d4d4d4;       /* lichtgrijze knoppen */
+  --placeholder: #9b9b9b;/* grijze vakken voor afbeeldingen */
+  --white: #ffffff;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--white);
+  color: var(--ink);
+  font-family: "Source Sans 3", Arial, sans-serif;
+  line-height: 1.65;
+}
+
+/* Titels in semibold */
+h1, h2, h3, h4 { font-weight: 600; }
+
+a { color: inherit; }
+
+a:focus-visible, input:focus-visible, button:focus-visible {
+  outline: 3px solid var(--blue);
+  outline-offset: 2px;
+}
+
+/* Op donkerblauw (kop, menu, voettekst) is de focusrand wit */
+header a:focus-visible, header input:focus-visible, header button:focus-visible,
+footer a:focus-visible, footer input:focus-visible {
+  outline-color: var(--white);
+}
+
+/* De pagina loopt over de volle breedte; kop, menu, rubrieken en voettekst
+   houden zelf een zijmarge (--kader), zodat de inhoud in het midden blijft. */
+.page {
+  padding: 0;
+}
+
+.panel {
+  padding: 0;
+}
+
+/* ===== KOP MET LOGO ===== */
+header.panel {
+  background: var(--blue-dark);
+}
+
+.header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 15px var(--kader) 11px;
+}
+
+/* ===== TITEL MET LOGO TUSSEN "De" EN "Suecofiel" =====
+   Alle maten staan in "em": ze groeien en krimpen mee met de
+   lettergrootte. Daardoor blijft het logo op elk scherm op
+   dezelfde plek tussen de twee woorden staan. De verhoudingen zijn
+   gemeten aan het ontwerp. */
+.brand {
+  position: relative;
+  display: inline-flex;
+  align-items: flex-start;
+  font-size: 3.1rem;        /* grootte van titel én logo */
+  line-height: 1;
+  padding-bottom: 0.535em;  /* ruimte voor het wapen onder de tekst */
+  text-decoration: none;
+  color: var(--white);
+}
+
+.brand-woord {
+  position: relative;
+  top: -0.025em;            /* tekst een fractie omhoog, in evenwicht met het wapen */
+  z-index: 2;               /* tekst ligt boven het wapen */
+  font-weight: 600;
+  letter-spacing: 0;
+}
+
+/* Lege ruimte tussen "De" en "Suecofiel" waar het wapen in valt */
+.brand-ruimte {
+  position: relative;
+  width: 1.63em;
+  flex: none;
+}
+
+.brand-ruimte img {
+  position: absolute;
+  top: 0;
+  left: -0.106em;
+  height: 1.9em;
+  width: auto;
+  display: block;
+  z-index: 1;
+}
+
+.brand-tagline {
+  display: block;
+  margin-top: 0.26em;
+  color: var(--white);
+  font-size: 0.29em;       /* de slogan is even breed als het woord Suecofiel */
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  text-align: right;
+}
+
+/* Zoekveld rechtsboven */
+.search input {
+  width: 230px;
+  padding: 7px 10px;
+  border: 1px solid rgba(255, 255, 255, .6);
+  border-radius: 4px;
+  font-family: "Source Sans 3", Arial, sans-serif;
+  font-size: 1rem;
+  line-height: 1.15;
+}
+
+.search {
+  position: relative;
+}
+
+/* Lijst met zoekresultaten onder het zoekveld */
+.zoekresultaten {
+  position: absolute;
+  right: 0;
+  top: 100%;
+  z-index: 10;
+  width: 340px;
+  max-width: 90vw;
+  max-height: 420px;
+  overflow-y: auto;
+  margin: 4px 0 0;
+  padding: 0;
+  list-style: none;
+  background: var(--white);
+  border: 2px solid var(--ink);
+  border-radius: 4px;
+}
+
+.zoekresultaten li + li {
+  border-top: 1px solid #dddddd;
+}
+
+.zoekresultaten a {
+  display: block;
+  padding: 9px 12px;
+  text-decoration: none;
+}
+
+.zoekresultaten a:hover,
+.zoekresultaten a:focus {
+  background: #e8f0f8;
+}
+
+.zoekresultaten .rubriek-label {
+  display: block;
+  color: var(--blue);
+  font-family: "Source Sans 3", Arial, sans-serif;
+  font-size: .75rem;
+}
+
+.zoekresultaten .geen {
+  padding: 9px 12px;
+  color: var(--muted);
+}
+
+/* Zoekknop (vergrootglas): alleen op brede schermen; op mobiel zit het zoekveld in het menu */
+.zoekknop { display: none; }
+
+@media (min-width: 801px) {
+  .header-top {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+  }
+  .brand { grid-column: 2; }
+  .search {
+    grid-column: 3;
+    justify-self: end;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .search input {
+    order: 1;
+    width: 0;
+    padding-left: 0;
+    padding-right: 0;
+    border-width: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: width .25s ease, padding .25s ease, opacity .2s ease, visibility 0s .25s;
+  }
+  .search.open input {
+    width: 230px;
+    padding: 7px 10px;
+    border-width: 1px;
+    opacity: 1;
+    visibility: visible;
+    transition: width .25s ease, padding .25s ease, opacity .2s ease, visibility 0s;
+  }
+  .zoekknop {
+    order: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, .6);
+    border-radius: 4px;
+    color: var(--white);
+    cursor: pointer;
+  }
+  .zoekknop:hover,
+  .zoekknop[aria-expanded="true"] {
+    background: var(--menubalk);
+    border-color: var(--menubalk);
+  }
+}
+
+/* Smalle desktopvensters: korter veld, zodat het niet over het logo schuift */
+@media (min-width: 801px) and (max-width: 900px) {
+  .search.open input { width: 160px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .search input, .search.open input { transition: none; }
+}
+
+/* Menuknop: alleen zichtbaar op mobiele telefoons */
+.menuknop {
+  display: none;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 12px;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, .6);
+  border-radius: 4px;
+  color: var(--white);
+  font-family: "Source Sans 3", Arial, sans-serif;
+  font-size: .9rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.menuknop svg {
+  fill: currentColor;
+  display: block;
+}
+
+.menuknop[aria-expanded="true"] {
+  background: var(--menubalk);
+  border-color: var(--menubalk);
+  color: var(--white);
+}
+
+/* ===== MENU ===== */
+#hoofdmenu {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 6px 20px;
+  background: var(--menubalk);
+  color: var(--white);
+  padding: 7px var(--kader) 8px;
+  font-family: "Source Sans 3", Arial, sans-serif;
+  font-size: 1rem;
+}
+
+#hoofdmenu ul {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Overal hetzelfde scheidingsteken (alleen op het brede menu) */
+#hoofdmenu li + li::before {
+  content: "|";
+  margin: 0 16px;
+  opacity: .6;
+}
+
+#hoofdmenu a {
+  text-decoration: none;
+}
+
+#hoofdmenu a:hover {
+  color: var(--white);
+  text-decoration: underline;
+}
+
+/* Menubalk op brede schermen: dunnere balk, tekstgrootte ongewijzigd (mobiel blijft ongewijzigd) */
+@media (min-width: 801px) {
+  #hoofdmenu {
+    line-height: 1.5;
+    padding: 5px var(--kader) 6px;
+  }
+}
+
+/* ===== INHOUD ===== */
+main.panel {
+  margin-top: 0;
+  padding: 10px var(--kader) 30px;
+}
+
+/* Homepage: gekleurde banden over de volle breedte, om en om wit en lichtblauw
+   (uitgelicht artikel wit, Actualiteiten lichtblauw, Cultuur & Tradities wit,
+   Samenleving lichtblauw). Het wisselen gaat vanzelf op volgorde. */
+main.home {
+  padding: 0;
+}
+
+main.home > section {
+  padding-left: var(--kader);
+  padding-right: var(--kader);
+}
+
+main.home > section:nth-of-type(even) {
+  background: var(--band);
+}
+
+.rubriek {
+  padding: 22px 0 30px;
+}
+
+.rubriek h2 {
+  margin: 8px 4px 16px;
+  font-size: 1.35rem;
+  font-weight: 600;
+}
+
+/* Rubrieknaam op de homepage: klikbaar naar de rubriek, ziet er verder hetzelfde uit */
+.rubriek h2 a { text-decoration: none; }
+.rubriek h2 a:hover { text-decoration: underline; }
+
+/* Op een lichtblauwe band staan de kaarten op een wit vlak */
+main.home .rubriek:nth-of-type(even) .artikel {
+  background: var(--white);
+}
+
+main.home .rubriek:nth-of-type(even) .artikel .kaart-meta,
+main.home .rubriek:nth-of-type(even) .artikel h3,
+main.home .rubriek:nth-of-type(even) .artikel p:not(.kaart-meta) {
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+main.home .rubriek:nth-of-type(even) .artikel {
+  padding-bottom: 24px;   /* extra ruimte onder de laatste regel, ongeveer één regel */
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 30px;
+}
+
+.artikel {
+  text-decoration: none;
+  color: var(--ink);
+  display: block;
+}
+
+/* Grijs vak = plek voor een afbeelding. Later vervangen door een foto. */
+.afbeelding {
+  aspect-ratio: 16 / 9;   /* verhouding breedte / hoogte van de afbeeldingen */
+  background: var(--placeholder);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #eeeeee;
+  font-family: "Source Sans 3", Arial, sans-serif;
+  font-size: .85rem;
+}
+
+.afbeelding img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Regel boven de titel van een artikelkaart: labels en datum */
+.kaart-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 2px 10px;
+  margin: 10px 0 0;
+  font-family: "Source Sans 3", Arial, sans-serif;
+  font-size: .8rem;
+}
+
+.artikel .datum {
+  color: var(--muted);
+  font-size: .75rem;
+}
+
+/* Puntje tussen twee labels */
+.kaart-meta .label + .label::before {
+  content: "· ";
+  color: var(--muted);
+}
+
+/* Label: soort artikel (Achtergrond, Duiding, Uitgelegd …) */
+.label {
+  color: var(--blue);
+  font-family: "Source Sans 3", Arial, sans-serif;
+  font-size: .75rem;
+  font-weight: bold;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+}
+
+.artikel h3 {
+  margin: 6px 0 4px;
+  font-size: 1.2rem;
+  line-height: 1.3;
+}
+
+.artikel p {
+  margin: 0;
+  color: var(--muted);
+  font-size: .95rem;
+}
+
+.artikel:hover h3 {
+  color: var(--blue);
+  text-decoration: underline;
+}
+
+.leeg {
+  grid-column: 1 / -1;
+  margin: 0;
+  padding: 20px 4px;
+  color: var(--muted);
+}
+
+.meer {
+  text-align: center;
+  margin-top: 18px;
+}
+
+/* Knop "Meer in …": witte knop met blauwe rand, op desktop en mobiel gelijk */
+.meer a {
+  display: inline-block;
+  background: var(--white);
+  color: var(--blue);
+  border: 1px solid var(--blue);
+  padding: 8px 16px;
+  text-decoration: none;
+  font-family: "Source Sans 3", Arial, sans-serif;
+  font-size: .95rem;
+  border-radius: 3px;
+}
+
+.meer a:hover {
+  background: var(--blue);
+  color: var(--white);
+}
+
+/* ===== VOETTEKST ===== */
+footer {
+  padding: 36px calc(var(--kader) + 10px) 24px;
+  background: var(--blue-dark);   /* zelfde donkerblauw als de kop */
+  color: #dce7f2;
+  font-size: .95rem;
+}
+
+footer a {
+  text-decoration: none;
+}
+
+footer a:hover {
+  color: var(--white);
+  text-decoration: underline;
+}
+
+.voettekst-kolommen {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1.2fr;
+  gap: 30px 40px;
+  padding-bottom: 26px;
+}
+
+.voettekst-merk p {
+  margin: 0 0 10px;
+  max-width: 420px;
+  line-height: 1.6;
+}
+
+.voettekst-merk .voettekst-naam {
+  margin: 0;
+  color: var(--white);
+  font-size: 1.6rem;
+  font-weight: bold;
+  line-height: 1.2;
+}
+
+.voettekst-merk .voettekst-slogan {
+  margin: 0 0 12px;
+  color: var(--white);
+  opacity: .85;
+}
+
+footer h2 {
+  margin: 4px 0 10px;
+  color: var(--white);
+  font-family: "Source Sans 3", Arial, sans-serif;
+  font-size: .85rem;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+}
+
+footer ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+footer li {
+  margin-bottom: 6px;
+}
+
+footer li a {
+  font-family: "Source Sans 3", Arial, sans-serif;
+}
+
+/* Wisselkoers (wordt automatisch toegevoegd door zoeken.js) */
+.koers-regel {
+  margin: 0 0 4px;
+}
+
+.koers-regel strong {
+  color: var(--white);
+}
+
+.koers-reken {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 12px 0 8px;
+}
+
+.koers-reken label {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+  font-family: "Source Sans 3", Arial, sans-serif;
+  font-size: .7rem;
+  letter-spacing: .5px;
+}
+
+.koers-reken input {
+  width: 100%;
+  margin-top: 3px;
+  padding: 6px 8px;
+  border: 1px solid rgba(255, 255, 255, .5);
+  border-radius: 4px;
+  background: rgba(255, 255, 255, .1);
+  color: var(--white);
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+.koers-reken input:focus-visible {
+  outline: 2px solid var(--white);
+  outline-offset: 1px;
+}
+
+.koers-pijl {
+  margin-top: 16px;
+  opacity: .8;
+}
+
+.koers-bron {
+  margin: 0;
+  font-family: "Source Sans 3", Arial, sans-serif;
+  font-size: .75rem;
+  opacity: .8;
+}
+
+/* Onderste regel: copyright en terug naar boven */
+.voettekst-onder {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, .35);
+  font-family: "Source Sans 3", Arial, sans-serif;
+  font-size: .8rem;
+}
+
+.voettekst-onder p {
+  margin: 0;
+}
+
+.voettekst-onder-links {
+  display: flex;
+  gap: 18px;
+}
+
+/* Huidige pagina in het menu onderstrepen */
+#hoofdmenu a[aria-current="page"] {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+/* ===== TEKSTPAGINA'S (zoals Uitspraakhulp) ===== */
+.tekstpagina {
+  max-width: 760px;
+  padding: 18px 14px 10px;
+}
+
+.tekstpagina h1 {
+  margin: 0 0 12px;
+  font-size: clamp(1.8rem, 4vw, 2.4rem);
+  line-height: 1.2;
+}
+
+.tekstpagina .inleiding {
+  margin: 0 0 28px;
+  font-size: 1.15rem;
+  color: var(--muted);
+}
+
+.tekstpagina h2 {
+  margin: 32px 0 6px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--line-soft);
+  font-size: 1.35rem;
+}
+
+/* Lijst met klanken: letter links, uitleg rechts */
+.klanken {
+  margin: 0;
+}
+
+.klank {
+  display: grid;
+  grid-template-columns: 7.5em 1fr;
+  gap: 4px 20px;
+  padding: 14px 0;
+  border-bottom: 1px solid #dddddd;
+}
+
+.klank dt {
+  color: var(--blue);
+  font-size: 1.25rem;
+  font-weight: bold;
+  line-height: 1.4;
+}
+
+.klank dd {
+  margin: 0;
+}
+
+/* Tweede regel binnen één klank (bijvoorbeeld de g als j) */
+.klank .deelregel {
+  grid-column: 2;
+  margin-top: 8px;
+}
+
+/* Regel met voorbeeldwoorden onder de uitleg */
+.klank .voorbeeld {
+  grid-column: 2;
+  color: var(--muted);
+  font-size: .9rem;
+}
+
+.klank .voorbeeld span {
+  color: var(--ink);
+  font-style: italic;
+  font-weight: bold;
+}
+
+/* Lichtblauw kader voor een korte toelichting */
+.opmerking {
+  margin: 22px 0 6px;
+  padding: 14px 18px;
+  background: #e8f0f8;
+  border-left: 4px solid var(--blue);
+}
+
+.opmerking p {
+  margin: 0 0 6px;
+}
+
+.opmerking p:last-child {
+  margin-bottom: 0;
+}
+
+/* Inspringen zodat de regels gelijk staan met de uitleg erboven
+   (breedte van de lettercolom + tussenruimte - rand en binnenruimte kader) */
+.opmerking .klinkerlijst {
+  padding-left: calc(7.5em - 2px);
+}
+
+/* ===== WOORDENBOEKREGEL (pagina Over De Suecofiel) ===== */
+.woordenboek {
+  margin: 8px 0 24px;
+  padding: 12px 0 12px;
+  border-top: 2px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  font-family: "Crimson Pro", Georgia, "Times New Roman", serif;
+  font-size: 1.1rem;
+  line-height: 1.45;
+}
+
+.woordenboek p {
+  margin: 0;
+}
+
+.woordenboek .trefwoord {
+  font-weight: bold;
+  font-size: 1.05em;
+  color: var(--blue);
+  letter-spacing: .01em;
+}
+
+.woordenboek .grammatica {
+  font-style: italic;
+  color: var(--muted);
+}
+
+.woordenboek .voorbeeldzin {
+  margin-top: 4px;
+  padding-left: 1.4em;
+  font-style: italic;
+  color: var(--muted);
+}
+
+/* ===== ARTIKELPAGINA ===== */
+.artikelpagina {
+  max-width: 660px;
+  margin: 0 auto;        /* artikel in het midden van de pagina */
+  padding: 22px 14px 10px;
+}
+
+.artikel-rubriek {
+  color: var(--blue);
+  font-family: "Source Sans 3", Arial, sans-serif;
+  font-size: .85rem;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.artikel-rubriek:hover { text-decoration: underline; }
+
+/* Rubriek en labels boven de titel van een artikel */
+.artikel-kop-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 2px 10px;
+  margin: 0;
+}
+
+.artikel-onderwerp {
+  color: var(--blue);
+  font-family: "Source Sans 3", Arial, sans-serif;
+  font-size: .85rem;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.artikel-onderwerp:hover { text-decoration: underline; }
+
+.artikel-onderwerp::before {
+  content: "› ";
+  color: var(--muted);
+}
+
+.artikel-kop-meta .label::before {
+  content: "· ";
+  color: var(--muted);
+}
+
+/* Kruimelpad bovenaan artikelen en Kennisbank-pagina's: Home › Rubriek */
+.kruimelpad {
+  margin: 0 0 10px;
+  font-family: "Source Sans 3", Arial, sans-serif;
+  font-size: .85rem;
+}
+
+.kruimelpad ol {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.kruimelpad li + li::before {
+  content: "›";
+  margin-right: 8px;
+  color: var(--muted);
+}
+
+.kruimelpad a {
+  color: var(--blue);
+  text-decoration: none;
+}
+
+.kruimelpad a:hover { text-decoration: underline; }
+
+.tekstpagina > .artikel-rubriek {
+  display: inline-block;
+  margin-bottom: 2px;
+}
+
+.artikelpagina h1 {
+  margin: 12px 0 14px;
+  font-size: clamp(1.9rem, 3.5vw, 2.4rem);
+  line-height: 1.15;
+}
+
+.artikel-inleiding {
+  margin: 0 0 14px;
+  font-size: 1.2rem;
+  line-height: 1.5;
+}
+
+.artikel-meta {
+  margin: 0 0 22px;
+  color: var(--muted);
+  font-family: "Source Sans 3", Arial, sans-serif;
+  font-size: .85rem;
+}
+
+.artikel-foto {
+  margin: 0 0 28px;
+}
+
+.artikel-foto img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.artikel-foto figcaption {
+  margin-top: 6px;
+  color: var(--muted);
+  font-family: "Source Sans 3", Arial, sans-serif;
+  font-size: .8rem;
+  line-height: 1.45;
+}
+
+.artikel-tekst {
+  font-size: 1.1rem;    /* Source Sans 3 is smaller dan een schreef: iets groter, voor een prettige regellengte */
+  line-height: 1.65;
+}
+
+.artikel-tekst p {
+  margin: 0 0 1.1em;
+}
+
+.artikel-tekst h2 {
+  margin: 1.6em 0 .4em;
+  font-size: 1.25rem;
+  line-height: 1.3;
+}
+
+.artikel-tekst blockquote {
+  margin: 1.6em 0;
+  padding: 2px 0 2px 20px;
+  border-left: 4px solid var(--blue);
+}
+
+.artikel-tekst blockquote p {
+  margin: 0 0 6px;
+  font-size: 1.3rem;
+  font-style: italic;
+  line-height: 1.45;
+}
+
+.artikel-tekst cite {
+  color: var(--muted);
+  font-family: "Source Sans 3", Arial, sans-serif;
+  font-size: .85rem;
+  font-style: normal;
+}
+
+.artikel-tekst cite::before { content: "— "; }
+
+/* Bronverwijzing in de tekst: klein cijfertje */
+sup.bron {
+  font-family: "Source Sans 3", Arial, sans-serif;
+  font-size: .65em;
+  line-height: 0;
+}
+
+sup.bron a {
+  padding: 0 1px;
+  color: var(--muted);
+  text-decoration: none;
+}
+
+sup.bron a:hover {
+  color: var(--blue);
+  text-decoration: underline;
+}
+
+/* Bronnen onder een artikel */
+.bronnen {
+  margin-top: 30px;
+  padding-top: 12px;
+  border-top: 1px solid #dddddd;
+  font-family: "Source Sans 3", Arial, sans-serif;
+  font-size: .8rem;
+  color: var(--muted);
+}
+
+.bronnen h2 {
+  margin: 0 0 6px;
+  font-family: "Source Sans 3", Arial, sans-serif;
+  font-size: .85rem;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.bronnen ul,
+.bronnen ol {
+  margin: 0;
+  padding-left: 1.6em;
+}
+
+.bronnen li {
+  scroll-margin-top: 16px;
+}
+
+.bronnen li:target {
+  background: #eef4fa;
+}
+
+.bronnen li {
+  margin-bottom: 4px;
+}
+
+/* Inklapbare bronnenlijst */
+details.bronnen > summary {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-family: "Source Sans 3", Arial, sans-serif;
+  font-size: .85rem;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: var(--ink);
+}
+
+details.bronnen > summary::-webkit-details-marker {
+  display: none;
+}
+
+details.bronnen > summary::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-right: 2px solid var(--muted);
+  border-bottom: 2px solid var(--muted);
+  transform: rotate(-45deg);
+  transition: transform .15s;
+}
+
+details.bronnen[open] > summary::before {
+  transform: rotate(45deg);
+}
+
+details.bronnen > summary:hover {
+  color: var(--blue);
+}
+
+details.bronnen > summary:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 3px;
+}
+
+details.bronnen > ol {
+  margin-top: 10px;
+}
+
+.agenda-item p a {
+  color: var(--blue);
+}
+
+/* Meer uit deze rubriek */
+.lees-ook {
+  margin-top: 20px;
+  padding-top: 6px;
+  border-top: 1px solid var(--line-soft);
+}
+
+.lees-ook h2 {
+  margin: 6px 4px 10px;
+  font-size: 1.35rem;
+}
+
+/* ===== AGENDA ===== */
+.agenda-maand {
+  margin: 30px 0 4px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--line-soft);
+  font-size: 1.35rem;
+}
+
+.agenda-items {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.agenda-item {
+  display: grid;
+  grid-template-columns: 4.2em 1fr;
+  gap: 18px;
+  padding: 14px 0;
+  border-bottom: 1px solid #dddddd;
+}
+
+/* Datumblokje: groot dagnummer met de weekdag eronder */
+.agenda-datum {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  align-self: start;
+  padding: 6px 0;
+  background: var(--blue-dark);
+  color: var(--white);
+  line-height: 1.1;
+}
+
+.agenda-dag {
+  font-size: 1.6rem;
+  font-weight: bold;
+}
+
+.agenda-weekdag {
+  font-family: "Source Sans 3", Arial, sans-serif;
+  font-size: .75rem;
+}
+
+/* Officiële feestdagen: rood datumblokje, zoals in Zweedse kalenders */
+.agenda-item.vrije-dag .agenda-datum {
+  background: var(--rood);
+}
+
+.agenda-nederlands {
+  margin: -2px 0 4px !important;
+  color: var(--muted);
+  font-family: "Source Sans 3", Arial, sans-serif;
+  font-size: .8rem;
+}
+
+.legenda {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin: -14px 0 6px;
+  color: var(--muted);
+  font-size: .9rem;
+}
+
+.legenda-rood {
+  flex: none;
+  width: 14px;
+  height: 14px;
+  margin-top: 5px;
+  background: var(--rood);
+}
+
+.agenda-soort {
+  color: var(--blue);
+  font-family: "Source Sans 3", Arial, sans-serif;
+  font-size: .8rem;
+  font-weight: bold;
+}
+
+.agenda-item h3 {
+  margin: 2px 0 4px;
+  font-size: 1.2rem;
+  line-height: 1.3;
+}
+
+.agenda-item p {
+  margin: 0;
+  color: var(--muted);
+}
+
+/* ===== FOUTPAGINA (404) ===== */
+.foutpagina {
+  padding-bottom: 40px;
+}
+
+.foutpagina-knop {
+  text-align: left;
+  margin-top: 24px;
+}
+
+/* ===== RUBRIEKPAGINA ===== */
+.rubriekpagina-kop {
+  max-width: 760px;
+  padding: 18px 4px 6px;
+}
+
+.rubriekpagina-kop h1 {
+  margin: 0 0 8px;
+  font-size: clamp(1.8rem, 4vw, 2.4rem);
+  line-height: 1.2;
+}
+
+.rubriekpagina-kop .inleiding {
+  margin: 0 0 22px;
+  color: var(--muted);
+  font-size: 1.1rem;
+}
+
+.alle-artikelen {
+  row-gap: 36px;
+  padding-bottom: 20px;
+}
+
+/* Middelgrote schermen: voettekst in twee kolommen */
+@media (max-width: 1100px) {
+  .voettekst-kolommen { grid-template-columns: 1fr 1fr; }
+}
+
+/* Kleinere laptops: menu iets compacter, zodat het op één regel past */
+@media (min-width: 801px) and (max-width: 1180px) {
+  #hoofdmenu { font-size: .9rem; }
+  #hoofdmenu li + li::before { margin: 0 7px; }
+}
+
+/* Lijst op de pagina Over */
+.over-lijst {
+  margin: 0 0 1em;
+  padding-left: 1.2em;
+}
+
+.over-lijst li {
+  margin-bottom: 6px;
+}
+
+/* ===== UITGELICHT ARTIKEL (homepage) ===== */
+.uitgelicht {
+  padding: 26px 0 30px;
+}
+
+.uitgelicht-kaart {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: 28px;
+  align-items: center;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.uitgelicht-kaart .afbeelding {
+  aspect-ratio: 16 / 9;
+}
+
+.uitgelicht-kaart h2 {
+  margin: 12px 0 10px;
+  font-size: clamp(1.5rem, 3vw, 1.875rem);
+  line-height: 1.2;
+}
+
+.uitgelicht-kaart:hover h2 {
+  color: var(--blue);
+  text-decoration: underline;
+}
+
+/* Datum naast de labels van het uitgelichte artikel */
+.uitgelicht-kaart time.datum {
+  color: var(--muted);
+  font-family: "Source Sans 3", Arial, sans-serif;
+  font-size: .75rem;
+}
+
+.uitgelicht-kaart p.uitgelicht-inleiding {
+  margin: 0 0 10px;
+  color: var(--muted);
+  font-size: 1.05rem;
+}
+
+.uitgelicht-rubriek {
+  color: var(--blue);
+  font-family: "Source Sans 3", Arial, sans-serif;
+  font-size: .85rem;
+  font-weight: bold;
+}
+
+/* ===== KENNISBANK ===== */
+.kennis-lijst {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.kennis-item {
+  border: 1px solid #d9d9d9;
+  border-top: 4px solid var(--blue);
+  background: var(--white);
+}
+
+.kennis-item a,
+.kennis-item.binnenkort {
+  display: block;
+  height: 100%;
+  padding: 16px 18px;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.kennis-item a:hover {
+  background: #eef4fa;
+}
+
+.kennis-item a:hover h2 {
+  color: var(--blue);
+  text-decoration: underline;
+}
+
+.kennis-item h2 {
+  margin: 0 0 6px;
+  padding: 0;
+  border: none;
+  font-size: 1.15rem;
+  line-height: 1.3;
+}
+
+.kennis-item p {
+  margin: 0;
+  color: var(--muted);
+  font-size: .95rem;
+}
+
+.kennis-item.binnenkort {
+  border-top-color: #b8c4cf;
+}
+
+.kennis-item.binnenkort h2 {
+  color: var(--muted);
+}
+
+.kennis-status {
+  display: inline-block;
+  margin-top: 10px;
+  color: var(--muted);
+  font-family: "Source Sans 3", Arial, sans-serif;
+  font-size: .75rem;
+  font-weight: bold;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+}
+
+/* Onderwerpknoppen op een rubriekpagina */
+.onderwerpen {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 4px 24px;
+}
+
+.onderwerpen button {
+  padding: 7px 14px;
+  border: 1px solid var(--blue-dark);
+  background: var(--white);
+  color: var(--blue-dark);
+  font-family: "Source Sans 3", Arial, sans-serif;
+  font-size: .85rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.onderwerpen button:hover {
+  background: #eef4fa;
+}
+
+.onderwerpen button[aria-pressed="true"] {
+  background: var(--blue-dark);
+  color: var(--white);
+}
+
+/* Kaarten die door het filter verborgen zijn */
+.artikel[hidden] { display: none !important; }
+
+/* 'Zie ook' op een rubriekpagina */
+.zie-ook {
+  margin: 0 0 24px;
+}
+
+/* ===== BEGRIPPEN VAN A TOT Z ===== */
+.letterbalk a {
+  min-width: 2.2em;
+  text-align: center;
+}
+
+.begrippen {
+  margin: 0;
+}
+
+.begrip {
+  padding: 12px 0;
+  border-bottom: 1px solid #dddddd;
+  scroll-margin-top: 16px;
+}
+
+.begrip dt {
+  color: var(--blue);
+  font-size: 1.2rem;
+  font-weight: bold;
+  font-style: italic;
+}
+
+.begrip dd {
+  margin: 0;
+}
+
+.begrip .letterlijk {
+  margin-bottom: 4px;
+  color: var(--muted);
+  font-family: "Source Sans 3", Arial, sans-serif;
+  font-size: .8rem;
+}
+
+/* Begrip waar naartoe gelinkt is, kort oplichten */
+.begrip:target {
+  background: #eef4fa;
+  box-shadow: -10px 0 0 #eef4fa, 10px 0 0 #eef4fa;
+}
+
+/* ===== TIJDLIJN ===== */
+.tijdvakken {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 8px;
+  margin: 0 0 10px;
+}
+
+.tijdvakken a {
+  padding: 5px 10px;
+  border: 1px solid var(--blue-dark);
+  color: var(--blue-dark);
+  font-family: "Source Sans 3", Arial, sans-serif;
+  font-size: .8rem;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.tijdvakken a:hover {
+  background: var(--blue-dark);
+  color: var(--white);
+}
+
+.tijdlijn {
+  margin: 0 0 10px;
+  padding: 0;
+  list-style: none;
+}
+
+/* Verticale lijn met een stip per gebeurtenis */
+.tijdlijn-item {
+  position: relative;
+  display: grid;
+  grid-template-columns: 9.5em 1fr;
+  gap: 4px 22px;
+  padding: 12px 0 12px 22px;
+  border-left: 2px solid #c9d6e3;
+}
+
+.tijdlijn-item::before {
+  content: "";
+  position: absolute;
+  left: -7px;
+  top: 19px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--blue);
+}
+
+.tijdlijn-jaar {
+  padding-top: 2px;
+  color: var(--blue);
+  font-family: "Source Sans 3", Arial, sans-serif;
+  font-size: .9rem;
+  font-weight: bold;
+}
+
+.tijdlijn-item h3 {
+  margin: 0 0 4px;
+  font-size: 1.1rem;
+  line-height: 1.3;
+}
+
+.tijdlijn-item p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.tijdvak {
+  scroll-margin-top: 16px;
+}
+
+/* ===== EVENEMENTEN ===== */
+.agenda-details {
+  margin: 0 0 4px !important;
+  font-family: "Source Sans 3", Arial, sans-serif;
+  font-size: .8rem;
+}
+
+.agenda-link {
+  display: inline-block;
+  margin-top: 6px;
+  color: var(--blue);
+  font-family: "Source Sans 3", Arial, sans-serif;
+  font-size: .85rem;
+  font-weight: bold;
+}
+
+.voorbehoud {
+  margin-top: 30px;
+  color: var(--muted);
+  font-family: "Source Sans 3", Arial, sans-serif;
+  font-size: .8rem;
+}
+
+/* ===== ZWEDEN EN NEDERLAND IN CIJFERS (vergelijkingstabellen) =====
+   Elke tabel heeft drie kolommen: onderwerp, Zweden, Nederland.
+   Een regel met class="toelichting" staat in grijs direct onder de regel erboven. */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.tabel-schuif {
+  overflow-x: auto;
+}
+
+.vergelijking {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.vergelijking thead th {
+  width: 32%;
+  padding: 10px 12px 6px;
+  border-bottom: 1px solid #dddddd;
+  color: var(--muted);
+  font-family: "Source Sans 3", Arial, sans-serif;
+  font-size: .75rem;
+  font-weight: bold;
+  letter-spacing: .5px;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.vergelijking thead th:first-child {
+  width: 36%;
+}
+
+.vergelijking tbody th,
+.vergelijking tbody td {
+  padding: 10px 12px;
+  text-align: left;
+  vertical-align: top;
+}
+
+.vergelijking tbody th {
+  font-weight: bold;
+}
+
+/* Een lichtgrijze lijn boven elke regel, behalve boven een toelichting */
+.vergelijking tbody tr:not(.toelichting) > * {
+  border-top: 1px solid #dddddd;
+}
+
+.vergelijking tbody tr:first-child > * {
+  border-top: none;
+}
+
+/* De regel vlak boven een toelichting krijgt minder ruimte eronder */
+.vergelijking tbody tr:has(+ .toelichting) > * {
+  padding-bottom: 4px;
+}
+
+.vergelijking tr.toelichting td {
+  padding: 0 12px 12px;
+  color: var(--muted);
+  font-size: .9rem;
+  line-height: 1.5;
+}
+
+/* ===== MOBIELE TELEFOONS ===== */
+@media (max-width: 800px) {
+  .kennis-lijst { grid-template-columns: 1fr; }
+  .uitgelicht-kaart { grid-template-columns: 1fr; gap: 12px; }
+  /* Artikelpagina op een telefoon: iets kleinere letters (desktop ongewijzigd) */
+  .artikelpagina h1 { font-size: 1.75rem; }
+  .artikel-inleiding { font-size: 1.2rem; }
+  .artikel-tekst { font-size: 1.1rem; }
+  .artikel-tekst h2 { font-size: 1.35rem; }
+  /* Foto van het uitgelichte artikel: van schermrand tot schermrand, direct onder de blauwe kop */
+  .uitgelicht { padding-top: 0; }
+  .uitgelicht-kaart .afbeelding { margin: 0 calc(-1 * var(--kader)); border-radius: 0; }
+  /* Uitgelicht artikel: zelfde indeling als een gewoon kaartje (label en datum, titel, inleiding) */
+  .uitgelicht-kaart .kaart-meta { margin-top: 4px; }
+  /* Terug naar boven rechts in de voettekst, handiger voor rechtshandigen */
+  .voettekst-onder p:last-child { margin-left: auto; text-align: right; }
+  .tijdlijn-item { grid-template-columns: 1fr; }
+  :root { --kader: 14px; }
+  main.panel:not(.home) { padding-top: 12px; padding-left: 10px; padding-right: 10px; }
+  .grid { grid-template-columns: 1fr; gap: 24px; }
+  /* Per rubriek alleen het eerste artikel tonen */
+  .grid .artikel:nth-child(n+2) { display: none; }
+  .lees-ook .grid .artikel:nth-child(n+2),
+  .alle-artikelen .artikel:nth-child(n+2) { display: block; }
+
+  /* Artikelen per rubriek op de homepage: kaartjes zoals op de desktop, één per rij */
+  /* Knop "Meer in …": bijna zo breed als het vlak. Alle knoppen zijn even breed
+     en hebben dezelfde letterafstand. */
+  .rubriek .meer { margin-top: 14px; }
+  .rubriek .meer a {
+    display: block;
+    padding: 8px 12px;
+    font-size: .95rem;
+    text-align: center;
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0 auto;
+  }
+  .klank { grid-template-columns: 1fr; }
+  .klank .voorbeeld, .klank .deelregel { grid-column: 1; }
+  .opmerking .klinkerlijst { padding-left: 0; }
+
+  /* Kop: titel links, menuknop rechts. Het zoekveld zit onderaan het menu.
+     De kop wordt één rij met vaste volgorde: titel, menuknop, menu, zoekveld. */
+  header.panel {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    column-gap: 10px;
+  }
+  .header-top { display: contents; }
+  /* Dunne lichtblauwe strook tussen de kop en de foto van het uitgelichte artikel;
+     verdwijnt als het menu openstaat */
+  header.panel { border-bottom: 10px solid var(--blue); }
+  header.panel.menu-open { border-bottom: 0; }
+  .brand {
+    order: 1;
+    flex: 0 1 auto;
+    min-width: 0;
+    padding: 12px 0 calc(0.535em + 6px) var(--kader);
+    font-size: clamp(1.9rem, 10.3vw, 2.9rem);  /* de slogan blijft leesbaar */
+  }
+  .menuknop {
+    display: flex;
+    order: 2;
+    margin: 10px var(--kader) 0 auto;   /* bovenkant gelijk met de bovenkant van de titeltekst */
+    padding: 10px;
+  }
+  #hoofdmenu {
+    order: 3;
+    flex-basis: 100%;
+  }
+  /* Het woord "Menu" alleen voor schermlezers; zichtbaar is het icoon */
+  .menuknop-tekst {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+
+  /* Zoekveld: verborgen tot het menu openstaat, dan onderaan het menu */
+  .search {
+    display: none;
+    order: 4;
+    flex-basis: 100%;
+    padding: 4px var(--kader) 14px;
+    background: var(--menubalk);
+  }
+  header.menu-open .search { display: block; }
+  .search input { width: 100%; }
+  .zoekresultaten { width: 100%; max-width: none; }
+
+  /* Voettekst: kolommen onder elkaar */
+  footer { padding-left: 20px; padding-right: 20px; }
+  .voettekst-kolommen { grid-template-columns: 1fr; gap: 24px; }
+
+  /* Menu is dicht tot je op de menuknop tikt */
+  #hoofdmenu { display: none; }
+  #hoofdmenu.open {
+    display: block;
+    padding: 0 var(--kader) 8px;
+  }
+
+  #hoofdmenu ul { flex-direction: column; }
+  #hoofdmenu li + li::before { content: none; }
+
+  #hoofdmenu a {
+    display: block;
+    padding: 11px 6px;
+    border-bottom: 1px solid rgba(255, 255, 255, .25);
+  }
+
+  /* Uitspraakhulp en Over: na een lijn, kleiner en grijs */
+  #hoofdmenu .sitelinks {
+    margin-top: 0;
+    border-top: 1px solid rgba(255, 255, 255, .45);
+  }
+  #hoofdmenu .sitelinks a {
+    padding: 8px 6px;
+    color: #cfdcec;
+    font-size: .8rem;
+  }
+  #hoofdmenu .sitelinks li:last-child a { border-bottom: none; }
+  /* Geen dubbele streep: de lijn onder Kennisbank vervalt, de scheidingslijn blijft */
+  #hoofdmenu ul:not(.sitelinks) li:last-child a { border-bottom: none; }
+}
+
+
+/* ===== CIJFERPAGINA OP MOBIELE TELEFOONS =====
+   Per regel: onderwerp bovenaan, daaronder Zweden en Nederland naast elkaar. */
+@media (max-width: 800px) {
+  .vergelijking,
+  .vergelijking tbody,
+  .vergelijking tr.toelichting,
+  .vergelijking tr.toelichting td {
+    display: block;
+  }
+
+  /* Kolomkoppen blijven voor schermlezers; het landlabel staat boven elke waarde */
+  .vergelijking thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+  }
+
+  .vergelijking tbody tr:not(.toelichting) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 14px;
+    padding: 10px 0;
+    border-top: 1px solid #dddddd;
+  }
+
+  .vergelijking tbody tr:first-child {
+    border-top: none;
+  }
+
+  .vergelijking tbody tr:not(.toelichting) > *,
+  .vergelijking tbody tr:first-child > * {
+    padding: 0;
+    border-top: none;
+  }
+
+  .vergelijking tbody tr:has(+ .toelichting) {
+    padding-bottom: 4px;
+  }
+
+  .vergelijking tbody tr:has(+ .toelichting) > * {
+    padding-bottom: 0;
+  }
+
+  .vergelijking tbody th {
+    grid-column: 1 / -1;
+    padding-bottom: 4px;
+  }
+
+  .vergelijking tbody td::before {
+    content: attr(data-land);
+    display: block;
+    color: var(--muted);
+    font-family: "Source Sans 3", Arial, sans-serif;
+    font-size: .7rem;
+    letter-spacing: .5px;
+    text-transform: uppercase;
+  }
+
+  .vergelijking tr.toelichting td {
+    padding: 0 0 10px;
+  }
+}
+
+
+/* ===== LABELBLOKJES (voorstel, kleiner blokje, tekst op oorspronkelijke grootte) ===== */
+.kruimelpad { margin-bottom: 14px; }
+
+.artikel-labels {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0;
+}
+
+.artikel-labels .label,
+.kaart-meta .label {
+  padding: 1px 6px;
+  background: var(--blue);
+  color: var(--white);
+  border-radius: 2px;
+  line-height: 1.35;
+  letter-spacing: .5px;
+}
+
+/* Homepage en rubriekpagina's: blokje met witruimte onder de foto */
+.kaart-meta { align-items: center; gap: 4px 6px; }
+.artikel .kaart-meta { margin-top: 12px; }
+.kaart-meta .label + .label::before { content: none; }
+.kaart-meta .datum, .uitgelicht-kaart time.datum { margin-left: 4px; }
+
+@media (max-width: 800px) {
+  .artikel .kaart-meta { margin-top: 16px; }
+}

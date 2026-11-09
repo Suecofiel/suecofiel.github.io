@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <!-- ============================================================
+       BASISLAYOUT VAN DE SUECOFIEL
+       Dit bestand is het ‘briefpapier’ van de site: alles wat op
+       elke pagina hetzelfde is (kop, menu, voettekst, verwijzingen
+       naar opmaak en scripts). Een wijziging hier geldt meteen
+       voor alle pagina's.
+
+       De pagina's zelf beginnen met een blokje tussen twee regels
+       met drie streepjes (---). Daarin staan onder meer:
+         titel         titel in het tabblad van de browser
+         omschrijving  korte omschrijving voor zoekmachines
+         menu          welke menuknop onderstreept wordt
+       ============================================================ -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="{{ page.omschrijving }}">
+  {% if page.robots %}<meta name="robots" content="{{ page.robots }}">{% endif %}
+  <title>{% if page.titel_volledig %}{{ page.titel_volledig }}{% else %}{{ page.titel }} — De Suecofiel{% endif %}</title>
+  {% if page.url != "/404.html" %}<link rel="canonical" href="https://desuecofiel.nl{{ page.url | replace: "index.html", "" | replace: ".html", "" }}">{% endif %}
+  <link rel="stylesheet" href="/opmaak/style.css">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+</head>
+<body>
+  <div class="page">
+
+    <!-- ===== KOP: LOGO, ZOEKVELD EN MENU ===== -->
+    <header class="panel">
+      <div class="header-top">
+        <a class="brand" href="/" aria-label="De Suecofiel, naar de homepage">
+          <span class="brand-woord">De</span>
+          <span class="brand-ruimte">
+            <img src="/afbeeldingen/logo-wit.png" alt="">
+          </span>
+          <span class="brand-woord">Suecofiel
+            <span class="brand-tagline">Zweden van dichtbij bekeken</span>
+          </span>
+        </a>
+
+        <!-- Zoekveld: zoekt in de artikelen van De Suecofiel zelf.
+             Op mobiel verschijnt het pas als het menu openstaat. -->
+        <div class="search" role="search">
+          <input type="search" id="zoekveld" placeholder="Zoeken…" aria-label="Zoeken op De Suecofiel" autocomplete="off" aria-controls="zoekresultaten">
+          <button class="zoekknop" type="button" aria-label="Zoeken" aria-expanded="false" aria-controls="zoekveld">
+            <svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="8.3" cy="8.3" r="6"/><path d="M13 13l5 5"/></svg>
+          </button>
+          <ul id="zoekresultaten" class="zoekresultaten" hidden></ul>
+        </div>
+        <button class="menuknop" type="button" aria-expanded="false" aria-controls="hoofdmenu">
+          <svg width="22" height="18" viewBox="0 0 20 16" aria-hidden="true"><rect y="0" width="20" height="2.4" rx="1"/><rect y="6.8" width="20" height="2.4" rx="1"/><rect y="13.6" width="20" height="2.4" rx="1"/></svg>
+          <span class="menuknop-tekst">Menu</span>
+        </button>
+      </div>
+
+      <nav id="hoofdmenu" aria-label="Hoofdnavigatie">
+        <ul>
+          <li><a href="/actualiteiten"{% if page.menu == "actualiteiten" %} aria-current="page"{% endif %}>Actualiteiten</a></li>
+          <li><a href="/cultuur"{% if page.menu == "cultuur" %} aria-current="page"{% endif %}>Cultuur &amp; Tradities</a></li>
+          <li><a href="/samenleving"{% if page.menu == "samenleving" %} aria-current="page"{% endif %}>Samenleving</a></li>
+          <li><a href="/kennisbank"{% if page.menu == "kennisbank" %} aria-current="page"{% endif %}>Kennisbank</a></li>
+        </ul>
+        <ul class="sitelinks">
+          <li><a href="/agenda"{% if page.menu == "agenda" %} aria-current="page"{% endif %}>Agenda</a></li>
+          <li><a href="/uitspraakhulp"{% if page.menu == "uitspraakhulp" %} aria-current="page"{% endif %}>Uitspraakhulp</a></li>
+          <li><a href="/over"{% if page.menu == "over" %} aria-current="page"{% endif %}>Over De Suecofiel</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- ===== INHOUD VAN DE PAGINA ===== -->
+    <main class="panel{% if page.menu == "home" %} home{% endif %}">
+{{ content }}
+    </main>
+
+    <!-- ===== VOETTEKST ===== -->
+    <footer>
+      <div class="voettekst-kolommen">
+        <div class="voettekst-merk">
+          <p class="voettekst-naam">De Suecofiel</p>
+          <p class="voettekst-slogan">Zweden van dichtbij bekeken</p>
+        </div>
+
+        <nav aria-label="Rubrieken">
+          <h2>Rubrieken</h2>
+          <ul>
+            <li><a href="/actualiteiten">Actualiteiten</a></li>
+            <li><a href="/cultuur">Cultuur &amp; Tradities</a></li>
+            <li><a href="/samenleving">Samenleving</a></li>
+          </ul>
+        </nav>
+
+        <nav aria-label="Meer op De Suecofiel">
+          <h2>Meer op De Suecofiel</h2>
+          <ul>
+            <li><a href="/kennisbank">Kennisbank</a></li>
+            <li><a href="/agenda">Agenda</a></li>
+            <li><a href="/uitspraakhulp">Uitspraakhulp</a></li>
+            <li><a href="/over">Over De Suecofiel</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <div class="voettekst-onder">
+        <p>© 2026 De Suecofiel. Teksten, eigen foto’s en logo zijn auteursrechtelijk beschermd; overname alleen met toestemming.</p>
+        <p><a href="#">Terug naar boven ↑</a></p>
+      </div>
+    </footer>
+
+  </div>
+
+  <script>
+    // Klapt de bronnenlijst open als de lezer op een bronnummer in de tekst klikt
+    (function () {
+      function openBron() {
+        var id = decodeURIComponent(location.hash.slice(1));
+        var el = id && document.getElementById(id);
+        var d = el && el.closest("details");
+        if (d && !d.open) {
+          d.open = true;
+          el.scrollIntoView();
+        }
+      }
+      window.addEventListener("hashchange", openBron);
+      openBron();
+    })();
+  </script>
+  <script src="/scripts/artikelen.js"></script>
+  <script src="/scripts/feestdagen.js"></script>
+  <script src="/scripts/agenda.js"></script>
+  <script src="/scripts/zoeken.js"></script>
+</body>
+</html>
