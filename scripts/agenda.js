@@ -93,45 +93,57 @@ const evenementen = [
    HIERONDER NIETS AANPASSEN
    Deze code zet de evenementen op de pagina.
    ============================================================ */
+/* ---- Gedeelde functies: ook gebruikt door de homepage (homepage.js) ---- */
+function maakDatum(tekst) {
+  const d = tekst.split("-").map(Number);
+  return new Date(d[0], d[1] - 1, d[2]);
+}
+function vandaagDatum() {
+  const vandaag = new Date();
+  vandaag.setHours(0, 0, 0, 0);
+  return vandaag;
+}
+// Resterende speeldata (alleen bij evenementen met een lijst "datums"):
+// data die voorbij zijn verdwijnen vanzelf.
+function resterend(e) {
+  if (!e.datums) { return []; }
+  const vandaag = vandaagDatum();
+  return e.datums.filter(function (d) { return maakDatum(d) >= vandaag; });
+}
+function laatsteDatum(e) {
+  if (e.datums && e.datums.length) { return e.datums[e.datums.length - 1]; }
+  return e.einddatum || e.datum;
+}
+// De datum waarmee het evenement in de lijst staat: de eerstvolgende
+// speeldatum, of de startdatum.
+function eerstvolgende(e) {
+  const rest = resterend(e);
+  return rest.length ? rest[0] : e.datum;
+}
+// Een evenement dat al loopt (bijvoorbeeld een tentoonstelling)
+// staat onder de huidige maand.
+function groepDatum(e) {
+  const vandaag = vandaagDatum();
+  const start = maakDatum(eerstvolgende(e));
+  return start < vandaag ? vandaag : start;
+}
+function loopt(e) {
+  return !e.datums && maakDatum(e.datum) < vandaagDatum();
+}
+// Alle evenementen die nog niet voorbij zijn, in de volgorde van de agenda
+function komendeEvenementen() {
+  const vandaag = vandaagDatum();
+  return evenementen
+    .filter(function (e) { return maakDatum(laatsteDatum(e)) >= vandaag; })
+    .sort(function (a, b) { return groepDatum(a) - groepDatum(b); });
+}
+
 (function () {
   const lijstElement = document.getElementById("evenementen-lijst");
   if (!lijstElement) { return; }
 
-  function maakDatum(tekst) {
-    const d = tekst.split("-").map(Number);
-    return new Date(d[0], d[1] - 1, d[2]);
-  }
   function korteDatum(datum) {
     return datum.toLocaleDateString("nl-NL", { day: "numeric", month: "long" });
-  }
-
-  const vandaag = new Date();
-  vandaag.setHours(0, 0, 0, 0);
-
-  // Resterende speeldata (alleen bij evenementen met een lijst "datums"):
-  // data die voorbij zijn verdwijnen vanzelf.
-  function resterend(e) {
-    if (!e.datums) { return []; }
-    return e.datums.filter(function (d) { return maakDatum(d) >= vandaag; });
-  }
-  function laatsteDatum(e) {
-    if (e.datums && e.datums.length) { return e.datums[e.datums.length - 1]; }
-    return e.einddatum || e.datum;
-  }
-  // De datum waarmee het evenement in de lijst staat: de eerstvolgende
-  // speeldatum, of de startdatum.
-  function eerstvolgende(e) {
-    const rest = resterend(e);
-    return rest.length ? rest[0] : e.datum;
-  }
-  // Een evenement dat al loopt (bijvoorbeeld een tentoonstelling)
-  // staat onder de huidige maand.
-  function groepDatum(e) {
-    const start = maakDatum(eerstvolgende(e));
-    return start < vandaag ? vandaag : start;
-  }
-  function loopt(e) {
-    return !e.datums && maakDatum(e.datum) < vandaag;
   }
   // "10, 13 en 20 december" (of "30 november en 3 december")
   function datumLijst(data) {
@@ -147,9 +159,7 @@ const evenementen = [
     return tekst;
   }
 
-  const komend = evenementen
-    .filter(function (e) { return maakDatum(laatsteDatum(e)) >= vandaag; })
-    .sort(function (a, b) { return groepDatum(a) - groepDatum(b); });
+  const komend = komendeEvenementen();
 
   if (komend.length === 0) {
     const leeg = document.createElement("p");
@@ -202,7 +212,7 @@ const evenementen = [
     const soort = document.createElement("div");
     soort.className = "agenda-meta";
     const label = document.createElement("span");
-    label.className = "agenda-label";
+    label.className = "typelabel";
     label.textContent = e.soort;
     soort.appendChild(label);
     if (e.plaats) {

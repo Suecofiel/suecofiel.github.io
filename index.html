@@ -5,30 +5,22 @@ omschrijving: "De Suecofiel: een Nederlandstalig kennisplatform over Zweden, met
 menu: "home"
 ---
 
-      <!-- De artikelen in elke rubriek komen automatisch uit artikelen.js -->
+      <!-- Alles op de homepage komt automatisch uit artikelen.js, feestdagen.js en agenda.js -->
 
       <!-- ===== UITGELICHT ARTIKEL (automatisch uit artikelen.js) ===== -->
       <section class="uitgelicht" aria-label="Uitgelicht">
         <div id="uitgelicht"></div>
       </section>
 
-      <!-- ===== RUBRIEK: ACTUALITEITEN ===== -->
-      <section class="rubriek" id="actualiteiten">
-        <h2><a href="/actualiteiten">Actualiteiten</a></h2>
-        <div class="grid" data-rubriek="Actualiteiten"></div>
-        <div class="meer"><a href="/actualiteiten">Meer in Actualiteiten</a></div>
+      <!-- ===== NIEUW OP DE SUECOFIEL (de 3 of 6 nieuwste artikelen, automatisch uit artikelen.js) ===== -->
+      <section class="home-blok home-nieuw" id="nieuw">
+        <h2>Nieuw op De Suecofiel</h2>
+        <div class="grid" id="nieuw-raster"></div>
       </section>
 
-      <!-- ===== RUBRIEK: CULTUUR & TRADITIES ===== -->
-      <section class="rubriek" id="cultuur">
-        <h2><a href="/cultuur">Cultuur &amp; Tradities</a></h2>
-        <div class="grid" data-rubriek="Cultuur & Tradities"></div>
-        <div class="meer"><a href="/cultuur">Meer in Cultuur &amp; Tradities</a></div>
+      <!-- ===== AGENDA (volgende feestdag en eerstvolgende evenementen, automatisch via homepage.js) ===== -->
+      <section class="home-blok home-agenda" id="agenda">
+        <h2>Agenda</h2>
+        <div class="home-agenda-raster" id="home-agenda"></div>
       </section>
 
-      <!-- ===== RUBRIEK: SAMENLEVING ===== -->
-      <section class="rubriek" id="samenleving">
-        <h2><a href="/samenleving">Samenleving</a></h2>
-        <div class="grid" data-rubriek="Samenleving"></div>
-        <div class="meer"><a href="/samenleving">Meer in Samenleving</a></div>
-      </section>

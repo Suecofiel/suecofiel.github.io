@@ -396,8 +396,8 @@ main.panel {
 }
 
 /* Homepage: gekleurde banden over de volle breedte, om en om wit en lichtblauw
-   (uitgelicht artikel wit, Actualiteiten lichtblauw, Cultuur & Tradities wit,
-   Samenleving lichtblauw). Het wisselen gaat vanzelf op volgorde. */
+   (uitgelicht artikel wit, Nieuw op De Suecofiel lichtblauw, Agenda wit).
+   Het wisselen gaat vanzelf op volgorde. */
 main.home {
   padding: 0;
 }
@@ -411,34 +411,86 @@ main.home > section:nth-of-type(even) {
   background: var(--band);
 }
 
-.rubriek {
+.home-blok {
   padding: 22px 0 30px;
 }
 
-.rubriek h2 {
+.home-blok h2 {
   margin: 8px 4px 16px;
   font-size: 1.35rem;
   font-weight: 600;
 }
 
-/* Rubrieknaam op de homepage: klikbaar naar de rubriek, ziet er verder hetzelfde uit */
-.rubriek h2 a { text-decoration: none; }
-.rubriek h2 a:hover { text-decoration: underline; }
-
-/* Op een lichtblauwe band staan de kaarten op een wit vlak */
-main.home .rubriek:nth-of-type(even) .artikel {
-  background: var(--white);
+/* Rubriek (aanklikbaar) en datum boven de titel, op de homepage */
+.kaart-rubriek-regel {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 2px 8px;
 }
 
-main.home .rubriek:nth-of-type(even) .artikel .kaart-meta,
-main.home .rubriek:nth-of-type(even) .artikel h3,
-main.home .rubriek:nth-of-type(even) .artikel p:not(.kaart-meta) {
+.kaart-rubriek {
+  color: var(--blue);
+  font-family: "Source Sans 3", Arial, sans-serif;
+  font-size: .85rem;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.kaart-rubriek:hover { text-decoration: underline; }
+
+.kaart-rubriek-regel time {
+  color: var(--muted);
+  font-family: "Source Sans 3", Arial, sans-serif;
+  font-size: .75rem;
+}
+
+.kaart-rubriek-regel time::before {
+  content: "\00b7";
+  margin-right: 8px;
+}
+
+/* Homepage-kaart: alleen de titel is de echte link; een onzichtbare laag maakt
+   de hele kaart klikbaar. De rubriek ligt erboven en blijft een eigen link. */
+.artikel-home,
+.uitgelicht-kaart {
+  position: relative;
+}
+
+.kaart-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.kaart-link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+.kaart-link:focus-visible { outline: none; }
+.kaart-link:focus-visible::after { outline: 2px solid var(--blue); outline-offset: 2px; }
+
+.kaart-rubriek {
+  position: relative;
+  z-index: 1;
+}
+
+/* Nieuw op De Suecofiel: kaarten op een wit vlak op de lichtblauwe band */
+.home-nieuw .artikel {
+  background: var(--white);
+  padding-bottom: 24px;   /* extra ruimte onder de laatste regel, ongeveer één regel */
+}
+
+.home-nieuw .artikel .kaart-rubriek-regel {
+  margin: 14px 0 0;
+  padding: 0 8px;
+}
+
+.home-nieuw .artikel h3,
+.home-nieuw .artikel > p:not(.kaart-rubriek-regel) {
   padding-left: 8px;
   padding-right: 8px;
-}
-
-main.home .rubriek:nth-of-type(even) .artikel {
-  padding-bottom: 24px;   /* extra ruimte onder de laatste regel, ongeveer één regel */
 }
 
 .grid {
@@ -498,10 +550,8 @@ main.home .rubriek:nth-of-type(even) .artikel {
 .label {
   color: var(--blue);
   font-family: "Source Sans 3", Arial, sans-serif;
-  font-size: .75rem;
-  font-weight: bold;
-  letter-spacing: .5px;
-  text-transform: uppercase;
+  font-size: .8rem;
+  font-weight: 600;
 }
 
 .artikel h3 {
@@ -1212,10 +1262,11 @@ details.bronnen > ol {
   gap: 2px 8px;
 }
 
-.agenda-label {
+/* Typelabel: wat iets is binnen een pagina (boekgenre, soort evenement) */
+.typelabel {
   padding: 1px 6px;
-  background: var(--blue);
-  color: var(--white);
+  background: var(--band);
+  color: var(--menubalk);
   border-radius: 2px;
   font-family: "Source Sans 3", Arial, sans-serif;
   font-size: .8rem;
@@ -1317,7 +1368,7 @@ details.bronnen > ol {
 }
 
 .uitgelicht-kaart h2 {
-  margin: 12px 0 10px;
+  margin: 6px 0 10px;
   font-size: clamp(1.5rem, 3vw, 1.875rem);
   line-height: 1.2;
 }
@@ -1325,13 +1376,6 @@ details.bronnen > ol {
 .uitgelicht-kaart:hover h2 {
   color: var(--blue);
   text-decoration: underline;
-}
-
-/* Datum naast de labels van het uitgelichte artikel */
-.uitgelicht-kaart time.datum {
-  color: var(--muted);
-  font-family: "Source Sans 3", Arial, sans-serif;
-  font-size: .75rem;
 }
 
 .uitgelicht-kaart p.uitgelicht-inleiding {
@@ -1663,7 +1707,7 @@ details.bronnen > ol {
 /* ===== MOBIELE TELEFOONS ===== */
 @media (max-width: 800px) {
   .kennis-lijst { grid-template-columns: 1fr; }
-  .uitgelicht-kaart { grid-template-columns: 1fr; gap: 12px; }
+  .uitgelicht-kaart { grid-template-columns: 1fr; gap: 0; }
   /* Artikelpagina op een telefoon: iets kleinere letters (desktop ongewijzigd) */
   .artikelpagina h1 { font-size: 1.75rem; }
   .artikel-inleiding { font-size: 1.2rem; }
@@ -1672,32 +1716,22 @@ details.bronnen > ol {
   /* Foto van het uitgelichte artikel: van schermrand tot schermrand, direct onder de blauwe kop */
   .uitgelicht { padding-top: 0; }
   .uitgelicht-kaart .afbeelding { margin: 0 calc(-1 * var(--kader)); border-radius: 0; }
-  /* Uitgelicht artikel: zelfde indeling als een gewoon kaartje (label en datum, titel, inleiding) */
-  .uitgelicht-kaart .kaart-meta { margin-top: 4px; }
+  /* Uitgelicht artikel: zelfde indeling als een gewoon kaartje (rubriek en datum, titel, inleiding) */
+  .uitgelicht-kaart .kaart-rubriek-regel { margin: 12px 0 0; }
+  .uitgelicht-kaart h2 { margin: 6px 0 8px; }
+  /* Ook de randen van de foto (schermrand tot schermrand) zijn klikbaar */
+  .kaart-link::after { left: calc(-1 * var(--kader)); right: calc(-1 * var(--kader)); }
+  .artikel-home .kaart-link::after { left: 0; right: 0; }
+  /* Rubriek: groter tikgebied op een telefoon */
+  .kaart-rubriek { display: inline-block; padding: 5px 0; }
   /* Terug naar boven rechts in de voettekst, handiger voor rechtshandigen */
   .voettekst-onder p:last-child { margin-left: auto; text-align: right; }
   .tijdlijn-item { grid-template-columns: 1fr; }
   :root { --kader: 14px; }
   main.panel:not(.home) { padding-top: 12px; padding-left: 10px; padding-right: 10px; }
   .grid { grid-template-columns: 1fr; gap: 24px; }
-  /* Per rubriek alleen het eerste artikel tonen */
-  .grid .artikel:nth-child(n+2) { display: none; }
-  .lees-ook .grid .artikel:nth-child(n+2),
-  .alle-artikelen .artikel:nth-child(n+2) { display: block; }
-
-  /* Artikelen per rubriek op de homepage: kaartjes zoals op de desktop, één per rij */
-  /* Knop "Meer in …": bijna zo breed als het vlak. Alle knoppen zijn even breed
-     en hebben dezelfde letterafstand. */
-  .rubriek .meer { margin-top: 14px; }
-  .rubriek .meer a {
-    display: block;
-    padding: 8px 12px;
-    font-size: .95rem;
-    text-align: center;
-    box-sizing: border-box;
-    width: 100%;
-    margin: 0 auto;
-  }
+  /* Nieuw op De Suecofiel: op een telefoon de eerste 3 artikelen, onder elkaar */
+  .home-nieuw .artikel:nth-child(n+4) { display: none; }
   .klank { grid-template-columns: 1fr; }
   .klank .voorbeeld, .klank .deelregel { grid-column: 1; }
   .opmerking .klinkerlijst { padding-left: 0; }
@@ -1875,15 +1909,137 @@ details.bronnen > ol {
   color: var(--white);
   border-radius: 2px;
   line-height: 1.35;
-  letter-spacing: .5px;
 }
 
 /* Homepage en rubriekpagina's: blokje met witruimte onder de foto */
 .kaart-meta { align-items: center; gap: 4px 6px; }
 .artikel .kaart-meta { margin-top: 12px; }
 .kaart-meta .label + .label::before { content: none; }
-.kaart-meta .datum, .uitgelicht-kaart time.datum { margin-left: 4px; }
+.kaart-meta .datum { margin-left: 4px; }
 
 @media (max-width: 800px) {
   .artikel .kaart-meta { margin-top: 16px; }
+}
+
+
+/* ===== AGENDA OP DE HOMEPAGE (links volgende feestdag, rechts eerstvolgende evenementen) ===== */
+.home-agenda-raster {
+  display: grid;
+  grid-template-columns: 2fr 5fr;
+  gap: 32px;
+  align-items: start;
+}
+
+.home-agenda-raster.zonder-feestdag { grid-template-columns: 1fr; }
+
+.home-feestdag {
+  background: var(--blue-dark);
+  color: var(--white);
+  padding: 26px 28px 28px;
+}
+
+.home-feestdag-kopje {
+  margin: 0 0 8px;
+  color: #cfd9e8;
+  font-family: "Source Sans 3", Arial, sans-serif;
+  font-size: .75rem;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.home-feestdag h3 {
+  margin: 0 0 4px;
+  color: var(--white);
+  font-size: 1.6rem;
+  line-height: 1.2;
+}
+
+.home-feestdag-dag { margin: 0 0 12px; font-size: 1.05rem; }
+.home-feestdag-uitleg { margin: 0 0 16px; font-size: .98rem; line-height: 1.5; }
+
+.home-feestdag a {
+  color: var(--white);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.home-feestdag a:hover { text-decoration: underline; }
+
+.home-evenementen-lijst {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.home-evenement {
+  display: grid;
+  grid-template-columns: 170px 1fr;
+  column-gap: 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.home-evenement:first-child { padding-top: 4px; }
+
+.home-evenement-datum {
+  grid-column: 1;
+  grid-row: 1 / span 2;
+  color: var(--blue);
+  font-size: .98rem;
+  font-weight: 700;
+}
+
+.home-evenement h3 {
+  grid-column: 2;
+  grid-row: 1;
+  margin: 0;
+  font-size: 1.15rem;
+  line-height: 1.3;
+}
+
+.home-evenement h3 a {
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.home-evenement h3 a:hover {
+  color: var(--blue);
+  text-decoration: underline;
+}
+
+.home-evenement-plaats {
+  grid-column: 2;
+  grid-row: 2;
+  margin: 2px 0 0;
+  color: var(--muted);
+  font-size: .95rem;
+}
+
+.home-agenda-volledig { margin: 16px 0 0; font-weight: 600; }
+.home-agenda-volledig a { color: var(--blue); text-decoration: none; }
+.home-agenda-volledig a:hover { text-decoration: underline; }
+
+.home-agenda-voorbehoud {
+  margin: 10px 0 0;
+  color: var(--muted);
+  font-family: "Source Sans 3", Arial, sans-serif;
+  font-size: .8rem;
+}
+
+@media (max-width: 800px) {
+  .home-agenda-raster { grid-template-columns: 1fr; gap: 22px; }
+  .home-feestdag { padding: 22px 20px 24px; }
+  /* Evenement: datum en stad op één regel, daaronder de titel */
+  .home-evenement {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 2px 10px;
+    padding: 6px 0;
+  }
+  .home-evenement:first-child { padding-top: 2px; }
+  .home-evenement-datum { order: 1; font-size: .95rem; line-height: 1.35; }
+  .home-evenement-plaats { order: 2; margin: 0; font-size: .9rem; line-height: 1.35; }
+  .home-evenement h3 { order: 3; flex: 0 0 100%; margin: 0; line-height: 1.3; }
 }

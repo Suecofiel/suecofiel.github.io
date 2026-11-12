@@ -1,9 +1,11 @@
 /* ============================================================
    ARTIKELENLIJST VAN DE SUECOFIEL
    Dit is de centrale lijst met alle artikelen. De homepage
-   toont per rubriek automatisch de drie nieuwste artikelen,
-   met het nieuwste artikel vooraan. De zoekbalk doorzoekt
-   deze lijst op elke pagina.
+   toont bovenaan één uitgelicht artikel en daaronder "Nieuw op
+   De Suecofiel": de 3 nieuwste artikelen uit alle rubrieken (bij
+   6 of meer artikelen de 6 nieuwste). Het uitgelichte artikel
+   staat nooit ook in "Nieuw". De zoekbalk doorzoekt deze lijst
+   op elke pagina.
 
    NIEUW ARTIKEL TOEVOEGEN:
    1. Kopieer een blok van { tot en met }, inclusief de komma.
@@ -29,7 +31,8 @@
       url        bestandsnaam van de artikelpagina
       uitgelicht optioneel: zet uitgelicht: true om dit artikel bovenaan
                  de homepage te tonen. Zonder deze regel wordt het
-                 nieuwste artikel automatisch uitgelicht.
+                 nieuwste artikel automatisch uitgelicht. Haal de regel
+                 weg als het artikel niet meer uitgelicht hoeft te zijn.
    De volgorde in deze lijst maakt niet uit: de datum bepaalt
    welk artikel vooraan komt.
    ============================================================ */
@@ -54,26 +57,6 @@ const artikelen = [
   { titel: "De predikant uit Arvika en de lichtjes van Allerheiligen", rubriek: "Cultuur & Tradities", onderwerp: "Tradities", labels: ["Achtergrond"], datum: "2026-10-21",
     inleiding: "Met Alla helgons dag bezoekt ongeveer de helft van de Zweden een begraafplaats. Een opvallend jonge traditie, met een predikant uit Arvika in een onverwachte hoofdrol.",
     afbeelding: "afbeeldingen/alla-helgons-dag.jpg", url: "alla-helgons-dag" },
-
-  // ----- Voorbeeldartikelen: later vervangen door echte artikelen -----
-  { titel: "Voorbeeldartikel Cultuur 2", rubriek: "Cultuur & Tradities", onderwerp: "Design & Architectuur", labels: ["Achtergrond"], datum: "2026-10-09",
-    inleiding: "Een korte inleiding van één of twee zinnen over het artikel.",
-    afbeelding: "", url: "#" },
-  { titel: "Voorbeeldartikel Cultuur 1", rubriek: "Cultuur & Tradities", onderwerp: "Taal & Literatuur", labels: ["Achtergrond"], datum: "2026-10-02",
-    inleiding: "Een korte inleiding van één of twee zinnen over het artikel.",
-    afbeelding: "", url: "#" },
-  { titel: "Voorbeeldartikel Actualiteiten 3", rubriek: "Actualiteiten", onderwerp: "", labels: ["Duiding"], datum: "2026-10-17",
-    inleiding: "Een korte inleiding van één of twee zinnen over het artikel.",
-    afbeelding: "", url: "artikel-sjabloon" },
-  { titel: "Voorbeeldartikel Actualiteiten 2", rubriek: "Actualiteiten", onderwerp: "", labels: ["Duiding", "Zweden & Nederland"], datum: "2026-10-10",
-    inleiding: "Een korte inleiding van één of twee zinnen over het artikel.",
-    afbeelding: "", url: "#" },
-  { titel: "Voorbeeldartikel Samenleving 3", rubriek: "Samenleving", onderwerp: "Geschiedenis", labels: ["Achtergrond"], datum: "2026-10-15",
-    inleiding: "Een korte inleiding van één of twee zinnen over het artikel.",
-    afbeelding: "", url: "#" },
-  { titel: "Voorbeeldartikel Samenleving 2", rubriek: "Samenleving", onderwerp: "Werk & Economie", labels: ["Uitgelegd"], datum: "2026-10-08",
-    inleiding: "Een korte inleiding van één of twee zinnen over het artikel.",
-    afbeelding: "", url: "#" },
 
 ];
 
@@ -159,6 +142,53 @@ function maakKaart(a) {
   return kaart;
 }
 
+// Adres van de rubriekpagina bij elke rubriek
+const rubriekAdressen = {
+  "Actualiteiten": "/actualiteiten",
+  "Cultuur & Tradities": "/cultuur",
+  "Samenleving": "/samenleving"
+};
+
+// Regel boven de titel op de homepage: rubriek (aanklikbaar) en datum
+function maakRubriekRegel(a) {
+  const regel = document.createElement("p");
+  regel.className = "kaart-rubriek-regel";
+  const rubriek = document.createElement("a");
+  rubriek.className = "kaart-rubriek";
+  rubriek.href = rubriekAdressen[a.rubriek] || "/";
+  rubriek.textContent = a.rubriek;
+  const datum = document.createElement("time");
+  datum.dateTime = a.datum;
+  datum.textContent = leesbareDatum(a.datum);
+  regel.append(rubriek, datum);
+  return regel;
+}
+
+// Afbeelding (of grijs vak) voor de homepage-kaarten
+function maakHomeAfbeelding(a) {
+  const beeld = document.createElement("div");
+  beeld.className = "afbeelding";
+  if (a.afbeelding) {
+    const img = document.createElement("img");
+    img.src = siteAdres(a.afbeelding);
+    img.alt = "";
+    beeld.appendChild(img);
+  } else {
+    beeld.textContent = "Afbeelding";
+  }
+  return beeld;
+}
+
+// Titel als link; een onzichtbare laag maakt de hele kaart klikbaar
+function maakTitelLink(a, kop) {
+  const link = document.createElement("a");
+  link.className = "kaart-link";
+  link.href = siteAdres(a.url);
+  link.textContent = a.titel;
+  kop.appendChild(link);
+  return kop;
+}
+
 // Homepage: uitgelicht artikel bovenaan
 // (het nieuwste artikel met uitgelicht: true, anders het nieuwste artikel)
 const uitgelichtVak = document.getElementById("uitgelicht");
@@ -167,65 +197,42 @@ if (uitgelichtVak) {
   uitgelichtArtikel = artikelenOpDatum.find(function (a) { return a.uitgelicht; }) || artikelenOpDatum[0];
   if (uitgelichtArtikel) {
     const a = uitgelichtArtikel;
-    const kaart = document.createElement("a");
+    const kaart = document.createElement("article");
     kaart.className = "uitgelicht-kaart";
-    kaart.href = siteAdres(a.url);
-    const beeld = document.createElement("div");
-    beeld.className = "afbeelding";
-    if (a.afbeelding) {
-      const img = document.createElement("img");
-      img.src = siteAdres(a.afbeelding);
-      img.alt = "";
-      beeld.appendChild(img);
-    } else {
-      beeld.textContent = "Afbeelding";
-    }
     const tekst = document.createElement("div");
-    const meta = document.createElement("p");
-    meta.className = "kaart-meta";
-    (a.labels || []).forEach(function (l) {
-      const label = document.createElement("span");
-      label.className = "label";
-      label.textContent = l;
-      meta.appendChild(label);
-    });
-    // Datum naast de labels, zoals bij de gewone kaartjes
-    const datum = document.createElement("time");
-    datum.className = "datum";
-    datum.dateTime = a.datum;
-    datum.textContent = leesbareDatum(a.datum);
-    meta.appendChild(datum);
-    const kop = document.createElement("h2");
-    kop.textContent = a.titel;
     const inl = document.createElement("p");
     inl.className = "uitgelicht-inleiding";
     inl.textContent = a.inleiding;
-    tekst.append(meta, kop, inl);
-    kaart.append(beeld, tekst);
+    tekst.append(maakRubriekRegel(a), maakTitelLink(a, document.createElement("h2")), inl);
+    kaart.append(maakHomeAfbeelding(a), tekst);
     uitgelichtVak.appendChild(kaart);
   } else {
     uitgelichtVak.closest(".uitgelicht").hidden = true;
   }
 }
 
-// Homepage: per rubriek de drie nieuwste artikelen.
-// Het uitgelichte artikel wordt overgeslagen, behalve als de rubriek
-// anders minder dan drie artikelen zou tonen.
-document.querySelectorAll(".grid[data-rubriek]").forEach(function (grid) {
-  const rubriek = grid.getAttribute("data-rubriek");
-  const inRubriek = artikelenOpDatum.filter(function (a) { return a.rubriek === rubriek; });
-  const zonderUitgelicht = inRubriek.filter(function (a) { return a !== uitgelichtArtikel; });
-  const lijst = (zonderUitgelicht.length >= 3 ? zonderUitgelicht : inRubriek).slice(0, 3);
+// Homepage: "Nieuw op De Suecofiel": de nieuwste artikelen uit alle rubrieken,
+// zonder het uitgelichte artikel. Altijd volle rijen van 3: bij 3, 4 of 5
+// artikelen staan er 3, vanaf 6 artikelen staan er 6.
+const nieuwRaster = document.getElementById("nieuw-raster");
+if (nieuwRaster) {
+  const kandidaten = artikelenOpDatum.filter(function (a) { return a !== uitgelichtArtikel; });
+  let aantal = Math.min(6, kandidaten.length);
+  if (aantal > 3) { aantal = Math.floor(aantal / 3) * 3; }
 
-  if (lijst.length === 0) {
-    const leeg = document.createElement("p");
-    leeg.className = "leeg";
-    leeg.textContent = "Binnenkort verschijnen hier de eerste artikelen.";
-    grid.appendChild(leeg);
-    return;
+  if (aantal === 0) {
+    nieuwRaster.closest("section").hidden = true;
+  } else {
+    kandidaten.slice(0, aantal).forEach(function (a) {
+      const kaart = document.createElement("article");
+      kaart.className = "artikel artikel-home";
+      const inl = document.createElement("p");
+      inl.textContent = a.inleiding;
+      kaart.append(maakHomeAfbeelding(a), maakRubriekRegel(a), maakTitelLink(a, document.createElement("h3")), inl);
+      nieuwRaster.appendChild(kaart);
+    });
   }
-  lijst.forEach(function (a) { grid.appendChild(maakKaart(a)); });
-});
+}
 
 // Van een onderwerp een adres maken: "Werk & Economie" wordt "werk-en-economie"
 function onderwerpAdres(tekst) {
