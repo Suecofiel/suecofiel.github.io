@@ -1948,11 +1948,11 @@ details.bronnen > ol {
 .home-feestdag {
   background: var(--blue-dark);
   color: var(--white);
-  padding: 26px 28px 28px;
+  padding: 21px 25px 24px;
 }
 
 .home-feestdag-kopje {
-  margin: 0 0 8px;
+  margin: 0 0 16px;
   color: #cfd9e8;
   font-family: "Source Sans 3", Arial, sans-serif;
   font-size: .75rem;
@@ -1962,14 +1962,14 @@ details.bronnen > ol {
 }
 
 .home-feestdag h3 {
-  margin: 0 0 4px;
+  margin: 0 0 1px;
   color: var(--white);
   font-size: 1.6rem;
   line-height: 1.2;
 }
 
-.home-feestdag-dag { margin: 0 0 16px; color: #cfd9e8; font-size: .95rem; }
-.home-feestdag-uitleg { margin: 0 0 16px; font-size: .98rem; line-height: 1.5; }
+.home-feestdag-dag { margin: 0 0 17px; color: #cfd9e8; font-size: .95rem; }
+.home-feestdag-uitleg { margin: 0 0 18px; font-size: .98rem; line-height: 1.5; }
 
 .home-feestdag a {
   color: var(--white);
@@ -2047,16 +2047,16 @@ details.bronnen > ol {
 
 @media (max-width: 800px) {
   .home-agenda-raster { grid-template-columns: 1fr; gap: 22px; }
-  .home-feestdag { padding: 22px 20px 24px; }
+  .home-feestdag { padding: 17px 20px 20px; }
   /* Evenement: datum en stad op één regel, daaronder de titel */
   .home-evenement {
     display: flex;
     flex-wrap: wrap;
     align-items: baseline;
-    gap: 2px 10px;
-    padding: 6px 0;
+    gap: 4px 10px;
+    padding: 12px 0 10px;
   }
-  .home-evenement:first-child { padding-top: 2px; }
+  .home-evenement:first-child { padding-top: 6px; }
   .home-evenement-datum { order: 1; font-size: .95rem; line-height: 1.35; }
   /* Label en stad komen op de regel van de datum: datum · label stad */
   .home-evenement-meta { display: contents; }
@@ -2064,4 +2064,12 @@ details.bronnen > ol {
   .home-plaats-volledig { display: none; }
   .home-plaats-stad { display: inline; order: 3; color: var(--muted); font-size: .9rem; line-height: 1.35; }
   .home-evenement h3 { order: 4; flex: 0 0 100%; margin: 0; line-height: 1.3; }
+}
+
+/* Uitgelicht artikel op desktop: rubriek-en-datumregel iets groter */
+@media (min-width: 801px) {
+  .uitgelicht-kaart .kaart-rubriek { font-size: 1rem; }
+  .uitgelicht-kaart .kaart-rubriek-regel { gap: 2px 10px; padding-left: 1px; }
+  .uitgelicht-kaart .kaart-rubriek-regel time { font-size: .875rem; }
+  .uitgelicht-kaart .kaart-rubriek-regel time::before { margin-right: 10px; }
 }
