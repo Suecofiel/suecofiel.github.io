@@ -1968,7 +1968,7 @@ details.bronnen > ol {
   line-height: 1.2;
 }
 
-.home-feestdag-dag { margin: 0 0 12px; font-size: 1.05rem; }
+.home-feestdag-dag { margin: 0 0 16px; color: #cfd9e8; font-size: .95rem; }
 .home-feestdag-uitleg { margin: 0 0 16px; font-size: .98rem; line-height: 1.5; }
 
 .home-feestdag a {
