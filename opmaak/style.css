@@ -955,19 +955,23 @@ footer li a {
 }
 
 .artikelpagina h1 {
-  margin: 12px 0 14px;
+  margin: 12px 0 17px;
   font-size: clamp(1.9rem, 3.5vw, 2.4rem);
   line-height: 1.15;
 }
 
 .artikel-inleiding {
-  margin: 0 0 14px;
+  margin: 0 0 22px;
   font-size: 1.2rem;
   line-height: 1.5;
 }
 
 .artikel-meta {
-  margin: 0 0 22px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 6px;
+  margin: 0 0 16px;
   color: var(--muted);
   font-family: "Source Sans 3", Arial, sans-serif;
   font-size: .85rem;
@@ -1902,7 +1906,7 @@ details.bronnen > ol {
   margin: 0;
 }
 
-.artikel-labels .label,
+.artikel-meta .label,
 .kaart-meta .label {
   padding: 1px 6px;
   background: var(--blue);
@@ -1913,12 +1917,21 @@ details.bronnen > ol {
 
 /* Homepage en rubriekpagina's: blokje met witruimte onder de foto */
 .kaart-meta { align-items: center; gap: 4px 6px; }
-.artikel .kaart-meta { margin-top: 12px; }
+.artikel .kaart-meta { margin: 10px 0 11px; }
+.artikel > .afbeelding + h3 { margin-top: 12px; }
 .kaart-meta .label + .label::before { content: none; }
-.kaart-meta .datum { margin-left: 4px; }
+.kaart-meta .datum,
+.artikel-meta > time { margin-left: 4px; }
+.artikel-meta .gewijzigd { margin-left: 0; }
 
 @media (max-width: 800px) {
-  .artikel .kaart-meta { margin-top: 16px; }
+  .artikel .kaart-meta { margin: 10px 0 10px; }
+  .artikel > .afbeelding + h3 { margin-top: 16px; }
+  /* Artikelpagina mobiel: als er een bijwerkdatum is, staat de hele datumregel onder de labels */
+  .artikel-meta:has(.gewijzigd)::after { content: ""; order: 1; flex-basis: 100%; height: 0; }
+  .artikel-meta:has(.gewijzigd) > time,
+  .artikel-meta:has(.gewijzigd) > .gewijzigd { order: 2; }
+  .artikel-meta:has(.gewijzigd) > time { margin-left: 0; }
 }
 
 
@@ -2008,13 +2021,18 @@ details.bronnen > ol {
   text-decoration: underline;
 }
 
-.home-evenement-plaats {
+.home-evenement-meta {
   grid-column: 2;
   grid-row: 2;
-  margin: 2px 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2px 8px;
+  margin: 4px 0 0;
   color: var(--muted);
-  font-size: .95rem;
+  font-size: .9rem;
 }
+.home-plaats-stad { display: none; }
 
 .home-agenda-volledig { margin: 16px 0 0; font-weight: 600; }
 .home-agenda-volledig a { color: var(--blue); text-decoration: none; }
@@ -2040,6 +2058,10 @@ details.bronnen > ol {
   }
   .home-evenement:first-child { padding-top: 2px; }
   .home-evenement-datum { order: 1; font-size: .95rem; line-height: 1.35; }
-  .home-evenement-plaats { order: 2; margin: 0; font-size: .9rem; line-height: 1.35; }
-  .home-evenement h3 { order: 3; flex: 0 0 100%; margin: 0; line-height: 1.3; }
+  /* Label en stad komen op de regel van de datum: datum · label stad */
+  .home-evenement-meta { display: contents; }
+  .home-evenement-meta .typelabel { order: 2; align-self: center; }
+  .home-plaats-volledig { display: none; }
+  .home-plaats-stad { display: inline; order: 3; color: var(--muted); font-size: .9rem; line-height: 1.35; }
+  .home-evenement h3 { order: 4; flex: 0 0 100%; margin: 0; line-height: 1.3; }
 }

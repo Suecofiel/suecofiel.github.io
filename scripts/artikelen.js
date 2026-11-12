@@ -138,7 +138,7 @@ function maakKaart(a) {
   const tekst = document.createElement("p");
   tekst.textContent = a.inleiding;
 
-  kaart.append(beeld, meta, kop, tekst);
+  kaart.append(beeld, kop, meta, tekst);
   return kaart;
 }
 

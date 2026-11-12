@@ -36,14 +36,17 @@ menu: "actualiteiten"
           </ol>
         </nav>
 
-        <!-- AANPASSEN: label(s), die als blauw blokje boven de titel komen.
-             Labels: Achtergrond, Duiding, Uitgelegd, Interview, Recensie, Zweden &amp; Nederland -->
-        <p class="artikel-labels">
-          <span class="label">Duiding</span>
-        </p>
-
         <!-- AANPASSEN: titel van het artikel -->
         <h1>Titel van het artikel</h1>
+
+        <!-- AANPASSEN: label(s) en publicatiedatum staan samen op één regel onder de titel.
+             Labels: Achtergrond, Duiding, Uitgelegd, Interview, Boeken, Zweden &amp; Nederland.
+             Bij twee of meer labels mag je ze naast elkaar zetten. -->
+        <p class="artikel-meta">
+          <span class="label">Duiding</span>
+          <time datetime="2026-10-17">17 okt 2026</time>
+          <!-- <span class="gewijzigd">· Bijgewerkt: <time datetime="2026-10-18T14:05+02:00">18 okt 2026 om 14:05</time></span> -->
+        </p>
 
         <!-- AANPASSEN: inleiding van één tot drie zinnen -->
         <p class="artikel-inleiding">
@@ -55,10 +58,6 @@ menu: "actualiteiten"
              Bij elke latere wijziging: zet de regel "Bijgewerkt" erbij of werk hem bij
              (datetime = jaar-maand-dagTuur:minuut+02:00 in de zomer, +01:00 in de winter).
              Een auteursnaam is optioneel, bijvoorbeeld: Door Voornaam Achternaam · -->
-        <p class="artikel-meta">
-          <time datetime="2026-10-17">17 okt 2026</time>
-          <!-- <span class="gewijzigd">· Bijgewerkt: <time datetime="2026-10-18T14:05+02:00">18 okt 2026 om 14:05</time></span> -->
-        </p>
 
         <!-- AANPASSEN: hoofdfoto met bijschrift.
              Heb je een foto? Upload die naar de map afbeeldingen en vervang de regel

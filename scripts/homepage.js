@@ -36,7 +36,8 @@
 
     const kopje = document.createElement("p");
     kopje.className = "home-feestdag-kopje";
-    kopje.textContent = "Volgende feestdag";
+    const vandaagTekst = vandaagDatum().getTime() === maakDatum(feestdag.datum).getTime();
+    kopje.textContent = vandaagTekst ? "Vandaag" : "Volgende feestdag of traditie";
 
     const naam = document.createElement("h3");
     naam.textContent = feestdag.titel;
@@ -57,7 +58,7 @@
 
     const link = document.createElement("a");
     link.href = "/feestdagen";
-    link.textContent = "Alle Zweedse feestdagen →";
+    link.textContent = "Alle Zweedse feestdagen en tradities →";
     blok.appendChild(link);
 
     vak.appendChild(blok);
@@ -95,13 +96,29 @@
       titelLink.textContent = e.titel;
       titel.appendChild(titelLink);
 
-      // Alleen de stad (het deel van "plaats" voor de eerste komma)
-      const plaats = document.createElement("p");
-      plaats.className = "home-evenement-plaats";
-      plaats.textContent = (e.plaats || "").split(",")[0].trim();
+      // Onder de titel: label (soort evenement) en de volledige plaats; op mobiel staan
+      // label en alleen de stad op de regel bij de datum (CSS bepaalt wat zichtbaar is)
+      const meta = document.createElement("p");
+      meta.className = "home-evenement-meta";
+      if (e.soort) {
+        const label = document.createElement("span");
+        label.className = "typelabel";
+        label.textContent = e.soort;
+        meta.appendChild(label);
+      }
+      const plaatsVolledig = (e.plaats || "").trim();
+      if (plaatsVolledig) {
+        const volledigPlaats = document.createElement("span");
+        volledigPlaats.className = "home-plaats-volledig";
+        volledigPlaats.textContent = plaatsVolledig;
+        const stad = document.createElement("span");
+        stad.className = "home-plaats-stad";
+        stad.textContent = plaatsVolledig.split(",")[0].trim();
+        meta.append(volledigPlaats, stad);
+      }
 
       item.append(datum, titel);
-      if (plaats.textContent) { item.appendChild(plaats); }
+      if (meta.childNodes.length) { item.appendChild(meta); }
       lijst.appendChild(item);
     });
     rechts.appendChild(lijst);
