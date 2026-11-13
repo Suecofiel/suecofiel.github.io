@@ -147,6 +147,7 @@ if (menuknop && hoofdmenu) {
    Bank (ECB) op via de gratis dienst Frankfurter. De ECB werkt
    deze koers elke werkdag rond 16.00 uur bij.
    Lukt het ophalen niet, dan verschijnt het blokje gewoon niet.
+   De koers staat in de voettekst (mobiel) en in de band op de homepage (desktop).
    ============================================================ */
 (function () {
   const kolommen = document.querySelector(".voettekst-kolommen");
@@ -177,32 +178,19 @@ if (menuknop && hoofdmenu) {
     return parseFloat(String(tekst).replace(/\s/g, "").replace(/\./g, "").replace(",", "."));
   }
 
-  haalKoers(0).then(function (data) {
-    const koers = data && data.rates && data.rates.SEK;
-    if (!koers || typeof koers !== "number" || !data.date) { return; }
+  // Het invoerblok (EUR en SEK) komt zowel in de voettekst (mobiel) als in de band op de homepage (desktop)
+  function rekenHtml() {
+    return '<div class="koers-reken">' +
+      '<label><span>EUR</span><input type="text" inputmode="decimal" class="koers-eur" value="10" aria-label="Bedrag in euro"></label>' +
+      '<span class="koers-pijl" aria-hidden="true">⇄</span>' +
+      '<label><span>SEK</span><input type="text" inputmode="decimal" class="koers-sek" aria-label="Bedrag in Zweedse kronor"></label>' +
+      '</div>';
+  }
 
-    const d = data.date.split("-").map(Number);
-    const datum = new Date(d[0], d[1] - 1, d[2])
-      .toLocaleDateString("nl-NL", { day: "numeric", month: "long", year: "numeric" });
-
-    const blok = document.createElement("div");
-    blok.className = "voettekst-koers";
-    blok.innerHTML =
-      '<h2>Wisselkoers</h2>' +
-      '<p class="koers-regel">1 euro = <strong>' + getal(koers, 2) + '</strong> kronor</p>' +
-      '<p class="koers-regel">1 krona = <strong>' + getal(1 / koers, 3) + '</strong> euro</p>' +
-      '<div class="koers-reken">' +
-        '<label><span>EUR</span><input type="text" inputmode="decimal" id="koers-eur" value="10" aria-label="Bedrag in euro"></label>' +
-        '<span class="koers-pijl" aria-hidden="true">⇄</span>' +
-        '<label><span>SEK</span><input type="text" inputmode="decimal" id="koers-sek" aria-label="Bedrag in Zweedse kronor"></label>' +
-      '</div>' +
-      '<p class="koers-bron">ECB-referentiekoers van ' + datum + '</p>';
-    kolommen.appendChild(blok);
-
-    const eur = document.getElementById("koers-eur");
-    const sek = document.getElementById("koers-sek");
+  function koppelRekenaar(blok, koers) {
+    const eur = blok.querySelector(".koers-eur");
+    const sek = blok.querySelector(".koers-sek");
     sek.value = getal(10 * koers, 2);
-
     eur.addEventListener("input", function () {
       const w = leesGetal(eur.value);
       sek.value = isNaN(w) ? "" : getal(w * koers, 2);
@@ -211,5 +199,43 @@ if (menuknop && hoofdmenu) {
       const w = leesGetal(sek.value);
       eur.value = isNaN(w) ? "" : getal(w / koers, 2);
     });
-  }).catch(function () { /* geen koers: blokje blijft weg */ });
+  }
+
+  const band = document.getElementById("band");
+  const bandKoers = document.getElementById("home-koers");
+
+  haalKoers(0).then(function (data) {
+    const koers = data && data.rates && data.rates.SEK;
+    if (!koers || typeof koers !== "number" || !data.date) { throw new Error("geen koers"); }
+
+    const d = data.date.split("-").map(Number);
+    const datum = new Date(d[0], d[1] - 1, d[2])
+      .toLocaleDateString("nl-NL", { day: "numeric", month: "long", year: "numeric" });
+    const bron = '<p class="koers-bron">ECB-referentiekoers van ' + datum + '</p>';
+
+    // Voettekst (zichtbaar op mobiel, op alle pagina's)
+    const blok = document.createElement("div");
+    blok.className = "voettekst-koers";
+    blok.innerHTML =
+      '<h2>Wisselkoers</h2>' +
+      '<div class="koers-regels">' +
+        '<p class="koers-regel">1 euro = <strong>' + getal(koers, 2) + '</strong> kronor</p>' +
+        '<p class="koers-regel">1 krona = <strong>' + getal(1 / koers, 3) + '</strong> euro</p>' +
+      '</div>' + rekenHtml() + bron;
+    kolommen.appendChild(blok);
+    koppelRekenaar(blok, koers);
+
+    // Band op de homepage (zichtbaar op desktop)
+    if (bandKoers) {
+      bandKoers.innerHTML = '<p class="home-koers-kopje">Wisselkoers</p>' + rekenHtml() + bron;
+      bandKoers.hidden = false;
+      koppelRekenaar(bandKoers, koers);
+      if (band) { band.dataset.koers = "ja"; }
+    }
+  }).catch(function () {
+    /* geen koers: de blokjes blijven weg */
+    if (band) { band.dataset.koers = "nee"; }
+  }).then(function () {
+    if (typeof bandBijwerken === "function") { bandBijwerken(); }
+  });
 })();

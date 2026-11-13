@@ -24,3 +24,25 @@ menu: "home"
         <div class="home-agenda-raster" id="home-agenda"></div>
       </section>
 
+      <!-- ===== BAND: BEGRIP VAN DE DAG, NAAMDAG EN WISSELKOERS (automatisch via homepage.js en zoeken.js) ===== -->
+      <section class="home-blok home-band" id="band" aria-label="Begrip van de dag, naamdag en wisselkoers" data-kb="wacht" data-koers="wacht" hidden>
+        <div class="home-band-raster" id="band-raster">
+          <article class="home-kb" id="home-kb" hidden>
+            <p class="home-kb-kopje">Begrip van de dag</p>
+            <h3><em lang="sv" id="kb-term"></em></h3>
+            <p class="home-kb-tekst" id="kb-tekst"></p>
+            <div class="home-kb-onder">
+              <p class="home-kb-ook" id="kb-ook" hidden></p>
+              <a class="home-kb-naar" href="/kennisbank">Naar de kennisbank →</a>
+            </div>
+          </article>
+          <div class="home-band-rechts">
+            <div class="home-naamdag" id="home-naamdag" hidden>
+              <p class="home-naamdag-kopje" id="naamdag-kopje"></p>
+              <h3 id="naamdag-naam"></h3>
+              <a href="/naamdagen">Alle naamdagen van het jaar →</a>
+            </div>
+            <div class="home-koers" id="home-koers" hidden></div>
+          </div>
+        </div>
+      </section>
