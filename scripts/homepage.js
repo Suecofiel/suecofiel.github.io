@@ -149,6 +149,8 @@
      kennisbank.html. Nieuwe kennisbankpagina's doen vanzelf mee.
    - Naamdag: gegevens uit scripts/naamdagen.js. Bestaat dat bestand
      (nog) niet of staat de dag er niet in, dan blijft het kaartje weg.
+     Staat de dag er met een lege lijst in (dagen zonder naam), dan
+     toont het kaartje "Geen naamdag".
      Het bestand moet dan in _layouts/standaard.html staan, vóór homepage.js.
        const naamdagen = { "11-13": ["Hugo", "Humbert"], ... };   // "maand-dag"
    - De wisselkoers in de band wordt gevuld door zoeken.js.
@@ -235,10 +237,10 @@ function bandBijwerken() {
     const sleutel = ("0" + (v.getMonth() + 1)).slice(-2) + "-" + ("0" + v.getDate()).slice(-2);
     let namen = naamdagen[sleutel];
     if (typeof namen === "string") { namen = [namen]; }
-    if (namen && namen.length) {
+    if (namen) {
       document.getElementById("naamdag-kopje").textContent =
         "Naamdag vandaag · " + v.toLocaleDateString("nl-NL", { day: "numeric", month: "long" });
-      document.getElementById("naamdag-naam").textContent = namen.join(" & ");
+      document.getElementById("naamdag-naam").textContent = namen.length ? namen.join(" & ") : "Geen naamdag";
       naamdag.hidden = false;
     }
   }

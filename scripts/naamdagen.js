@@ -12,7 +12,7 @@
    officiële lijst, dus niet de uitgebreide lijst met verwante namen.
    Per dag staan de namen alfabetisch. Dagen zonder persoonsnaam (1 januari,
    2 februari, 29 februari, 25 maart, 24 juni, 1 november en 25 december)
-   hebben een lege lijst: dan toont de homepage geen naamdagkaartje.
+   hebben een lege lijst: dan toont het kaartje op de homepage "Geen naamdag".
 
    NOOT: William (6 april), Sam (1 september), Saga (8 maart) en Ronja
    (14 september) staan in de tabel van de Academie als "Nej" (niet in de
