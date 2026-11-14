@@ -152,7 +152,8 @@
        const naamdagen = { "11-13": ["Hugo", "Humbert"], ... };   // "maand-dag"
    - Begrip van de dag: elke dag een ander begrip uit begrippen.html
      (alle begrippen komen om de beurt aan bod). De uitleg wordt na
-     drie regels afgekapt; het hele kaartje is een link naar het begrip.
+     twee regels (tot en met 1000 px) of drie regels (daarboven) afgekapt; het hele
+     kaartje is een link naar het begrip.
    Lukt er niets van, dan verdwijnt de zijkolom en staat "Nieuw op
    De Suecofiel" weer over de volle breedte.
    Hier hoef je niets aan te passen.
@@ -171,6 +172,8 @@
     while (ggd(stap, aantal) !== 1) { stap++; }
     return (dag * stap) % aantal;
   }
+  // Begrip van de dag: tot en met 1000 px (kaartje onder de artikelen) maximaal 2 regels, daarboven 3
+  function begripRegels() { return window.matchMedia("(max-width: 1000px)").matches ? 2 : 3; }
   function esc(t) { return t.replace(/&/g, "&amp;").replace(/</g, "&lt;"); }
 
   // Zet de zijkolom zichtbaar of weg, afhankelijk van wat er gelukt is
@@ -216,7 +219,7 @@
     document.getElementById("vd-link").href = "/begrippen#" + b.id;
     document.getElementById("vd-begrip").hidden = false;
     kolomBijwerken();
-    registreerKap(document.getElementById("vd-tekst"), 3, esc(b.querySelector("dd:not(.letterlijk)").textContent.trim()), "");
+    registreerKap(document.getElementById("vd-tekst"), begripRegels, esc(b.querySelector("dd:not(.letterlijk)").textContent.trim()), "");
   }).catch(function () { /* geen begrip: de zijkolom toont alleen wat er wel is */ });
 })();
 
@@ -225,12 +228,13 @@
    TEKST AFKAPPEN OP EEN HEEL WOORD
    - Inleidingen van de kaartjes bij "Nieuw op De Suecofiel": maximaal 3 regels
    - Beschrijving van de volgende feestdag: op mobiel maximaal 3 regels
-   - Uitleg in het kaartje "Begrip van de dag" (zijkolom): maximaal 3 regels
+   - Uitleg in het kaartje "Begrip van de dag" (zijkolom): maximaal 2 regels tot en met 1000 px, daarboven 3
    De tekst wordt na de laatste regel afgekapt met "…". Bij een andere schermbreedte
    (draaien van de telefoon, venster vergroten) wordt het opnieuw berekend.
    ============================================================ */
 const kapLijst = [];
 
+// Het aantal regels mag ook een functie zijn (wordt bij elke berekening opnieuw gevraagd)
 function registreerKap(el, regels, origineel, staart, alleenMobiel) {
   if (!el) { return; }
   const item = {
@@ -247,7 +251,7 @@ function registreerKap(el, regels, origineel, staart, alleenMobiel) {
 function pasKap(item) {
   item.el.innerHTML = item.orig;
   if (item.alleenMobiel && !window.matchMedia("(max-width: 800px)").matches) { return; }
-  kapAf(item.el, item.regels, item.staart);
+  kapAf(item.el, typeof item.regels === "function" ? item.regels() : item.regels, item.staart);
 }
 
 function kapAf(el, regels, staart) {
