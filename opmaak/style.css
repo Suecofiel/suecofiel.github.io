@@ -2183,3 +2183,36 @@ details.bronnen > ol {
   .voettekst-koers .koers-regels { grid-template-columns: 1fr; }
   .voettekst-kolommen nav h2 { display: flex; align-items: flex-end; line-height: 1.3; min-height: 2.6em; }
 }
+
+
+/* ============================================================
+   ZWEEDSE NAAMDAGEN (naamdagen.html, lijst gevuld door scripts/naamdagen.js)
+   ============================================================ */
+/* Tekst: tussenkoppen zonder lijntje, zoals bij de artikelen */
+.naamdagen-tekst h2 {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+/* Lijst: de maanden staan naast elkaar (3, 2 of 1 kolom, afhankelijk van de breedte) */
+.naamdagen-maanden {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 8px 32px;
+  align-items: start;
+}
+
+.naamdagen-maand .agenda-maand {
+  margin: 22px 0 6px;
+}
+
+.naamdagen-maand .klank {
+  grid-template-columns: 3.3em 1fr;
+  gap: 0 10px;
+  padding: 6px 0;
+  border-bottom: 0;
+}
+
+.naamdagen-maand .klank dt {
+  font-size: 1rem;
+}

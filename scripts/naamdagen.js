@@ -409,12 +409,21 @@ const naamdagen = {
   const kort = ["jan", "feb", "mrt", "apr", "mei", "jun", "jul", "aug", "sep", "okt", "nov", "dec"];
   const sleutels = Object.keys(naamdagen).sort();
 
+  // De maanden staan in een raster: 3, 2 of 1 naast elkaar, afhankelijk van de breedte (zie style.css)
+  const raster = document.createElement("div");
+  raster.className = "naamdagen-maanden";
+  lijst.appendChild(raster);
+
   maanden.forEach(function (maandnaam, m) {
+    const blok = document.createElement("div");
+    blok.className = "naamdagen-maand";
+    raster.appendChild(blok);
+
     const kop = document.createElement("h2");
     kop.className = "agenda-maand";
     kop.id = maandnaam.toLowerCase();
     kop.textContent = maandnaam;
-    lijst.appendChild(kop);
+    blok.appendChild(kop);
 
     const dl = document.createElement("dl");
     dl.className = "klanken";
@@ -436,6 +445,6 @@ const naamdagen = {
       rij.appendChild(dd);
       dl.appendChild(rij);
     });
-    lijst.appendChild(dl);
+    blok.appendChild(dl);
   });
 })();
