@@ -402,6 +402,9 @@ const naamdagen = {
 };
 
 // ----- De lijst op de pagina naamdagen.html -----
+// Opbouw: 4 kwartalen (details), elk met 3 maanden (details). Wat inklapbaar is, hangt af van de breedte:
+//  - breed scherm: de kwartalen klappen in/uit (het huidige kwartaal staat open), de maanden staan altijd open
+//  - smal scherm: de maanden klappen in/uit (de huidige maand staat open), de kwartalen zijn niet te zien
 (function () {
   const lijst = document.getElementById("naamdagen-lijst");
   if (!lijst) { return; }
@@ -411,72 +414,95 @@ const naamdagen = {
   const kort = ["jan", "feb", "mrt", "apr", "mei", "jun", "jul", "aug", "sep", "okt", "nov", "dec"];
   const sleutels = Object.keys(naamdagen).sort();
 
-  // De maanden staan in een raster: 3, 2 of 1 naast elkaar, afhankelijk van de breedte (zie style.css)
-  const raster = document.createElement("div");
-  raster.className = "naamdagen-maanden";
-  lijst.appendChild(raster);
-
-  // Elke maand is een inklapbaar blok (details). Zie zetOpen hieronder voor wanneer ze openstaan.
+  const kwartalen = [];
   const blokken = [];
-  maanden.forEach(function (maandnaam, m) {
-    const blok = document.createElement("details");
-    blok.className = "naamdagen-maand";
+  for (let k = 0; k < 4; k++) {
+    const kwartaal = document.createElement("details");
+    kwartaal.className = "naamdagen-kwartaal";
+    const kwartaalKop = document.createElement("summary");
+    kwartaalKop.textContent = maanden[k * 3] + " \u2013 " + maanden[k * 3 + 2].toLowerCase();
+    kwartaal.appendChild(kwartaalKop);
+    // De maanden staan in een raster: 3, 2 of 1 naast elkaar, afhankelijk van de breedte (zie style.css)
+    const raster = document.createElement("div");
+    raster.className = "naamdagen-maanden";
+    kwartaal.appendChild(raster);
+    lijst.appendChild(kwartaal);
+    kwartalen.push(kwartaal);
 
-    const samenvatting = document.createElement("summary");
-    const kop = document.createElement("h2");
-    kop.className = "agenda-maand";
-    kop.id = maandnaam.toLowerCase();
-    kop.textContent = maandnaam;
-    samenvatting.appendChild(kop);
-    blok.appendChild(samenvatting);
+    for (let m = k * 3; m < k * 3 + 3; m++) {
+      const blok = document.createElement("details");
+      blok.className = "naamdagen-maand";
 
-    const dl = document.createElement("dl");
-    dl.className = "klanken";
-    sleutels.forEach(function (sleutel) {
-      if (parseInt(sleutel.slice(0, 2), 10) !== m + 1) { return; }
-      const namen = naamdagen[sleutel];
-      const rij = document.createElement("div");
-      rij.className = "klank";
-      const dt = document.createElement("dt");
-      dt.textContent = parseInt(sleutel.slice(3), 10) + " " + kort[m];
-      const dd = document.createElement("dd");
-      if (namen.length) {
-        dd.lang = "sv";
-        dd.textContent = namen.join(", ");
-      } else {
-        dd.className = "geen";
-        dd.textContent = "geen naamdag";
-      }
-      rij.appendChild(dt);
-      rij.appendChild(dd);
-      dl.appendChild(rij);
-    });
-    blok.appendChild(dl);
-    raster.appendChild(blok);
-    blokken.push(blok);
-  });
+      const samenvatting = document.createElement("summary");
+      const kop = document.createElement("h2");
+      kop.className = "agenda-maand";
+      kop.id = maanden[m].toLowerCase();
+      kop.textContent = maanden[m];
+      samenvatting.appendChild(kop);
+      blok.appendChild(samenvatting);
 
-  // Breed scherm (801 px of meer, zoals in style.css): alle maanden open en niet inklapbaar.
-  // Smal scherm: alleen de huidige maand staat open, de rest klapt de lezer zelf open.
+      const dl = document.createElement("dl");
+      dl.className = "klanken";
+      sleutels.forEach(function (sleutel) {
+        if (parseInt(sleutel.slice(0, 2), 10) !== m + 1) { return; }
+        const namen = naamdagen[sleutel];
+        const rij = document.createElement("div");
+        rij.className = "klank";
+        const dt = document.createElement("dt");
+        dt.textContent = parseInt(sleutel.slice(3), 10) + " " + kort[m];
+        const dd = document.createElement("dd");
+        if (namen.length) {
+          dd.lang = "sv";
+          dd.textContent = namen.join(", ");
+        } else {
+          dd.className = "geen";
+          dd.textContent = "geen naamdag";
+        }
+        rij.appendChild(dt);
+        rij.appendChild(dd);
+        dl.appendChild(rij);
+      });
+      blok.appendChild(dl);
+      raster.appendChild(blok);
+      blokken.push(blok);
+    }
+  }
+
+  // Breed scherm = 801 px of meer, zoals in style.css
   const breed = window.matchMedia("(min-width: 801px)");
   const huidigeMaand = (typeof vandaagDatum === "function" ? vandaagDatum() : new Date()).getMonth();
   function zetOpen() {
-    blokken.forEach(function (blok, m) { blok.open = breed.matches || m === huidigeMaand; });
+    kwartalen.forEach(function (kwartaal, k) {
+      kwartaal.open = !breed.matches || k === Math.floor(huidigeMaand / 3);
+    });
+    blokken.forEach(function (blok, m) {
+      blok.open = breed.matches || m === huidigeMaand;
+    });
   }
   zetOpen();
   if (breed.addEventListener) { breed.addEventListener("change", zetOpen); }
   else if (breed.addListener) { breed.addListener(zetOpen); }
+
+  // Wat op dit moment niet inklapbaar is, blijft open
+  kwartalen.forEach(function (kwartaal) {
+    kwartaal.querySelector("summary").addEventListener("click", function (e) {
+      if (!breed.matches) { e.preventDefault(); }
+    });
+  });
   blokken.forEach(function (blok) {
     blok.querySelector("summary").addEventListener("click", function (e) {
       if (breed.matches) { e.preventDefault(); }
     });
   });
 
-  // Een link naar een maand (bijvoorbeeld /naamdagen#maart) klapt die maand open
+  // Een link naar een maand (bijvoorbeeld /naamdagen#maart) klapt die maand en dat kwartaal open
   function openMaandUitAdres() {
     const el = location.hash.length > 1 && document.getElementById(decodeURIComponent(location.hash.slice(1)));
     const blok = el && el.closest(".naamdagen-maand");
-    if (blok && !blok.open) { blok.open = true; el.scrollIntoView(); }
+    if (!blok) { return; }
+    blok.open = true;
+    blok.closest(".naamdagen-kwartaal").open = true;
+    el.scrollIntoView();
   }
   window.addEventListener("hashchange", openMaandUitAdres);
   openMaandUitAdres();
