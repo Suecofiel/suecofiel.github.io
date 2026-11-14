@@ -2202,8 +2202,58 @@ details.bronnen > ol {
   align-items: start;
 }
 
-.naamdagen-maand .agenda-maand {
+/* Elke maand is een inklapbaar blok: kop met lijntje en een pijltje (alleen op smalle schermen) */
+.naamdagen-maand > summary {
+  display: flex;
+  align-items: center;
+  gap: 10px;
   margin: 22px 0 6px;
+  padding: 0 0 6px;
+  border-bottom: 1px solid var(--line-soft);
+  list-style: none;
+  cursor: default;
+}
+
+.naamdagen-maand > summary::-webkit-details-marker {
+  display: none;
+}
+
+.naamdagen-maand .agenda-maand {
+  margin: 0;
+  padding: 0;
+  border-bottom: 0;
+}
+
+.naamdagen-maand > summary:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 3px;
+}
+
+.naamdagen-maand .klank dd.geen {
+  font-style: italic;
+}
+
+@media (max-width: 800px) {
+  .naamdagen-maand > summary {
+    margin: 4px 0 0;
+    padding: 10px 0;
+    cursor: pointer;
+  }
+
+  .naamdagen-maand > summary::before {
+    content: "";
+    flex: none;
+    width: 7px;
+    height: 7px;
+    border-right: 2px solid var(--muted);
+    border-bottom: 2px solid var(--muted);
+    transform: rotate(-45deg);
+    transition: transform .15s;
+  }
+
+  .naamdagen-maand[open] > summary::before {
+    transform: rotate(45deg);
+  }
 }
 
 .naamdagen-maand .klank {

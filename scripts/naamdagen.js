@@ -14,10 +14,12 @@
    2 februari, 29 februari, 25 maart, 24 juni, 1 november en 25 december)
    hebben een lege lijst: dan toont het kaartje op de homepage "Geen naamdag".
 
-   NOOT: William (6 april), Sam (1 september), Saga (8 maart) en Ronja
-   (14 september) staan in de tabel van de Academie als "Nej" (niet in de
-   namnlängd), maar de persberichten van de Academie van 2011 en 2018
+   NOOT: William (6 april), Sam (1 september), Saga (8 maart), Ronja
+   (14 september), Jasmine (26 juli) en Emmy (23 juli) staan in de tabel van
+   de Academie als "Nej" (niet in de namnlängd), maar de persberichten van de
+   Academie (2011 en 2018) en de pagina "Namnsdagar i almanackan" van ISOF
    noemen ze wel als toevoeging aan de lijst. Ze zijn daarom opgenomen.
+   De lijst bevat nu 626 namen; ISOF noemt er 627 (verschil nog niet verklaard).
 
    BIJWERKEN: vanaf 2027 komen er zes namen bij (volgens ISOF, 14 januari 2025):
       Eira       24 januari    (naast Erika)
@@ -235,10 +237,10 @@ const naamdagen = {
   "07-20": ["Greta", "Margareta"],
   "07-21": ["Johanna"],
   "07-22": ["Madeleine", "Magdalena"],
-  "07-23": ["Emma"],
+  "07-23": ["Emma", "Emmy"],
   "07-24": ["Kerstin", "Kristina"],
   "07-25": ["Jakob"],
-  "07-26": ["Jesper"],
+  "07-26": ["Jasmine", "Jesper"],
   "07-27": ["Marta"],
   "07-28": ["Botvid", "Seved"],
   "07-29": ["Olle", "Olof"],
@@ -414,16 +416,19 @@ const naamdagen = {
   raster.className = "naamdagen-maanden";
   lijst.appendChild(raster);
 
+  // Elke maand is een inklapbaar blok (details). Zie zetOpen hieronder voor wanneer ze openstaan.
+  const blokken = [];
   maanden.forEach(function (maandnaam, m) {
-    const blok = document.createElement("div");
+    const blok = document.createElement("details");
     blok.className = "naamdagen-maand";
-    raster.appendChild(blok);
 
+    const samenvatting = document.createElement("summary");
     const kop = document.createElement("h2");
     kop.className = "agenda-maand";
     kop.id = maandnaam.toLowerCase();
     kop.textContent = maandnaam;
-    blok.appendChild(kop);
+    samenvatting.appendChild(kop);
+    blok.appendChild(samenvatting);
 
     const dl = document.createElement("dl");
     dl.className = "klanken";
@@ -439,6 +444,7 @@ const naamdagen = {
         dd.lang = "sv";
         dd.textContent = namen.join(", ");
       } else {
+        dd.className = "geen";
         dd.textContent = "geen naamdag";
       }
       rij.appendChild(dt);
@@ -446,5 +452,32 @@ const naamdagen = {
       dl.appendChild(rij);
     });
     blok.appendChild(dl);
+    raster.appendChild(blok);
+    blokken.push(blok);
   });
+
+  // Breed scherm (801 px of meer, zoals in style.css): alle maanden open en niet inklapbaar.
+  // Smal scherm: alleen de huidige maand staat open, de rest klapt de lezer zelf open.
+  const breed = window.matchMedia("(min-width: 801px)");
+  const huidigeMaand = (typeof vandaagDatum === "function" ? vandaagDatum() : new Date()).getMonth();
+  function zetOpen() {
+    blokken.forEach(function (blok, m) { blok.open = breed.matches || m === huidigeMaand; });
+  }
+  zetOpen();
+  if (breed.addEventListener) { breed.addEventListener("change", zetOpen); }
+  else if (breed.addListener) { breed.addListener(zetOpen); }
+  blokken.forEach(function (blok) {
+    blok.querySelector("summary").addEventListener("click", function (e) {
+      if (breed.matches) { e.preventDefault(); }
+    });
+  });
+
+  // Een link naar een maand (bijvoorbeeld /naamdagen#maart) klapt die maand open
+  function openMaandUitAdres() {
+    const el = location.hash.length > 1 && document.getElementById(decodeURIComponent(location.hash.slice(1)));
+    const blok = el && el.closest(".naamdagen-maand");
+    if (blok && !blok.open) { blok.open = true; el.scrollIntoView(); }
+  }
+  window.addEventListener("hashchange", openMaandUitAdres);
+  openMaandUitAdres();
 })();
