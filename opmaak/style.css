@@ -668,8 +668,7 @@ footer li a {
   font-family: "Source Sans 3", Arial, sans-serif;
 }
 
-/* Wisselkoers (wordt automatisch toegevoegd door zoeken.js) */
-.voettekst-koers { display: none; }
+/* Wisselkoers (wordt automatisch toegevoegd door zoeken.js): vierde kolom in de voettekst */
 
 .koers-regel {
   margin: 0 0 4px;
@@ -1330,9 +1329,24 @@ details.bronnen > ol {
 }
 
 /* Middelgrote schermen: voettekst in twee kolommen */
+@media (min-width: 1101px) {
+  .voettekst-kolommen.met-koers { grid-template-columns: 1fr 1fr 1fr 1.25fr; }
+}
 @media (max-width: 1100px) {
   .voettekst-kolommen { grid-template-columns: 1fr 1fr; }
-  .voettekst-merk { grid-column: 1 / -1; }
+  .voettekst-merk, .voettekst-koers { grid-column: 1 / -1; }
+  /* Wisselkoers over de volle breedte: de twee koersregels naast elkaar */
+  .voettekst-koers .koers-regels { display: grid; grid-template-columns: 1fr 1fr; column-gap: 20px; }
+  .voettekst-koers .koers-reken { gap: 8px; }
+  .voettekst-koers .koers-reken label { flex: 1 1 0; }
+  .voettekst-koers .koers-pijl { flex: 0 0 4px; width: 4px; min-width: 0; display: flex; justify-content: center; overflow: visible; white-space: nowrap; }
+}
+/* Tussen 601 en 1100 px: de koersregels en invoervelden niet over de hele breedte uitrekken;
+   twee even brede kolommen met ruimte ertussen, elke koersregel boven zijn invoerveld */
+@media (min-width: 601px) and (max-width: 1100px) {
+  .voettekst-koers .koers-regels, .voettekst-koers .koers-reken { max-width: 490px; }
+  .voettekst-koers .koers-regels { column-gap: 60px; }
+  .voettekst-koers .koers-reken { gap: 28px; }
 }
 
 /* Kleinere laptops: menu iets compacter, zodat het op één regel past */
@@ -1801,12 +1815,6 @@ details.bronnen > ol {
   footer { padding-left: 20px; padding-right: 20px; }
   .voettekst-kolommen { grid-template-columns: 1fr 1fr; gap: 24px 20px; }
   .voettekst-merk, .voettekst-koers { grid-column: 1 / -1; }
-  /* Wisselkoers in de voettekst: alleen op mobiel (op desktop staat hij in de band op de homepage) */
-  .voettekst-koers { display: block; }
-  .voettekst-koers .koers-regels { display: grid; grid-template-columns: 1fr 1fr; column-gap: 20px; }
-  .voettekst-koers .koers-reken { gap: 8px; }
-  .voettekst-koers .koers-reken label { flex: 1 1 0; }
-  .voettekst-koers .koers-pijl { flex: 0 0 4px; width: 4px; min-width: 0; display: flex; justify-content: center; overflow: visible; white-space: nowrap; }
 
   /* Menu is dicht tot je op de menuknop tikt */
   #hoofdmenu { display: none; }
@@ -2086,27 +2094,33 @@ details.bronnen > ol {
 
 
 /* ============================================================
-   HOMEPAGE: BAND MET BEGRIP VAN DE DAG, NAAMDAG EN WISSELKOERS
-   (gevuld door homepage.js en zoeken.js)
+   HOMEPAGE: ZIJKOLOM MET DATUM, NAAMDAG EN BEGRIP VAN DE DAG
+   (gevuld door homepage.js)
+   - vanaf 1001 px: rechts naast "Nieuw op De Suecofiel"
+   - 601 tot en met 1000 px: onder de artikelen, de twee kaartjes naast elkaar
+   - tot en met 600 px: onder de artikelen, de kaartjes onder elkaar
    ============================================================ */
-/* Het hidden-attribuut moet hier altijd winnen van de display-regels hieronder */
-.home-band [hidden], .home-band[hidden] { display: none !important; }
+.nieuw-met-zijkolom {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 290px;
+  column-gap: 32px;
+  align-items: start;
+}
+.nieuw-met-zijkolom.zonder-zijkolom { grid-template-columns: minmax(0, 1fr); }
+.nieuw-kolom { min-width: 0; }
 
-.home-band { padding-top: 30px; padding-bottom: 30px; }
-.home-band-raster { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: stretch; }
-.home-band-raster.zonder-rechts, .home-band-raster.zonder-kb { grid-template-columns: 1fr; }
-.home-band-rechts { display: flex; flex-direction: column; gap: 13px; }
+.vandaag[hidden], .vandaag [hidden] { display: none !important; }
+.vandaag h2 { margin: 8px 4px 16px; font-size: 1.35rem; font-weight: 600; }
+.vd-blok + .vd-blok { margin-top: 16px; }
 
-.home-kb {
-  display: flex;
-  flex-direction: column;
+.vd-blok {
   background: var(--white);
   border: 1px solid #d9d9d9;
   border-top: 4px solid var(--blue);
-  padding: 22px 28px 20px;
+  padding: 18px 22px;
 }
-.home-kb-kopje {
-  margin: 0 0 10px;
+.vd-kopje {
+  margin: 0 0 8px;
   color: var(--blue);
   font-family: "Source Sans 3", Arial, sans-serif;
   font-size: .75rem;
@@ -2114,53 +2128,39 @@ details.bronnen > ol {
   letter-spacing: .1em;
   text-transform: uppercase;
 }
-.home-kb h3 { margin: 0 0 8px; font-size: 1.6rem; line-height: 1.2; font-weight: 400; }
-.home-kb-tekst { margin: 0 0 16px; color: var(--muted); font-size: 1.05rem; line-height: 1.6; }
-.home-kb-tekst a { color: var(--blue); font-weight: 600; text-decoration: none; white-space: nowrap; }
-.home-kb-tekst a:hover { text-decoration: underline; }
-.home-kb-onder { margin-top: auto; padding-top: 14px; border-top: 1px solid var(--line-soft); }
-.home-kb-ook { margin: 0 0 12px; color: var(--muted); font-size: .98rem; }
-.home-kb-ook a { color: var(--ink); font-weight: 600; text-decoration: none; }
-.home-kb-ook a:hover { color: var(--blue); text-decoration: underline; }
-.home-kb-naar { color: var(--blue); font-weight: 600; text-decoration: none; }
-.home-kb-naar:hover { text-decoration: underline; }
+.vd-blok h3 { margin: 0 0 10px; font-size: 1.6rem; line-height: 1.2; font-weight: 400; }
+.vd-blok a { color: var(--blue); font-weight: 600; text-decoration: none; }
+.vd-blok a:hover { text-decoration: underline; }
+/* Term + uitleg en de namen zijn zelf de link: geen blauwe tekst, wel onderstreping bij aanwijzen */
+.vd-blok h3 a, .vd-blok a.vd-link { color: inherit; font-weight: inherit; text-decoration: none; }
+.vd-blok a.vd-link { display: block; }
+.vd-blok a.vd-link:hover { text-decoration: none; }
+.vd-blok a.vd-link:hover h3 em, .vd-blok h3 a:hover { text-decoration: underline; }
+.vd-uitleg { margin: 0 0 14px; color: var(--muted); font-size: 1rem; line-height: 1.55; }
+.vd-onder { padding-top: 12px; border-top: 1px solid var(--line-soft); }
 
-.home-naamdag {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  align-items: center;
-  column-gap: 24px;
-  background: var(--blue);
-  color: var(--white);
-  padding: 15px 24px;
-}
-.home-naamdag-kopje, .home-koers-kopje {
-  margin: 0 0 6px;
-  color: #cfd9e8;
-  font-family: "Source Sans 3", Arial, sans-serif;
-  font-size: .75rem;
-  font-weight: 600;
-  letter-spacing: .08em;
-  text-transform: uppercase;
-}
-.home-naamdag-kopje { grid-column: 1; margin: 0 0 3px; }
-.home-naamdag h3 { grid-column: 1; margin: 0; color: var(--white); font-size: 1.6rem; line-height: 1.2; }
-.home-naamdag a { grid-column: 2; grid-row: 1 / span 2; color: #cfd9e8; font-weight: 400; text-decoration: none; }
-.home-naamdag a:hover { color: var(--white); text-decoration: underline; }
+/* Naamdag: middenblauw met witte tekst */
+.vd-naamdag { background: var(--blue); border: 0; color: var(--white); padding-top: 20px; }
+.vd-naamdag .vd-kopje { color: #cfd9e8; }
+.vd-naamdag h3 { margin-bottom: 12px; color: var(--white); }
+.vd-naamdag h3 a { color: var(--white); }
+.vd-naamdag a { color: #cfd9e8; font-weight: 400; }
+.vd-naamdag a:hover { color: var(--white); }
 
-.home-koers {
-  flex: 1;
-  display: grid;
-  grid-template-columns: 1fr auto;
-  align-content: center;
-  column-gap: 16px;
-  background: var(--blue-dark);
-  color: var(--white);
-  padding: 18px 24px 16px;
+/* Tot en met 1000 px: de zijkolom onder de artikelen, kaartjes naast elkaar (naamdag op eigen hoogte) */
+@media (max-width: 1000px) {
+  .nieuw-met-zijkolom { display: block; }
+  .vandaag { margin-top: 12px; display: grid; grid-template-columns: 1fr 2fr; column-gap: 24px; align-items: start; }
+  .vandaag h2 { grid-column: 1 / -1; }
+  .vd-blok + .vd-blok { margin-top: 0; }
+  /* Is er maar één kaartje, dan krijgt het de volle breedte */
+  .vandaag.zonder-naamdag, .vandaag.zonder-begrip { grid-template-columns: 1fr; }
 }
-.home-koers-kopje { grid-column: 1 / span 2; margin: 0; }
-.home-koers .koers-reken { grid-column: 1 / span 2; grid-row: 2; margin: 10px 0 0; }
-.home-koers .koers-bron { grid-column: 1 / span 2; grid-row: 3; margin-top: 10px; text-align: left; color: #dce7f2; opacity: 1; }
+/* Telefoon: de kaartjes onder elkaar */
+@media (max-width: 600px) {
+  .vandaag { margin-top: 28px; display: block; }
+  .vd-blok + .vd-blok { margin-top: 16px; }
+}
 
 /* Inleidingen in de kaartjes: maximaal 3 regels (JS kapt af op een heel woord; dit is de reserve) */
 .home-nieuw .artikel > p:not(.kaart-rubriek-regel) {
@@ -2172,17 +2172,6 @@ details.bronnen > ol {
 
 @media (max-width: 800px) {
   .home-feestdag-uitleg { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
-  .home-band { padding-top: 24px; padding-bottom: 28px; }
-  .home-band-raster { grid-template-columns: 1fr; gap: 12px; }
-  .home-band-rechts { gap: 12px; }
-  .home-kb { padding: 18px 20px 16px; }
-  .home-kb-ook { display: none !important; }
-  /* Op mobiel staat de wisselkoers in de voettekst, niet in de band */
-  .home-koers { display: none !important; }
-  .home-naamdag { display: block; padding: 15px 20px; }
-  .home-naamdag h3 { margin: 0 0 9px; }
-  /* Geen naamdag? Dan ook geen lege rechterkolom */
-  .home-band-rechts:not(:has(.home-naamdag:not([hidden]))) { display: none; }
 }
 
 /* Kleine telefoons: kopjes in de voettekst iets kleiner, zodat "Meer op De Suecofiel" op één regel past */

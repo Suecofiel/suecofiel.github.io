@@ -5,44 +5,41 @@ omschrijving: "De Suecofiel: een Nederlandstalig kennisplatform over Zweden, met
 menu: "home"
 ---
 
-      <!-- Alles op de homepage komt automatisch uit artikelen.js, feestdagen.js en agenda.js -->
+      <!-- Alles op de homepage komt automatisch uit artikelen.js, feestdagen.js, agenda.js, naamdagen.js en begrippen.html -->
 
       <!-- ===== UITGELICHT ARTIKEL (automatisch uit artikelen.js) ===== -->
       <section class="uitgelicht" aria-label="Uitgelicht">
         <div id="uitgelicht"></div>
       </section>
 
-      <!-- ===== NIEUW OP DE SUECOFIEL (de 3 of 6 nieuwste artikelen, automatisch uit artikelen.js) ===== -->
+      <!-- ===== NIEUW OP DE SUECOFIEL (de 3 of 6 nieuwste artikelen, automatisch uit artikelen.js) + ZIJKOLOM "VANDAAG" (naamdag en begrip van de dag, automatisch via homepage.js) ===== -->
       <section class="home-blok home-nieuw" id="nieuw">
-        <h2>Nieuw op De Suecofiel</h2>
-        <div class="grid" id="nieuw-raster"></div>
+        <div class="nieuw-met-zijkolom">
+          <div class="nieuw-kolom">
+            <h2>Nieuw op De Suecofiel</h2>
+            <div class="grid" id="nieuw-raster"></div>
+          </div>
+          <aside class="vandaag" id="vandaag" aria-label="Vandaag" hidden>
+            <h2 id="vandaag-datum"></h2>
+            <div class="vd-blok vd-naamdag" id="vd-naamdag" hidden>
+              <p class="vd-kopje">Naamdag</p>
+              <h3><a href="/naamdagen" id="vd-naamdag-naam"></a></h3>
+              <a href="/naamdagen">Alle naamdagen van het jaar →</a>
+            </div>
+            <div class="vd-blok vd-begrip" id="vd-begrip" hidden>
+              <p class="vd-kopje">Begrip van de dag</p>
+              <a class="vd-link" id="vd-link" href="/begrippen">
+                <h3><em lang="sv" id="vd-term"></em></h3>
+                <p class="vd-uitleg" id="vd-tekst"></p>
+              </a>
+              <div class="vd-onder"><a href="/kennisbank">Meer uit de kennisbank →</a></div>
+            </div>
+          </aside>
+        </div>
       </section>
 
       <!-- ===== AGENDA (volgende feestdag en eerstvolgende evenementen, automatisch via homepage.js) ===== -->
       <section class="home-blok home-agenda" id="agenda">
         <h2>Agenda</h2>
         <div class="home-agenda-raster" id="home-agenda"></div>
-      </section>
-
-      <!-- ===== BAND: BEGRIP VAN DE DAG, NAAMDAG EN WISSELKOERS (automatisch via homepage.js en zoeken.js) ===== -->
-      <section class="home-blok home-band" id="band" aria-label="Begrip van de dag, naamdag en wisselkoers" data-kb="wacht" data-koers="wacht" hidden>
-        <div class="home-band-raster" id="band-raster">
-          <article class="home-kb" id="home-kb" hidden>
-            <p class="home-kb-kopje">Begrip van de dag</p>
-            <h3><em lang="sv" id="kb-term"></em></h3>
-            <p class="home-kb-tekst" id="kb-tekst"></p>
-            <div class="home-kb-onder">
-              <p class="home-kb-ook" id="kb-ook" hidden></p>
-              <a class="home-kb-naar" href="/kennisbank">Naar de kennisbank →</a>
-            </div>
-          </article>
-          <div class="home-band-rechts">
-            <div class="home-naamdag" id="home-naamdag" hidden>
-              <p class="home-naamdag-kopje" id="naamdag-kopje"></p>
-              <h3 id="naamdag-naam"></h3>
-              <a href="/naamdagen">Alle naamdagen van het jaar →</a>
-            </div>
-            <div class="home-koers" id="home-koers" hidden></div>
-          </div>
-        </div>
       </section>

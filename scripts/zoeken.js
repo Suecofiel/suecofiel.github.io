@@ -148,7 +148,7 @@ if (menuknop && hoofdmenu) {
    Bank (ECB) op via de gratis dienst Frankfurter. De ECB werkt
    deze koers elke werkdag rond 16.00 uur bij.
    Lukt het ophalen niet, dan verschijnt het blokje gewoon niet.
-   De koers staat in de voettekst (mobiel) en in de band op de homepage (desktop).
+   De koers staat in de voettekst, op alle pagina's.
    ============================================================ */
 (function () {
   const kolommen = document.querySelector(".voettekst-kolommen");
@@ -179,7 +179,7 @@ if (menuknop && hoofdmenu) {
     return parseFloat(String(tekst).replace(/\s/g, "").replace(/\./g, "").replace(",", "."));
   }
 
-  // Het invoerblok (EUR en SEK) komt zowel in de voettekst (mobiel) als in de band op de homepage (desktop)
+  // Het invoerblok (EUR en SEK) in de voettekst
   function rekenHtml() {
     return '<div class="koers-reken">' +
       '<label><span>EUR</span><input type="text" inputmode="decimal" class="koers-eur" value="10" aria-label="Bedrag in euro"></label>' +
@@ -202,9 +202,6 @@ if (menuknop && hoofdmenu) {
     });
   }
 
-  const band = document.getElementById("band");
-  const bandKoers = document.getElementById("home-koers");
-
   haalKoers(0).then(function (data) {
     const koers = data && data.rates && data.rates.SEK;
     if (!koers || typeof koers !== "number" || !data.date) { throw new Error("geen koers"); }
@@ -214,7 +211,7 @@ if (menuknop && hoofdmenu) {
       .toLocaleDateString("nl-NL", { day: "numeric", month: "long", year: "numeric" });
     const bron = '<p class="koers-bron">ECB-referentiekoers van ' + datum + '</p>';
 
-    // Voettekst (zichtbaar op mobiel, op alle pagina's)
+    // Voettekst (op alle pagina's)
     const blok = document.createElement("div");
     blok.className = "voettekst-koers";
     blok.innerHTML =
@@ -224,19 +221,9 @@ if (menuknop && hoofdmenu) {
         '<p class="koers-regel">1 krona = <strong>' + getal(1 / koers, 3) + '</strong> euro</p>' +
       '</div>' + rekenHtml() + bron;
     kolommen.appendChild(blok);
+    kolommen.classList.add("met-koers");   // de voettekst krijgt dan een vierde kolom (zie style.css)
     koppelRekenaar(blok, koers);
-
-    // Band op de homepage (zichtbaar op desktop)
-    if (bandKoers) {
-      bandKoers.innerHTML = '<p class="home-koers-kopje">Wisselkoers</p>' + rekenHtml() + bron;
-      bandKoers.hidden = false;
-      koppelRekenaar(bandKoers, koers);
-      if (band) { band.dataset.koers = "ja"; }
-    }
   }).catch(function () {
-    /* geen koers: de blokjes blijven weg */
-    if (band) { band.dataset.koers = "nee"; }
-  }).then(function () {
-    if (typeof bandBijwerken === "function") { bandBijwerken(); }
+    /* geen koers: het blokje blijft weg */
   });
 })();
