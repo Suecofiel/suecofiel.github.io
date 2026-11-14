@@ -2169,6 +2169,10 @@ details.bronnen > ol {
   .vd-naamdag h3 { margin: 0; font-size: 1.2rem; flex: 1; min-width: 0; }
   .vd-naamdag > a:last-child { white-space: nowrap; font-size: .95rem; }
 }
+/* 601 tot en met 768 px: de naam begint iets verder naar rechts (evenwichtiger balkje) */
+@media (min-width: 601px) and (max-width: 768px) {
+  .vd-naamdag .vd-kopje { min-width: 84px; }
+}
 /* Telefoon: de kaartjes onder elkaar (en de korte linktekst in het naamdagbalkje) */
 @media (max-width: 600px) {
   .vandaag { margin-top: 28px; display: block; }

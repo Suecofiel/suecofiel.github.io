@@ -174,6 +174,10 @@
   }
   // Begrip van de dag: tot en met 1000 px (kaartje onder de artikelen) maximaal 2 regels, daarboven 3
   function begripRegels() { return window.matchMedia("(max-width: 1000px)").matches ? 2 : 3; }
+  // Meer dan twee namen: komma's, en alleen voor de laatste een &-teken ("X, Y & Z")
+  function naamdagTekst(namen) {
+    return namen.length > 2 ? namen.slice(0, -1).join(", ") + " & " + namen[namen.length - 1] : namen.join(" & ");
+  }
   function esc(t) { return t.replace(/&/g, "&amp;").replace(/</g, "&lt;"); }
 
   // Zet de zijkolom zichtbaar of weg, afhankelijk van wat er gelukt is
@@ -197,7 +201,7 @@
     let namen = naamdagen[sleutel];
     if (typeof namen === "string") { namen = [namen]; }
     if (namen) {
-      document.getElementById("vd-naamdag-naam").textContent = namen.length ? namen.join(" & ") : "Geen naamdag";
+      document.getElementById("vd-naamdag-naam").textContent = namen.length ? naamdagTekst(namen) : "Geen naamdag";
       document.getElementById("vd-naamdag").hidden = false;
     }
   }
