@@ -2147,6 +2147,9 @@ details.bronnen > ol {
 .vd-naamdag a { color: #cfd9e8; font-weight: 400; }
 .vd-naamdag a:hover { color: var(--white); }
 
+/* Linktekst in het naamdagkaartje: kort ("Alle →") alleen op telefoons, tot en met 600 px */
+.vd-naamdag .vd-kort { display: none; }
+
 /* Tot en met 1000 px: de zijkolom onder de artikelen, kaartjes naast elkaar (naamdag op eigen hoogte) */
 @media (max-width: 1000px) {
   .nieuw-met-zijkolom { display: block; }
@@ -2156,10 +2159,21 @@ details.bronnen > ol {
   /* Is er maar één kaartje, dan krijgt het de volle breedte */
   .vandaag.zonder-naamdag, .vandaag.zonder-begrip { grid-template-columns: 1fr; }
 }
-/* Telefoon: de kaartjes onder elkaar */
+/* Tot en met 768 px (iPad mini en iPad staand, telefoons): de kaartjes onder elkaar;
+   de naamdag is dan een slank middenblauw balkje boven het begrip */
+@media (max-width: 768px) {
+  .vandaag { grid-template-columns: 1fr; }
+  .vd-blok + .vd-blok { margin-top: 16px; }
+  .vd-naamdag { display: flex; align-items: center; gap: 12px; padding: 11px 16px; }
+  .vd-naamdag .vd-kopje { margin: 0; white-space: nowrap; }
+  .vd-naamdag h3 { margin: 0; font-size: 1.2rem; flex: 1; min-width: 0; }
+  .vd-naamdag > a:last-child { white-space: nowrap; font-size: .95rem; }
+}
+/* Telefoon: de kaartjes onder elkaar (en de korte linktekst in het naamdagbalkje) */
 @media (max-width: 600px) {
   .vandaag { margin-top: 28px; display: block; }
-  .vd-blok + .vd-blok { margin-top: 16px; }
+  .vd-naamdag .vd-lang { display: none; }
+  .vd-naamdag .vd-kort { display: inline; }
 }
 
 /* Inleidingen in de kaartjes: maximaal 3 regels (JS kapt af op een heel woord; dit is de reserve) */
@@ -2182,87 +2196,4 @@ details.bronnen > ol {
 @media (max-width: 340px) {
   .voettekst-koers .koers-regels { grid-template-columns: 1fr; }
   .voettekst-kolommen nav h2 { display: flex; align-items: flex-end; line-height: 1.3; min-height: 2.6em; }
-}
-
-
-/* ============================================================
-   ZWEEDSE NAAMDAGEN (naamdagen.html, lijst gevuld door scripts/naamdagen.js)
-   ============================================================ */
-/* Tekst: tussenkoppen zonder lijntje, zoals bij de artikelen */
-.naamdagen-tekst h2 {
-  padding-bottom: 0;
-  border-bottom: 0;
-}
-
-/* Lijst: de maanden staan naast elkaar (3, 2 of 1 kolom, afhankelijk van de breedte) */
-.naamdagen-maanden {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
-  gap: 8px 32px;
-  align-items: start;
-}
-
-/* Elke maand is een inklapbaar blok: kop met lijntje en een pijltje (alleen op smalle schermen) */
-.naamdagen-maand > summary {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin: 22px 0 6px;
-  padding: 0 0 6px;
-  border-bottom: 1px solid var(--line-soft);
-  list-style: none;
-  cursor: default;
-}
-
-.naamdagen-maand > summary::-webkit-details-marker {
-  display: none;
-}
-
-.naamdagen-maand .agenda-maand {
-  margin: 0;
-  padding: 0;
-  border-bottom: 0;
-}
-
-.naamdagen-maand > summary:focus-visible {
-  outline: 2px solid var(--blue);
-  outline-offset: 3px;
-}
-
-.naamdagen-maand .klank dd.geen {
-  font-style: italic;
-}
-
-@media (max-width: 800px) {
-  .naamdagen-maand > summary {
-    margin: 4px 0 0;
-    padding: 10px 0;
-    cursor: pointer;
-  }
-
-  .naamdagen-maand > summary::before {
-    content: "";
-    flex: none;
-    width: 7px;
-    height: 7px;
-    border-right: 2px solid var(--muted);
-    border-bottom: 2px solid var(--muted);
-    transform: rotate(-45deg);
-    transition: transform .15s;
-  }
-
-  .naamdagen-maand[open] > summary::before {
-    transform: rotate(45deg);
-  }
-}
-
-.naamdagen-maand .klank {
-  grid-template-columns: 3.3em 1fr;
-  gap: 0 10px;
-  padding: 6px 0;
-  border-bottom: 0;
-}
-
-.naamdagen-maand .klank dt {
-  font-size: 1rem;
 }
