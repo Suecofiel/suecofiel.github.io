@@ -299,7 +299,7 @@ function verwijderLaatsteWoord(wortel) {
   document.querySelectorAll(".home-nieuw .artikel > p:not(.kaart-rubriek-regel)").forEach(function (p) {
     registreerKap(p, 3);
   });
-  registreerKap(document.querySelector(".home-feestdag-uitleg"), 2, undefined, "", true);
+  registreerKap(document.querySelector(".home-feestdag-uitleg"), 3, undefined, "", true);
 
   let timer;
   window.addEventListener("resize", function () {
