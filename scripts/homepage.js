@@ -270,6 +270,12 @@ function kapAf(el, regels, staart) {
   einde.innerHTML = "…" + (staart || "");
   el.append(inhoud, einde);
   while (el.scrollHeight > max && verwijderLaatsteWoord(inhoud)) { /* doorgaan tot het past */ }
+  // Staat er nog een haakje open (bijv. "kandelaars (…"), kap dan terug tot vóór dat haakje
+  const open = function () {
+    const tekst = inhoud.textContent;
+    return (tekst.match(/\(/g) || []).length > (tekst.match(/\)/g) || []).length;
+  };
+  while (open() && verwijderLaatsteWoord(inhoud)) { /* doorgaan tot het haakje weg is */ }
 }
 
 function verwijderLaatsteWoord(wortel) {
@@ -293,7 +299,7 @@ function verwijderLaatsteWoord(wortel) {
   document.querySelectorAll(".home-nieuw .artikel > p:not(.kaart-rubriek-regel)").forEach(function (p) {
     registreerKap(p, 3);
   });
-  registreerKap(document.querySelector(".home-feestdag-uitleg"), 3, undefined, "", true);
+  registreerKap(document.querySelector(".home-feestdag-uitleg"), 2, undefined, "", true);
 
   let timer;
   window.addEventListener("resize", function () {
