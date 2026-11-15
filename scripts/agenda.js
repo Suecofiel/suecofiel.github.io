@@ -257,7 +257,7 @@ function komendeEvenementen() {
       link.href = e.link;
       link.target = "_blank";
       link.rel = "noopener";
-      link.textContent = "Meer informatie bij de organisator ↗";
+      link.textContent = "Meer informatie ↗";
       inhoud.appendChild(link);
     }
 
