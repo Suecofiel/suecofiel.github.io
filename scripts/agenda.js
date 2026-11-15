@@ -31,11 +31,11 @@
    ============================================================ */
 const evenementen = [
 
-  { datum: "2026-11-04", einddatum: "2026-11-08",
-    titel: "Noordelijk Film Festival",
-    soort: "Film", plaats: "Leeuwarden",
-    beschrijving: "Vijfdaags filmfestival in Leeuwarden met recente films en documentaires uit Noord-Europa, vaak films die nog niet in Nederlandse bioscopen te zien zijn.",
-    link: "https://noordelijkfilmfestival.nl/" },
+  { datum: "2026-12-09", einddatum: "",
+    titel: "Aansteken van de Zweedse kerstboom",
+    soort: "Viering", plaats: "Den Haag, Lange Voorhout",
+    beschrijving: "Traditionele ceremonie waarbij de lichtjes in de Zweedse kerstboom worden ontstoken, met een Luciakoor.",
+    link: "https://denhaag.com/nl/node/14387" },
 
   { datum: "2026-12-10", einddatum: "",
     datums: ["2026-12-10", "2026-12-13", "2026-12-20"],
@@ -55,6 +55,12 @@ const evenementen = [
     soort: "Kerstmarkt", plaats: "Groningen, Suikerfabriek",
     beschrijving: "Overdekte kerstmarkt in de voormalige suikerfabriek met meer dan honderd Scandinavische pop-upwinkels, Zweeds eten, live muziek en workshops, zoals het maken van een smörgåstårta (Zweedse broodtaart) of een Zweeds kerstlampje.",
     link: "https://zweedsekerstmarkt.nl/" },
+
+  { datum: "2026-12-12", einddatum: "",
+    titel: "Luciaconcert van Svenska Högtidskören in Den Haag",
+    soort: "Concert", plaats: "Den Haag, Kloosterkerk",
+    beschrijving: "Concert met traditionele Zweedse Lucialiederen rond het lichtfeest.",
+    link: "https://denhaag.com/nl/agenda/swedish-festivity-choir-lucia-concert" },
 
   { datum: "2026-12-14", einddatum: "",
     titel: "Luciaconcert van Svenska Högtidskören in Amsterdam",
@@ -80,10 +86,16 @@ const evenementen = [
     beschrijving: "Meer dan honderd originele tekeningen van de Zweeds-Nederlandse illustrator Marit Törnqvist, bekend van haar illustraties bij boeken van Astrid Lindgren. De tentoonstelling is verlengd tot 24 januari 2027.",
     link: "https://www.onderwijsmuseum.nl/tentoonstelling/marit-toernqvist-verborgen-verhalen" },
 
+  { datum: "2027-01-29", einddatum: "",
+    titel: "Frihetstiden – Zweedse muziek uit de achttiende eeuw",
+    soort: "Concert", plaats: "Den Haag, Maranathakerk",
+    beschrijving: "Concert met Zweedse muziek uit de achttiende eeuw, de Frihetstiden (Tijd van de Vrijheid), toen er in Zweden publieke concerten ontstonden en de muziek langzaam van barok naar classicisme opschoof, met onder meer werk van Johan Helmich Roman.",
+    link: "https://musicaantica.stager.co/shop/default/events/111674489" },
+
   { datum: "2027-01-28", einddatum: "2027-02-07",
     titel: "International Film Festival Rotterdam (IFFR)",
     soort: "Film", plaats: "Rotterdam",
-    beschrijving: "Op IFFR draaien regelmatig Zweedse films. Het programma voor 2027 is nog niet bekend; op de website kun je filteren op Zweeds als gesproken taal.",
+    beschrijving: "Op IFFR draaien regelmatig Zweedse films. Op de website van het festival staan al Zweedse titels voor 2027; je kunt filteren op Zweeds als gesproken taal.",
     link: "https://iffr.com/nl/iffr_film_spoken_language/zweeds" }
 
 ];
