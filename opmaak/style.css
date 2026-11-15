@@ -2206,8 +2206,13 @@ details.bronnen > ol {
 }
 
 /* ===== NAAMDAGEN ===== */
-/* Geen lijn onder de koppen op deze pagina (de ruimte blijft gelijk) */
-.naamdagen-tekst h2,
+/* Geen lijn onder de koppen op deze pagina. De alineakoppen hebben dezelfde ruimte als in de artikelen;
+   bij de maandnamen in de lijst blijft de ruimte zoals ze was. */
+.naamdagen-tekst h2 {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
 .naamdagen-maand > summary h2 {
   border-bottom: 1px solid transparent;
 }
@@ -2217,6 +2222,11 @@ details.bronnen > ol {
    Smal scherm: de kwartalen zijn onzichtbaar en de maanden klappen open, onder elkaar. */
 .naamdagen-kwartaal {
   border-bottom: 1px solid var(--line-soft);
+}
+
+/* Onder het laatste kwartaal geen lijn: daaronder staat al de lijn van Bronnen */
+.naamdagen-kwartaal:last-child {
+  border-bottom: 0;
 }
 
 .naamdagen-kwartaal > summary,
