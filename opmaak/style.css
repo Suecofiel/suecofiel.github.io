@@ -2205,21 +2205,21 @@ details.bronnen > ol {
   .voettekst-kolommen nav h2 { display: flex; align-items: flex-end; line-height: 1.3; min-height: 2.6em; }
 }
 
-/* ===== NAAMDAGEN: LIJST MET INKLAPBARE MAANDEN ===== */
-/* Op een breed scherm staan 3 maanden naast elkaar, op een middelbaar scherm 2,
-   op een telefoon 1. Alle maanden zijn dicht, behalve de huidige (zie scripts/naamdagen.js). */
-.naamdagen-maanden {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 0 28px;
-  align-items: start;
-  margin-top: 8px;
+/* ===== NAAMDAGEN ===== */
+/* Geen lijn onder de koppen op deze pagina (de ruimte blijft gelijk) */
+.naamdagen-tekst h2,
+.naamdagen-maand > summary h2 {
+  border-bottom: 1px solid transparent;
 }
 
-.naamdagen-maand {
+/* Lijst "Alle naamdagen": 4 inklapbare kwartalen met daarin 12 maanden (zie scripts/naamdagen.js).
+   Breed scherm (801 px of meer): kwartalen klappen open, de 3 maanden staan naast elkaar.
+   Smal scherm: de kwartalen zijn onzichtbaar en de maanden klappen open, onder elkaar. */
+.naamdagen-kwartaal {
   border-bottom: 1px solid var(--line-soft);
 }
 
+.naamdagen-kwartaal > summary,
 .naamdagen-maand > summary {
   list-style: none;
   display: flex;
@@ -2229,10 +2229,18 @@ details.bronnen > ol {
   cursor: pointer;
 }
 
+.naamdagen-kwartaal > summary {
+  font-size: 1.35rem;
+  font-weight: bold;
+  line-height: 1.3;
+}
+
+.naamdagen-kwartaal > summary::-webkit-details-marker,
 .naamdagen-maand > summary::-webkit-details-marker {
   display: none;
 }
 
+.naamdagen-kwartaal > summary::before,
 .naamdagen-maand > summary::before {
   content: "";
   flex: none;
@@ -2244,24 +2252,34 @@ details.bronnen > ol {
   transition: transform .15s;
 }
 
+.naamdagen-kwartaal[open] > summary::before,
 .naamdagen-maand[open] > summary::before {
   transform: rotate(45deg);
+}
+
+.naamdagen-kwartaal > summary:hover,
+.naamdagen-maand > summary:hover h2 {
+  color: var(--blue);
+}
+
+.naamdagen-kwartaal > summary:focus-visible,
+.naamdagen-maand > summary:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
 }
 
 .naamdagen-maand > summary h2 {
   margin: 0;
   padding: 0;
-  border: 0;
   font-size: 1.35rem;
 }
 
-.naamdagen-maand > summary:hover h2 {
-  color: var(--blue);
-}
-
-.naamdagen-maand > summary:focus-visible {
-  outline: 2px solid var(--blue);
-  outline-offset: 2px;
+.naamdagen-maanden {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0 28px;
+  align-items: start;
+  padding-bottom: 14px;
 }
 
 .naamdagen-maand .klank {
@@ -2282,17 +2300,29 @@ details.bronnen > ol {
 
 .naamdagen-maand .klank dd.geen {
   color: var(--muted);
+  font-style: italic;
 }
 
-.naamdagen-maand .klanken {
-  padding-bottom: 12px;
+/* Breed scherm: de maanden zijn koppen, geen menu (geen pijltje, geen lijn onder de kop) */
+@media (min-width: 801px) {
+  .naamdagen-maand > summary {
+    cursor: default;
+    padding: 4px 0 8px;
+  }
+  .naamdagen-maand > summary::before { display: none; }
+  .naamdagen-maand > summary:hover h2 { color: inherit; }
+  .naamdagen-maand .klank:first-child { border-top: 0; }
 }
 
+/* Smal scherm: de kwartalen verdwijnen, de maanden zijn de menuutjes */
 @media (max-width: 800px) {
-  .naamdagen-maanden { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .naamdagen-kwartaal { border-bottom: 0; }
+  .naamdagen-kwartaal > summary { display: none; }
+  .naamdagen-maanden { grid-template-columns: 1fr; padding-bottom: 0; }
+  .naamdagen-maand { border-bottom: 1px solid var(--line-soft); }
+  .naamdagen-maand .klanken { padding-bottom: 12px; }
 }
 
 @media (max-width: 560px) {
-  .naamdagen-maanden { grid-template-columns: 1fr; }
   .naamdagen-maand .klank { grid-template-columns: 4.2em 1fr; }
 }
