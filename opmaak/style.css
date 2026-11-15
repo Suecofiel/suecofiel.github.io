@@ -2289,7 +2289,7 @@ details.bronnen > ol {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0 28px;
   align-items: start;
-  padding-bottom: 14px;
+  padding-bottom: 0;
 }
 
 .naamdagen-maand .klank {
@@ -2354,4 +2354,13 @@ details.bronnen > ol {
 
 @media (max-width: 800px) {
   .kennispagina > h2 { font-size: 1.35rem; }
+}
+
+/* Naamdagen: ruimte tussen de lijst en Bronnen (desktop en mobiel gelijk, ca. 36 px) */
+#naamdagen-lijst ~ details.bronnen { margin-top: 24px; }
+
+@media (max-width: 800px) {
+  .naamdagen-kwartaal:last-child .naamdagen-maand:last-child { border-bottom: 0; }
+  .naamdagen-kwartaal:last-child .naamdagen-maand:last-child:not([open]) > summary { padding-bottom: 0; }
+  .naamdagen-kwartaal:last-child .naamdagen-maand:last-child .klanken { padding-bottom: 0; }
 }
