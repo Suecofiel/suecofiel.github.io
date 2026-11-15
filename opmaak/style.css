@@ -2336,3 +2336,22 @@ details.bronnen > ol {
 @media (max-width: 560px) {
   .naamdagen-maand .klank { grid-template-columns: 4.2em 1fr; }
 }
+
+/* ===== KENNISBANK-PAGINA'S: dezelfde typografie als de artikelen ===== */
+/* Gebruikt door Kennisbank, Cijfers, Tijdlijn, Begrippen, Feestdagen, Naamdagen en Uitspraakhulp
+   (class "kennispagina" op het article). De lijn onder de koppen blijft staan: die geeft houvast
+   aan de lijsten en tabellen eronder. Alleen Naamdagen heeft geen lijn (zie het blok NAAMDAGEN). */
+.kennispagina .inleiding {
+  margin: 0 0 22px;
+  color: var(--ink);
+  font-size: 1.2rem;
+  line-height: 1.5;
+}
+
+.kennispagina > h2 {
+  font-size: 1.25rem;
+}
+
+@media (max-width: 800px) {
+  .kennispagina > h2 { font-size: 1.35rem; }
+}
