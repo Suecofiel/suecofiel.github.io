@@ -532,7 +532,7 @@ main.home > section:nth-of-type(even) {
 
 .artikel .datum {
   color: var(--muted);
-  font-size: .75rem;
+  font-size: .8rem;
 }
 
 /* Puntje tussen twee labels */
