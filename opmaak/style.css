@@ -2196,14 +2196,14 @@ details.bronnen > ol {
   .vd-naamdag > a:last-child { white-space: nowrap; font-size: .95rem; }
 }
 /* 601 tot en met 768 px: de naam begint iets verder naar rechts (evenwichtiger balkje);
-   32 px + 8 px kopmarge = 40 px boven de datum, gelijk aan de telefoon (hier vallen de marges niet samen) */
+   22 px + 8 px kopmarge = 30 px boven de datum, gelijk aan de telefoon (hier vallen de marges niet samen) */
 @media (min-width: 601px) and (max-width: 768px) {
-  .vandaag { margin-top: 32px; }
+  .vandaag { margin-top: 22px; }
   .vd-naamdag .vd-kopje { min-width: 84px; }
 }
 /* Telefoon: de kaartjes onder elkaar (en de korte linktekst in het naamdagbalkje) */
 @media (max-width: 600px) {
-  .vandaag { margin-top: 40px; display: block; }
+  .vandaag { margin-top: 30px; display: block; }
   .vd-naamdag .vd-lang { display: none; }
   .vd-naamdag .vd-kort { display: inline; }
 }
