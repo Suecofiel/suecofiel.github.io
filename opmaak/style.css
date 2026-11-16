@@ -2152,15 +2152,38 @@ details.bronnen > ol {
 
 /* Linktekst in het naamdagkaartje: kort ("Alle →") alleen op telefoons, tot en met 600 px */
 .vd-naamdag .vd-kort { display: none; }
+/* Middellange linktekst ('Alle naamdagen →'): alleen van 769 tot en met 860 px */
+.vd-naamdag .vd-midden { display: none; }
 
 /* Tot en met 1000 px: de zijkolom onder de artikelen, kaartjes naast elkaar (naamdag op eigen hoogte) */
 @media (max-width: 1000px) {
   .nieuw-met-zijkolom { display: block; }
-  .vandaag { margin-top: 12px; display: grid; grid-template-columns: 1fr 2fr; column-gap: 24px; align-items: start; }
+  .vandaag { margin-top: 24px; display: grid; grid-template-columns: 1fr 2fr; column-gap: 24px; align-items: start; }
   .vandaag h2 { grid-column: 1 / -1; }
   .vd-blok + .vd-blok { margin-top: 0; }
   /* Is er maar één kaartje, dan krijgt het de volle breedte */
   .vandaag.zonder-naamdag, .vandaag.zonder-begrip { grid-template-columns: 1fr; }
+}
+/* 769 tot en met 1000 px: datum links boven het blauwe kaartje; het begrip-kaartje rechts over de volle hoogte,
+   bovenkant gelijk aan de datum, onderkant gelijk aan het blauwe kaartje. Alleen met beide kaartjes aanwezig.
+   contain: size zorgt dat het begrip-kaartje de rijen niet hoger maakt: datum en blauw kaartje blijven staan. */
+@media (min-width: 769px) and (max-width: 1000px) {
+  .vandaag:not(.zonder-naamdag):not(.zonder-begrip) { align-items: stretch; grid-template-rows: auto 1fr; }
+  .vandaag:not(.zonder-naamdag):not(.zonder-begrip) h2 { grid-column: 1; grid-row: 1; }
+  .vandaag:not(.zonder-naamdag):not(.zonder-begrip) #vd-naamdag { grid-column: 1; grid-row: 2; }
+  .vandaag:not(.zonder-naamdag):not(.zonder-begrip) #vd-begrip { grid-column: 2; grid-row: 1 / span 2; margin-top: 18px; contain: size; padding-top: 8px; padding-bottom: 8px; display: flex; flex-direction: column; }
+  .vandaag:not(.zonder-naamdag):not(.zonder-begrip) #vd-begrip .vd-kopje { margin-bottom: 2px; }
+  .vandaag:not(.zonder-naamdag):not(.zonder-begrip) #vd-begrip a.vd-link { margin-top: auto; }
+  .vandaag:not(.zonder-naamdag):not(.zonder-begrip) #vd-begrip h3 { margin-bottom: 2px; }
+  .vandaag:not(.zonder-naamdag):not(.zonder-begrip) #vd-begrip .vd-uitleg { margin-bottom: 6px; }
+  .vandaag:not(.zonder-naamdag):not(.zonder-begrip) #vd-begrip .vd-onder { padding-top: 6px; margin-top: auto; }
+  .vd-naamdag h3 { font-size: 1.3rem; }
+}
+/* 769 tot en met 860 px: kleinere datum en kortere linktekst, zodat niets afbreekt */
+@media (min-width: 769px) and (max-width: 860px) {
+  .vandaag h2 { font-size: 1.2rem; }
+  .vd-naamdag .vd-lang { display: none; }
+  .vd-naamdag .vd-midden { display: inline; }
 }
 /* Tot en met 768 px (iPad mini en iPad staand, telefoons): de kaartjes onder elkaar;
    de naamdag is dan een slank middenblauw balkje boven het begrip */
