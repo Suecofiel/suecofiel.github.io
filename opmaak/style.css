@@ -1844,9 +1844,9 @@ details.bronnen > ol {
     border-top: 1px solid rgba(255, 255, 255, .45);
   }
   #hoofdmenu .sitelinks a {
-    padding: 8px 6px;
+    padding: 10px 6px;
     color: #cfdcec;
-    font-size: .8rem;
+    font-size: .9rem;
   }
   #hoofdmenu .sitelinks li:last-child a { border-bottom: none; }
   /* Geen dubbele streep: de lijn onder Kennisbank vervalt, de scheidingslijn blijft */
