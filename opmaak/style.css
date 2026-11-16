@@ -426,7 +426,7 @@ main.home > section:nth-of-type(even) {
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
-  gap: 2px 8px;
+  gap: 2px 10px;
 }
 
 .kaart-rubriek {
@@ -443,11 +443,6 @@ main.home > section:nth-of-type(even) {
   color: var(--muted);
   font-family: "Source Sans 3", Arial, sans-serif;
   font-size: .8rem;
-}
-
-.kaart-rubriek-regel time::before {
-  content: "\00b7";
-  margin-right: 8px;
 }
 
 /* Homepage-kaart: alleen de titel is de echte link; een onzichtbare laag maakt
@@ -1743,6 +1738,7 @@ details.bronnen > ol {
   /* Uitgelicht artikel op mobiel: rubriek en datum even groot als op desktop */
   .uitgelicht-kaart .kaart-rubriek { font-size: 1rem; }
   .uitgelicht-kaart .kaart-rubriek-regel time { font-size: .875rem; }
+  .uitgelicht-kaart .kaart-rubriek-regel { gap: 2px 14px; }
   /* Kaartjes onder Nieuw: iets minder witruimte boven en onder de rubriek-en-datumregel */
   .home-nieuw .artikel .kaart-rubriek-regel { margin-top: 11px; }
   .home-nieuw .artikel h3 { margin-top: 3px; }
@@ -2096,9 +2092,8 @@ details.bronnen > ol {
 /* Uitgelicht artikel op desktop: rubriek-en-datumregel iets groter */
 @media (min-width: 801px) {
   .uitgelicht-kaart .kaart-rubriek { font-size: 1rem; }
-  .uitgelicht-kaart .kaart-rubriek-regel { gap: 2px 10px; padding-left: 1px; }
+  .uitgelicht-kaart .kaart-rubriek-regel { gap: 2px 14px; padding-left: 1px; }
   .uitgelicht-kaart .kaart-rubriek-regel time { font-size: .875rem; }
-  .uitgelicht-kaart .kaart-rubriek-regel time::before { margin-right: 10px; }
 }
 
 
