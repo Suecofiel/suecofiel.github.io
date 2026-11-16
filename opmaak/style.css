@@ -432,7 +432,7 @@ main.home > section:nth-of-type(even) {
 .kaart-rubriek {
   color: var(--blue);
   font-family: "Source Sans 3", Arial, sans-serif;
-  font-size: .85rem;
+  font-size: .95rem;
   font-weight: bold;
   text-decoration: none;
 }
@@ -442,7 +442,7 @@ main.home > section:nth-of-type(even) {
 .kaart-rubriek-regel time {
   color: var(--muted);
   font-family: "Source Sans 3", Arial, sans-serif;
-  font-size: .75rem;
+  font-size: .8rem;
 }
 
 .kaart-rubriek-regel time::before {
