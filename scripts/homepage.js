@@ -223,7 +223,11 @@
     document.getElementById("vd-link").href = "/begrippen#" + b.id;
     document.getElementById("vd-begrip").hidden = false;
     kolomBijwerken();
-    registreerKap(document.getElementById("vd-tekst"), begripRegels, esc(b.querySelector("dd:not(.letterlijk)").textContent.trim()), "");
+    // Uitleg met opmaak: cursief blijft staan; links naar andere begrippen worden gewone tekst
+    // (het hele kaartje is zelf al een link, en een link in een link kan niet)
+    const uitleg = b.querySelector("dd:not(.letterlijk)").cloneNode(true);
+    uitleg.querySelectorAll("a").forEach(function (a) { a.replaceWith.apply(a, Array.from(a.childNodes)); });
+    registreerKap(document.getElementById("vd-tekst"), begripRegels, uitleg.innerHTML.trim(), "");
   }).catch(function () { /* geen begrip: de zijkolom toont alleen wat er wel is */ });
 })();
 
