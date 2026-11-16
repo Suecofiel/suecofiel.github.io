@@ -1740,6 +1740,12 @@ details.bronnen > ol {
   /* Uitgelicht artikel: zelfde indeling als een gewoon kaartje (rubriek en datum, titel, inleiding) */
   .uitgelicht-kaart .kaart-rubriek-regel { margin: 12px 0 0; }
   .uitgelicht-kaart h2 { margin: 6px 0 8px; }
+  /* Uitgelicht artikel op mobiel: rubriek en datum even groot als op desktop */
+  .uitgelicht-kaart .kaart-rubriek { font-size: 1rem; }
+  .uitgelicht-kaart .kaart-rubriek-regel time { font-size: .875rem; }
+  /* Kaartjes onder Nieuw: iets minder witruimte boven en onder de rubriek-en-datumregel */
+  .home-nieuw .artikel .kaart-rubriek-regel { margin-top: 11px; }
+  .home-nieuw .artikel h3 { margin-top: 3px; }
   /* Ook de randen van de foto (schermrand tot schermrand) zijn klikbaar */
   .kaart-link::after { left: calc(-1 * var(--kader)); right: calc(-1 * var(--kader)); }
   .artikel-home .kaart-link::after { left: 0; right: 0; }
