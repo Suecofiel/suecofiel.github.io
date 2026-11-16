@@ -754,7 +754,7 @@ footer li a {
 
 .tekstpagina h1 {
   margin: 0 0 12px;
-  font-size: clamp(1.8rem, 4vw, 2.4rem);
+  font-size: clamp(1.8rem, 4vw, 2.2rem);
   line-height: 1.2;
 }
 
@@ -952,7 +952,7 @@ footer li a {
 
 .artikelpagina h1 {
   margin: 12px 0 17px;
-  font-size: clamp(1.9rem, 3.5vw, 2.4rem);
+  font-size: clamp(1.9rem, 3.5vw, 2.2rem);
   line-height: 1.15;
 }
 
@@ -1308,7 +1308,7 @@ details.bronnen > ol {
 
 .rubriekpagina-kop h1 {
   margin: 0 0 8px;
-  font-size: clamp(1.8rem, 4vw, 2.4rem);
+  font-size: clamp(1.8rem, 4vw, 2.2rem);
   line-height: 1.2;
 }
 
