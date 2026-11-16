@@ -1751,8 +1751,12 @@ details.bronnen > ol {
   .voettekst-onder p:last-child { margin-left: auto; text-align: right; }
   .tijdlijn-item { grid-template-columns: 1fr; }
   :root { --kader: 14px; }
-  main.panel:not(.home) { padding-top: 12px; padding-left: 10px; padding-right: 10px; }
+  /* Ruimte onder de kop is al 12 px (header.panel); bij geopend menu is die er niet, dan hier */
+  main.panel:not(.home) { padding-top: 0; padding-left: 10px; padding-right: 10px; }
+  header.panel.menu-open + main.panel:not(.home) { padding-top: 12px; }
   .grid { grid-template-columns: 1fr; gap: 24px; }
+  /* Rubriekpagina's: 30 px tussen de artikelkaartjes */
+  .alle-artikelen { row-gap: 30px; }
   /* Nieuw op De Suecofiel: op een telefoon de eerste 3 artikelen, onder elkaar */
   .home-nieuw .artikel:nth-child(n+4) { display: none; }
   .klank { grid-template-columns: 1fr; }
