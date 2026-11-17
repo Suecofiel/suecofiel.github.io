@@ -38,6 +38,10 @@
    ============================================================ */
 const artikelen = [
 
+  { titel: "Het Scandinavisch model: wat Nederland van Zweden kan leren", rubriek: "Samenleving", onderwerp: "Politiek", labels: ["Uitgelegd", "Zweden & Nederland"], datum: "2026-11-17",
+    inleiding: "In Zweden hoeft een premier geen meerderheid achter zich te hebben, alleen geen meerderheid tegen zich. Zo regeert Zweden zonder meerderheid, en zo schuurt het ook daar.",
+    afbeelding: "afbeeldingen/binnenhof-riksdag.jpg", url: "regeren-zonder-meerderheid", uitgelicht: true },
+
   { titel: "Nieuwe boeken met een Zweedse link in 2026", rubriek: "Cultuur & Tradities", onderwerp: "Taal & Literatuur", labels: ["Boeken"], datum: "2026-11-08",
     inleiding: "Een selectie uit de boeken met een Zweedse link die in 2026 zijn verschenen: zeven titels, op volgorde van verschijning. Ook Engelstalige titels staan erbij.",
     afbeelding: "afbeeldingen/boeken-november-2026.jpg", url: "boeken-november-2026" },
