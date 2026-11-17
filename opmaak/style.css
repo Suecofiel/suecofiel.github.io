@@ -2350,6 +2350,7 @@ details.bronnen > ol {
     padding: 4px 0 8px;
   }
   .naamdagen-maand > summary::before { display: none; }
+  .naamdagen-maand > summary h2 { font-size: 1.2rem; }
   .naamdagen-maand > summary:hover h2 { color: inherit; }
   .naamdagen-maand .klank:first-child { border-top: 0; }
 }
