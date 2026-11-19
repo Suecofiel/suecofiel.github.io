@@ -2225,6 +2225,14 @@ details.bronnen > ol {
   .home-feestdag-uitleg { margin-bottom: 14px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
 }
 
+/* 801 tot en met 1179 px (tablet, kleine laptop): blauw feestdagblok even hoog als de evenementen rechts,
+   beschrijving op 3 regels, link onderin het blok. Vanaf 1180 px ongewijzigd. */
+@media (min-width: 801px) and (max-width: 1179px) {
+  .home-feestdag { align-self: stretch; display: flex; flex-direction: column; }
+  .home-feestdag > a:last-child { margin-top: auto; align-self: flex-start; }
+  .home-feestdag-uitleg { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+}
+
 /* Kleine telefoons: kopjes in de voettekst iets kleiner, zodat "Meer op De Suecofiel" op één regel past */
 @media (max-width: 380px) {
   footer h2 { font-size: .76rem; letter-spacing: .3px; }
