@@ -142,6 +142,27 @@ function groepDatum(e) {
 function loopt(e) {
   return !e.datums && maakDatum(e.datum) < vandaagDatum();
 }
+// Anker: de naam van een regel op de agendapagina (bijvoorbeeld
+// /agenda#persona-van-ingmar-bergman). Komt alleen uit de titel, dus het
+// verandert niet als de getoonde datum verschuift. Staan er twee komende
+// evenementen met dezelfde titel, dan krijgt de tweede "-2" erachter.
+let ankerKaart = null;
+function ankerVan(e) {
+  if (!ankerKaart) {
+    ankerKaart = new Map();
+    const geteld = {};
+    const vandaag = vandaagDatum();
+    evenementen.forEach(function (x) {
+      if (maakDatum(laatsteDatum(x)) < vandaag) { return; }
+      const basis = x.titel.toLowerCase()
+        .normalize("NFD").replace(/[̀-ͯ]/g, "")
+        .replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+      geteld[basis] = (geteld[basis] || 0) + 1;
+      ankerKaart.set(x, geteld[basis] > 1 ? basis + "-" + geteld[basis] : basis);
+    });
+  }
+  return ankerKaart.get(e) || "";
+}
 // Alle evenementen die nog niet voorbij zijn, in de volgorde van de agenda
 function komendeEvenementen() {
   const vandaag = vandaagDatum();
@@ -201,6 +222,7 @@ function komendeEvenementen() {
 
     const item = document.createElement("li");
     item.className = "agenda-item";
+    item.id = ankerVan(e);
 
     const datumBlok = document.createElement("time");
     datumBlok.className = "agenda-datum";
@@ -264,4 +286,14 @@ function komendeEvenementen() {
     item.append(datumBlok, inhoud);
     maandLijst.appendChild(item);
   });
+
+  // Komt de bezoeker via een link met een anker (bijvoorbeeld vanaf de
+  // homepage), dan scrollt de pagina naar die regel. Dit moet hier,
+  // omdat de lijst pas door dit script wordt opgebouwd.
+  if (location.hash.length > 1) {
+    let naam = location.hash.slice(1);
+    try { naam = decodeURIComponent(naam); } catch (fout) { /* laat de naam zoals hij is */ }
+    const doel = document.getElementById(naam);
+    if (doel) { doel.scrollIntoView(); }
+  }
 })();

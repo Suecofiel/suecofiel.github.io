@@ -92,7 +92,7 @@
 
       const titel = document.createElement("h3");
       const titelLink = document.createElement("a");
-      titelLink.href = "/agenda";
+      titelLink.href = "/agenda#" + ankerVan(e);
       titelLink.textContent = e.titel;
       titel.appendChild(titelLink);
 
