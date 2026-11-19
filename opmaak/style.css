@@ -146,7 +146,7 @@ header.panel {
   justify-content: space-between;
   align-items: flex-start;
   gap: 20px;
-  padding: 15px var(--kader) 11px;
+  padding: 15px var(--kader) 9px;
 }
 
 /* ===== TITEL MET LOGO TUSSEN "De" EN "Suecofiel" =====
