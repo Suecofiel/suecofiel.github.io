@@ -258,7 +258,7 @@ function registreerKap(el, regels, origineel, staart, alleenMobiel) {
 
 function pasKap(item) {
   item.el.innerHTML = item.orig;
-  if (item.alleenMobiel && !window.matchMedia("(max-width: 800px)").matches) { return; }
+  if (item.alleenMobiel && !window.matchMedia("(max-width: 1179px)").matches) { return; }
   kapAf(item.el, typeof item.regels === "function" ? item.regels() : item.regels, item.staart);
 }
 
