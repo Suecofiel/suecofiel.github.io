@@ -1783,6 +1783,10 @@ details.bronnen > ol {
     padding: 12px 0 calc(0.535em + 6px) var(--kader);
     font-size: clamp(1.9rem, 10.3vw, 2.9rem);  /* de slogan blijft leesbaar */
   }
+  /* Wapen iets kleiner, zodat er onderaan meer ruimte is; "Suecofiel" schuift mee,
+     zodat de ruimte naast het wapen gelijk blijft */
+  .brand-ruimte { width: 1.59em; }
+  .brand-ruimte img { height: 1.85em; }
   .menuknop {
     display: flex;
     order: 2;
